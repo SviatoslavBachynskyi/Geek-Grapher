@@ -25,7 +25,48 @@
             <MenuItem Header="_Start Page" InputGestureText="Ctrl+F5"/>
             <MenuItem Header="_Settings"/>
             <MenuItem Header="_Help"/>
-
         </Menu>
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Viewbox Grid.Row="0" HorizontalAlignment="Center">
+                <TextBlock  MaxHeight="60" Padding="5,5,5,5" >Select one of possible templates</TextBlock>
+            </Viewbox>
+            <Grid Grid.Row="1" Margin="15,15,15,15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="6*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Viewbox Grid.Row="0" Grid.Column="0">
+                    <TextBlock>Parallelogram Editor</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Row="0" Grid.Column="1">
+                    <TextBlock>Fractal Painter</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Row="0" Grid.Column="2">
+                    <TextBlock>Image Converter</TextBlock>
+                </Viewbox>
+                <TextBlock Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center">
+                            You can paint parallelgoram in any color move and rotate parallegoram relative to one of it's vertexs
+                </TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center">
+                            You can choose one of functions that represents fractal, it's color and color model
+                </TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="2" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center">
+                            Convert image from one color scheme to another, set yellow saturation
+                </TextBlock>
+                <Image Grid.Row="2" Grid.Column="0" Source="/images/parallelogram.png"/>
+                <Image Grid.Row="2" Grid.Column="1" Source="/images/fractal sample.png"/>
+                <Image Grid.Row="2" Grid.Column="2" Source="/images/cmyk.gif"/>
+            </Grid>
+        </Grid>
     </DockPanel>
 </Window>

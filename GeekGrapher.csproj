@@ -100,5 +100,14 @@
   <ItemGroup>
     <Resource Include="icon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\parallelogram.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\fractal sample.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cmyk.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
