@@ -8,4 +8,6 @@
     <sys:String x:Key="FontAwesomeRedo">&#xF01E;</sys:String>
     <sys:String x:Key="FontAwesomeUndo">&#xF0E2;</sys:String>
     <sys:String x:Key="FontAwesomeSave">&#xF0C7;</sys:String>
+    <sys:String x:Key="FontAwesomeMinus">&#xF056;</sys:String>
+    <sys:String x:Key="FontAwesomePlus">&#xF055;</sys:String>
 </ResourceDictionary>

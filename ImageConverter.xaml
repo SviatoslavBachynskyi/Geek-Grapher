@@ -30,10 +30,11 @@
         </Canvas>
         <Grid DockPanel.Dock="Bottom">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0"> test</TextBlock>
+            <local:ImageZoomer Grid.Column="0"></local:ImageZoomer>
+            <local:ImageZoomer Grid.Column="1"></local:ImageZoomer>
         </Grid>
     </DockPanel>
 </Window>

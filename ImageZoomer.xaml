@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="GeekGrapher.ImageZoomer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GeekGrapher"
+             mc:Ignorable="d" 
+             d:DesignHeight="720" d:DesignWidth="640">
+    <Grid DockPanel.Dock="Bottom">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height ="45"></RowDefinition>
+        </Grid.RowDefinitions>
+        <ScrollViewer x:Name="scrollViewer1" Grid.Column="0" 
+                  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <Image Name="img1" Height="{Binding ActualHeight, ElementName=scrollViewer1}" Width="{Binding ActualWidth, ElementName=scrollViewer1}" Source="/Images/cmyk.gif" />
+        </ScrollViewer>
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
+                <TextBlock>HSV(30,100,45)</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="200"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Padding="5,5,5,5">
+                            <Viewbox>
+                                <TextBlock
+                                FontFamily="{StaticResource FontAwesomeFreeSolid}"
+                           Text="{StaticResource FontAwesomeMinus}" Foreground="Black"
+                                ></TextBlock>
+                            </Viewbox>
+                    </Button>
+                    <Slider VerticalAlignment="Center" Grid.Column="1" Maximum="500" Value="100" TickPlacement="BottomRight" TickFrequency="25" />
+                    <Button Grid.Column="2" Padding = "5,5,5,5">
+                        <Viewbox>
+                            <TextBlock
+                                FontFamily="{StaticResource FontAwesomeFreeSolid}"
+                           Text="{StaticResource FontAwesomePlus}" Foreground="Black"
+                                ></TextBlock>
+                        </Viewbox>
+                    </Button>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>
