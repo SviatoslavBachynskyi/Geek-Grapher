@@ -6,24 +6,42 @@
              xmlns:local="clr-namespace:GeekGrapher"
              mc:Ignorable="d" 
              d:DesignHeight="45" d:DesignWidth="180">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Button Grid.Column="0">
-        </Button>
-        <Button Grid.Column="1">
-            <StackPanel Orientation="Horizontal">
-                <Viewbox>
-                <TextBlock Padding="5,5,5,5"
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0">
+                <StackPanel Orientation="Horizontal">
+                    <Viewbox>
+                        <TextBlock Padding="5,5,5,5"
                     FontFamily="{StaticResource FontAwesomeFreeSolid}"
-                           Text="{StaticResource FontAwesomeRedo}" Foreground="green"
+                           Text="{StaticResource FontAwesomeUndo}" Foreground="#cf2a27"
                  ></TextBlock>
-                </Viewbox>
-            </StackPanel>
-        </Button>
-        <Button Grid.Column="2"></Button>
-    </Grid>
+                    </Viewbox>
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="1">
+                <StackPanel Orientation="Horizontal">
+                    <Viewbox>
+                        <TextBlock Padding="5,5,5,5"
+                    FontFamily="{StaticResource FontAwesomeFreeSolid}"
+                           Text="{StaticResource FontAwesomeRedo}" Foreground="#009e0f"
+                 ></TextBlock>
+                    </Viewbox>
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="2">
+                <StackPanel Orientation="Horizontal">
+                    <Viewbox>
+                        <TextBlock Padding="5,5,5,5"
+                    FontFamily="{StaticResource FontAwesomeFreeRegular}"
+                           Text="{StaticResource FontAwesomeSave}" Foreground="#2b78e4"
+                 ></TextBlock>
+                    </Viewbox>
+                </StackPanel>
+            </Button>
+        </Grid>
 </UserControl>

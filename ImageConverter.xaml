@@ -25,7 +25,15 @@
             <MenuItem Header="_Settings"/>
             <MenuItem Header="_Help"/>
         </Menu>
+        <Canvas DockPanel.Dock="Right">
+            <local:QuickActionsBar Width="180" Height="45" Canvas.Top="0" Canvas.Right="5"/>
+        </Canvas>
         <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"> test</TextBlock>
         </Grid>
     </DockPanel>
 </Window>
