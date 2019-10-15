@@ -75,6 +75,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="FractalPainter.xaml.cs">
+      <DependentUpon>FractalPainter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ImageZoomer.xaml.cs">
       <DependentUpon>ImageZoomer.xaml</DependentUpon>
     </Compile>
@@ -94,6 +97,10 @@
       <DependentUpon>UserManual.xaml</DependentUpon>
     </Compile>
     <Page Include="FontAwesomeDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FractalPainter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -124,7 +131,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-	<Page Include="Settings.xaml">
+    <Page Include="Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -136,7 +143,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-	<Page Include="Vertex.xaml">
+    <Page Include="Vertex.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
