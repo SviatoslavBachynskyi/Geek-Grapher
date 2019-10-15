@@ -29,12 +29,51 @@
             <local:QuickActionsBar Width="180" Height="45" Canvas.Top="0" Canvas.Right="5"/>
         </Canvas>
         <Grid DockPanel.Dock="Bottom">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <local:ImageZoomer Grid.Column="0"></local:ImageZoomer>
-            <local:ImageZoomer Grid.Column="1"></local:ImageZoomer>
+            <Viewbox Grid.Row="0" Grid.Column="1">
+                <TextBlock>Original Image</TextBlock>
+            </Viewbox>
+            <Viewbox Grid.Row="0" Grid.Column="2" Margin="0,0,180,0">
+                <TextBlock>Converted Image</TextBlock>
+            </Viewbox>
+            <local:ImageZoomer Grid.Row="1" Grid.Column="1"></local:ImageZoomer>
+            <local:ImageZoomer Grid.Row="1" Grid.Column="2"></local:ImageZoomer>
+            <GroupBox Header="Conversion settings" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="10px"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="20"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Viewbox Grid.Row="0" Grid.Column="0">
+                        <TextBlock> ColorModel:</TextBlock>
+                    </Viewbox>
+                    <ComboBox Grid.Row="0" Grid.Column="2" Margin="0,5,0,0">
+                        <ComboBoxItem IsSelected="True">HSL</ComboBoxItem>
+                        <ComboBoxItem>CMYK</ComboBoxItem>
+                    </ComboBox>
+                    <Viewbox Grid.Row="2" Grid.Column="0">
+                        <TextBlock> Yellow saturation:</TextBlock>
+                    </Viewbox>
+                        <DockPanel Grid.Row="2" Grid.Column="2">
+                        <TextBox Text="100"></TextBox>
+                        <Slider DockPanel.Dock="Left" Maximum="255" Value="100" TickPlacement="BottomRight"/>
+                    </DockPanel>
+                </Grid>
+            </GroupBox>
         </Grid>
     </DockPanel>
 </Window>
