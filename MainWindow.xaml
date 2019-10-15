@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GeekGrapher"
         mc:Ignorable="d"
         Icon ="Icon.ico"
-        Title="Geek Grapher" Height="450" Width="800">
+        Title="Geek Grapher" Height="449.333" Width="800">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
@@ -63,9 +63,9 @@
                 <TextBlock Grid.Row="1" Grid.Column="2" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center">
                             Convert image from one color scheme to another, set yellow saturation
                 </TextBlock>
-                <Image Grid.Row="2" Grid.Column="0" Source="/images/parallelogram.png"/>
-                <Image Grid.Row="2" Grid.Column="1" Source="/images/fractal sample.png"/>
-                <Image Grid.Row="2" Grid.Column="2" Source="/images/cmyk.gif"/>
+                <Image  VerticalAlignment="Center" Margin="5,0,5,0" Grid.Row="2" Grid.Column="0" Source="/images/parallelogram.png" />
+                <Image  VerticalAlignment="Center" Margin="5,0,5,0" Grid.Row="2" Grid.Column="1" Source="/images/fractal sample.png"/>
+                <Image  VerticalAlignment="Center" Margin="5,32,5,32" Grid.Row="2" Grid.Column="2" Source="/images/cmyk.gif"/>
             </Grid>
         </Grid>
     </DockPanel>
