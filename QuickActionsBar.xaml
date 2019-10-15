@@ -6,7 +6,12 @@
              xmlns:local="clr-namespace:GeekGrapher"
              mc:Ignorable="d" 
              d:DesignHeight="45" d:DesignWidth="180">
-
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Background" Value="Transparent"></Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
