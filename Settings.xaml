@@ -1,0 +1,39 @@
+﻿<Window x:Class="GeekGrapher.Settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GeekGrapher"
+        mc:Ignorable="d"
+        Title="Settings" Height="400" Width="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*" ></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBox TextAlignment="Left" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" FontStyle="Italic" FontSize="16">Style:</TextBox>
+        <ComboBox Grid.Column="1"  Grid.Row="0" VerticalAlignment="Center" ></ComboBox>
+        <TextBox Grid.Column="0"  Grid.Row="1" VerticalAlignment="Center" FontStyle="Italic" FontSize="16">Language:</TextBox>
+        <ComboBox Grid.Column="1"  Grid.Row="0" VerticalAlignment="Center" ></ComboBox>
+        <ComboBox Grid.Column="1"  Grid.Row="1" VerticalAlignment="Center" ></ComboBox>
+        <CheckBox Grid.Column="0"  Grid.Row="2" VerticalAlignment="Center" FontStyle="Italic" FontSize="13">Advanced color picker</CheckBox>
+        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*" ></ColumnDefinition>
+                <ColumnDefinition Width="1*" ></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+            <Button Grid.Column= "0" VerticalAlignment="Center" Margin="15">OK</Button>
+            <Button Grid.Column= "1" VerticalAlignment="Center" Margin="15">Apply</Button>
+            <Button Grid.Column= "2" VerticalAlignment="Center" Margin="15">Close</Button>
+        </Grid>
+    </Grid>
+</Window>
