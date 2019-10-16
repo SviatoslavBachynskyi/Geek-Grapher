@@ -65,7 +65,7 @@
                 </TextBlock>
                 <Image  VerticalAlignment="Center" Margin="5,0,5,0" Grid.Row="2" Grid.Column="0" Source="/images/parallelogram.png" />
                 <Image  VerticalAlignment="Center" Margin="5,0,5,0" Grid.Row="2" Grid.Column="1" Source="/images/fractal sample.png"/>
-                <Image  VerticalAlignment="Center" Margin="5,32,5,32" Grid.Row="2" Grid.Column="2" Source="/images/cmyk.gif"/>
+                <Image  VerticalAlignment="Center" Margin="5,0,5,0" Grid.Row="2" Grid.Column="2" Source="/images/cmyk.gif"/>
             </Grid>
         </Grid>
     </DockPanel>
