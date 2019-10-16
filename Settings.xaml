@@ -18,15 +18,15 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock TextAlignment="Left" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" FontStyle="Italic" FontSize="16">Style:</TextBlock>
-        <TextBlock Grid.Column="0"  Grid.Row="1" VerticalAlignment="Center" FontStyle="Italic" FontSize="16">Language:</TextBlock>
+        <TextBlock TextAlignment="Left" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" FontStyle="Italic" Margin="15,0,0,0" FontSize="16">Style:</TextBlock>
+        <TextBlock Grid.Column="0"  Grid.Row="1" VerticalAlignment="Center" FontStyle="Italic" FontSize="16" Margin="15,0,0,0">Language:</TextBlock>
         <ComboBox Grid.Column="1"  Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,15,0">
             <ComboBoxItem IsSelected="True">Light</ComboBoxItem>
         </ComboBox>
         <ComboBox Grid.Column="1"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,15,0">
             <ComboBoxItem IsSelected="True">English</ComboBoxItem>
         </ComboBox>
-        <CheckBox Grid.Column="0"  Grid.Row="2" VerticalAlignment="Center" FontStyle="Italic" FontSize="13">Advanced color picker</CheckBox>
+        <CheckBox Grid.Column="0"  Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Center" FontStyle="Italic" FontSize="16" Margin="15,0,0,0">Advanced color picker</CheckBox>
         <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
