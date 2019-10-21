@@ -1,4 +1,4 @@
-﻿<Window x:Class="GeekGrapher.ParallelogramEditor"
+﻿<Window x:Class="GeekGrapher.AffineTransformations"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GeekGrapher"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="ParallelogramEditor" Height="720" Width="1280">
+        Title="AffineTransformations" Height="720" Width="1280">
     <Window.Resources>
         <Style x:Key="VertexStyle" TargetType="GroupBox">
             <Setter Property="Margin" Value="0,2,0,3"/>

@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace GeekGrapher
 {
     /// <summary>
-    /// Interaction logic for ParallelogramEditor.xaml
+    /// Interaction logic for AffineTransformation.xaml
     /// </summary>
-    public partial class ParallelogramEditor : Window
+    public partial class AffineTransformations : Window
     {
-        public ParallelogramEditor()
+        public AffineTransformations()
         {
             InitializeComponent();
         }

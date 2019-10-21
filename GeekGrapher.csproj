@@ -81,8 +81,8 @@
     <Compile Include="ImageZoomer.xaml.cs">
       <DependentUpon>ImageZoomer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ParallelogramEditor.xaml.cs">
-      <DependentUpon>ParallelogramEditor.xaml</DependentUpon>
+    <Compile Include="AffineTransformations.xaml.cs">
+      <DependentUpon>AffineTransformations.xaml</DependentUpon>
     </Compile>
     <Compile Include="QuickActionsBar.xaml.cs">
       <DependentUpon>QuickActionsBar.xaml</DependentUpon>
@@ -127,7 +127,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ParallelogramEditor.xaml">
+    <Page Include="AffineTransformations.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

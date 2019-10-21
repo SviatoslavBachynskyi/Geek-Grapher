@@ -11,7 +11,7 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height ="45"></RowDefinition>
         </Grid.RowDefinitions>
-        <ScrollViewer x:Name="scrollViewer1" Grid.Column="0" 
+        <ScrollViewer x:Name="scrollViewer1" Grid.Row="0" 
                   VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
             <Image Name="img1" Height="{Binding ActualHeight, ElementName=scrollViewer1}" Width="{Binding ActualWidth, ElementName=scrollViewer1}" Source="/Images/cmyk.gif" />
         </ScrollViewer>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GeekGrapher"
         mc:Ignorable="d"
         Icon ="Icon.ico"
-        Title="Geek Grapher" Height="449.333" Width="800">
+        Title="Geek Grapher" Height="450" Width="800">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
@@ -23,22 +23,22 @@
                 <MenuItem Header="_Exit" />
             </MenuItem>
             <MenuItem Header="_Start Page" InputGestureText="Ctrl+F5"/>
-            <MenuItem Header="_Settings"/>
-            <MenuItem Header="_Help"/>
+            <MenuItem Header="_Settings" Click="Settings_Click"/>
+            <MenuItem Header="_Help" Click="Help_Click"/>
         </Menu>
         <Grid DockPanel.Dock="Bottom">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Viewbox Grid.Row="0" HorizontalAlignment="Center">
+            <Viewbox Grid.Row="0" HorizontalAlignment="Center" Grid.Column="1" Margin="0,0,0,0">
                 <TextBlock  MaxHeight="60" Padding="5,5,5,5" >Select one of possible templates</TextBlock>
             </Viewbox>
             <Grid Grid.Row="1" Margin="15,15,15,15">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"></RowDefinition>
@@ -46,7 +46,7 @@
                     <RowDefinition Height="6*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Viewbox Grid.Row="0" Grid.Column="0">
-                    <TextBlock>Parallelogram Editor</TextBlock>
+                    <TextBlock>Affine transformations</TextBlock>
                 </Viewbox>
                 <Viewbox Grid.Row="0" Grid.Column="1">
                     <TextBlock>Fractal Painter</TextBlock>
@@ -63,9 +63,15 @@
                 <TextBlock Grid.Row="1" Grid.Column="2" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center">
                             Convert image from one color scheme to another, set yellow saturation
                 </TextBlock>
-                <Image  VerticalAlignment="Center" Margin="5,0,5,0" Grid.Row="2" Grid.Column="0" Source="/images/parallelogram.png" />
-                <Image  VerticalAlignment="Center" Margin="5,0,5,0" Grid.Row="2" Grid.Column="1" Source="/images/fractal sample.png"/>
-                <Image  VerticalAlignment="Center" Margin="5,0,5,0" Grid.Row="2" Grid.Column="2" Source="/images/cmyk.gif"/>
+                <Grid Grid.Row="2" Grid.Column="0" Margin="5,0,5,0" MouseLeftButtonDown="AffineTransformations_MouseLeftButtonDown">
+                <Image  VerticalAlignment="Center"  Source="/images/parallelogram.png" />
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="1" Margin="5,0,5,0" MouseLeftButtonDown="FractalPainter_MouseLeftButtonDown">
+                    <Image  VerticalAlignment="Center"  Source="/images/fractal sample.png" />
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="2" Margin="5,0,5,0" MouseLeftButtonDown="ImageConverter_MouseLeftButtonDown">
+                    <Image  VerticalAlignment="Center"  Source="/images/cmyk.gif" />
+                </Grid>
             </Grid>
         </Grid>
     </DockPanel>

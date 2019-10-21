@@ -24,5 +24,33 @@ namespace GeekGrapher
         {
             InitializeComponent();
         }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            new Settings().ShowDialog();
+        }
+
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            new UserManual().Show();
+        }
+
+        private void AffineTransformations_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            new AffineTransformations().Show();
+            this.Close();
+        }
+
+        private void FractalPainter_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            new FractalPainter().Show();
+            this.Close();
+        }
+
+        private void ImageConverter_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            new ImageConverter().Show();
+            this.Close();
+        }
     }
 }
