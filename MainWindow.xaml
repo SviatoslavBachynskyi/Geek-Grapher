@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:GeekGrapher"
         mc:Ignorable="d"
         Icon ="Icon.ico"
-        Title="Geek Grapher" Height="450" Width="800">
+        Title="Geek Grapher" Height="450" Width="850"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
@@ -38,40 +40,54 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="2*"></RowDefinition>
-                    <RowDefinition Height="6*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Viewbox Grid.Row="0" Grid.Column="0">
-                    <TextBlock>Affine transformations</TextBlock>
-                </Viewbox>
-                <Viewbox Grid.Row="0" Grid.Column="1">
-                    <TextBlock>Fractal Painter</TextBlock>
-                </Viewbox>
-                <Viewbox Grid.Row="0" Grid.Column="2">
-                    <TextBlock>Image Converter</TextBlock>
-                </Viewbox>
-                <TextBlock Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center">
-                            You can paint parallelgoram in any color move and rotate parallegoram relative to one of it's vertexs
-                </TextBlock>
-                <TextBlock Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center">
-                            You can choose one of functions that represents fractal, it's color and color model
-                </TextBlock>
-                <TextBlock Grid.Row="1" Grid.Column="2" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center">
-                            Convert image from one color scheme to another, set yellow saturation
-                </TextBlock>
-                <Grid Grid.Row="2" Grid.Column="0" Margin="5,0,5,0" MouseLeftButtonDown="AffineTransformations_MouseLeftButtonDown">
-                <Image  VerticalAlignment="Center"  Source="/images/parallelogram.png" />
+
+                <Grid Grid.Column="0"  MouseLeftButtonDown="AffineTransformations_MouseLeftButtonDown" Margin="5,0,5,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="6*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Viewbox Grid.Row="0">
+                        <TextBlock>Affine transformations</TextBlock>
+                    </Viewbox>
+                    <TextBlock Grid.Row="1" TextWrapping="Wrap" TextAlignment="Justify" VerticalAlignment="Center">
+                            You can paint parallelgoram in color, move and rotate parallegoram relative to one of it's vertexs
+                    </TextBlock>
+                    <Image Grid.Row ="2" VerticalAlignment="Center"   Source="/images/parallelogram.png" />
                 </Grid>
-                <Grid Grid.Row="2" Grid.Column="1" Margin="5,0,5,0" MouseLeftButtonDown="FractalPainter_MouseLeftButtonDown">
-                    <Image  VerticalAlignment="Center"  Source="/images/fractal sample.png" />
+
+                <Grid Grid.Column="1"  MouseLeftButtonDown="FractalPainter_MouseLeftButtonDown" Margin="5,0,5,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="6*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Viewbox Grid.Row="0">
+                        <TextBlock>Fractal Painter</TextBlock>
+                    </Viewbox>
+                    <TextBlock Grid.Row="1" TextWrapping="Wrap" TextAlignment="Justify" VerticalAlignment="Center">
+                            You can choose function that represents fractal, max iteration number, fractal color scheme
+                    </TextBlock>
+                    <Image Grid.Row="2" VerticalAlignment="Center" Source="/images/fractal sample.png" />
                 </Grid>
-                <Grid Grid.Row="2" Grid.Column="2" Margin="5,0,5,0" MouseLeftButtonDown="ImageConverter_MouseLeftButtonDown">
-                    <Image  VerticalAlignment="Center"  Source="/images/cmyk.gif" />
+
+                <Grid Grid.Column="2"  MouseLeftButtonDown="ImageConverter_MouseLeftButtonDown" Margin="5,0,5,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="6*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Viewbox Grid.Row="0">
+                        <TextBlock>Image Converter</TextBlock>
+                    </Viewbox>
+                    <TextBlock Grid.Row="1" TextWrapping="Wrap" TextAlignment="Justify" VerticalAlignment="Center">
+                            Convert image from HSL to CMYK, set yellow saturation
+                    </TextBlock>
+                    <Image Grid.Row="2" VerticalAlignment="Center" Source="/images/cmyk.gif" />
                 </Grid>
+                
             </Grid>
         </Grid>
     </DockPanel>
