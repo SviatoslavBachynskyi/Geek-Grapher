@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GeekGrapher"
         mc:Ignorable="d"
-        Title="Settings" Height="250" Width="300">
+        Title="Settings" Height="250" Width="300"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -18,15 +20,17 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock TextAlignment="Left" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" FontStyle="Italic" Margin="15,0,0,0" FontSize="16">Style:</TextBlock>
-        <TextBlock Grid.Column="0"  Grid.Row="1" VerticalAlignment="Center" FontStyle="Italic" FontSize="16" Margin="15,0,0,0">Language:</TextBlock>
+        <TextBlock TextAlignment="Left" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Margin="15,0,0,0" FontSize="16">Style:</TextBlock>
+        <TextBlock Grid.Column="0"  Grid.Row="1" VerticalAlignment="Center" FontSize="16" Margin="15,0,0,0">Language:</TextBlock>
         <ComboBox Grid.Column="1"  Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,15,0">
             <ComboBoxItem IsSelected="True">Light</ComboBoxItem>
+            <ComboBoxItem IsSelected="False">Dark</ComboBoxItem>
         </ComboBox>
         <ComboBox Grid.Column="1"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,15,0">
             <ComboBoxItem IsSelected="True">English</ComboBoxItem>
+            <ComboBoxItem IsSelected="False">Ukraine</ComboBoxItem>
         </ComboBox>
-        <CheckBox Grid.Column="0"  Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Center" FontStyle="Italic" FontSize="16" Margin="15,0,0,0">Advanced color picker</CheckBox>
+        <CheckBox Grid.Column="0"  Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Center" FontSize="16" Margin="15,0,0,0">Advanced color picker</CheckBox>
         <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
