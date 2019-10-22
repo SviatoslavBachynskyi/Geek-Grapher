@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GeekGrapher"
         mc:Ignorable="d"
-        Title="UserManual" Height="720" Width="1280">
+        Title="UserManual"
+        WindowState ="Maximized">
 
     <Window.Resources>
         <Style TargetType="Button">
-            <Setter Property="Height" Value="100"></Setter>
             <Setter Property="Background" Value="Gray"></Setter>
             <Setter Property="FontSize" Value="24"></Setter>
         </Style>
@@ -20,13 +20,22 @@
             <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="3*" ></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" Background="DarkGray">
-            <Button>General</Button>
-            <Button>Fractals</Button>
-            <Button>Color models</Button>
-            <Button>Paralelograms</Button>
-            <Button>Affine transformations</Button>
-        </StackPanel>
+        <Grid Grid.Column="0" Background="DarkGray">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0">General</Button>
+            <Button Grid.Row="1">Complex numbers</Button>
+            <Button Grid.Row="2">Fractals</Button>
+            <Button Grid.Row="3">Color models</Button>
+            <Button Grid.Row="4">Paralelograms</Button>
+            <Button Grid.Row="5">Affine transformations</Button>
+        </Grid>
         <RichTextBox VerticalScrollBarVisibility = "Visible" Margin="10" Grid.Column="1">
             <FlowDocument>
                 <Paragraph FontSize="40" TextAlignment="Center" FontStyle="Normal" >Lorem ipsum</Paragraph>
