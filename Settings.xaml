@@ -22,11 +22,11 @@
         </Grid.RowDefinitions>
         <TextBlock TextAlignment="Left" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Margin="15,0,0,0" FontSize="16">Style:</TextBlock>
         <TextBlock Grid.Column="0"  Grid.Row="1" VerticalAlignment="Center" FontSize="16" Margin="15,0,0,0">Language:</TextBlock>
-        <ComboBox Grid.Column="1"  Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,15,0">
+        <ComboBox Grid.Column="1"  Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="100" Margin="0,0,15,0">
             <ComboBoxItem IsSelected="True">Light</ComboBoxItem>
             <ComboBoxItem IsSelected="False">Dark</ComboBoxItem>
         </ComboBox>
-        <ComboBox Grid.Column="1"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,15,0">
+        <ComboBox Grid.Column="1"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Width="100" Margin="0,0,15,0">
             <ComboBoxItem IsSelected="True">English</ComboBoxItem>
             <ComboBoxItem IsSelected="False">Ukraine</ComboBoxItem>
         </ComboBox>
