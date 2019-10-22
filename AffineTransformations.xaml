@@ -46,7 +46,7 @@
             <GroupBox Header="Parellelogram Properties" Grid.Column="0" Grid.Row="0">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="4*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="2*"></RowDefinition>
                     </Grid.RowDefinitions>
