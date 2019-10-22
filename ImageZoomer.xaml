@@ -13,7 +13,9 @@
         </Grid.RowDefinitions>
         <ScrollViewer x:Name="scrollViewer1" Grid.Row="0" 
                   VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-            <Image Name="img1" Height="{Binding ActualHeight, ElementName=scrollViewer1}" Width="{Binding ActualWidth, ElementName=scrollViewer1}" Source="/Images/cmyk.gif" />
+            <Border BorderBrush="Black" BorderThickness="0.5" Margin="1">
+                <Image Name="img1" Height="{Binding ActualHeight}" Width="{Binding ActualWidth}" Source="/Images/cmyk.gif" />
+            </Border>
         </ScrollViewer>
         <Grid Grid.Row="1">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
@@ -26,20 +28,20 @@
                         <ColumnDefinition Width="200"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Padding="5,5,5,5">
+                    <Button Background="Transparent" BorderBrush="Transparent" Grid.Column="0" Padding="5,5,5,5">
                             <Viewbox>
                                 <TextBlock
                                 FontFamily="{StaticResource FontAwesomeFreeSolid}"
-                           Text="{StaticResource FontAwesomeMinus}" Foreground="Black"
+                           Text="{StaticResource FontAwesomeMinus}" Foreground="Blue"
                                 ></TextBlock>
                             </Viewbox>
                     </Button>
                     <Slider VerticalAlignment="Center" Grid.Column="1" Maximum="500" Value="100" TickPlacement="BottomRight" TickFrequency="25" />
-                    <Button Grid.Column="2" Padding = "5,5,5,5">
+                    <Button Background="Transparent" BorderBrush="Transparent" Grid.Column="2" Padding = "5,5,5,5">
                         <Viewbox>
                             <TextBlock
                                 FontFamily="{StaticResource FontAwesomeFreeSolid}"
-                           Text="{StaticResource FontAwesomePlus}" Foreground="Black"
+                           Text="{StaticResource FontAwesomePlus}" Foreground="Blue"
                                 ></TextBlock>
                         </Viewbox>
                     </Button>

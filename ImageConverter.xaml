@@ -46,7 +46,7 @@
             <Viewbox Grid.Row="1" Grid.Column="1">
                 <TextBlock>Converted Image</TextBlock>
             </Viewbox>
-            <local:ImageZoomer Grid.Row="2" Grid.Column="0"></local:ImageZoomer>
+            <local:ImageZoomer Grid.Row="2" Grid.Column="0" Loaded="ImageZoomer_Loaded"></local:ImageZoomer>
             <local:ImageZoomer Grid.Row="2" Grid.Column="1"></local:ImageZoomer>
             <DockPanel Grid.Column="0" Grid.ColumnSpan="2" Width="300" VerticalAlignment="Center">
                 <Label DockPanel.Dock="Left" Margin="0,0,10,0" FontSize="16">Yellow Saturation: </Label>

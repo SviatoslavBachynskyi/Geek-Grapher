@@ -23,5 +23,10 @@ namespace GeekGrapher
         {
             InitializeComponent();
         }
+
+        private void ImageZoomer_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
