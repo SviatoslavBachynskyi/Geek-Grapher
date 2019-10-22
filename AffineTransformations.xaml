@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:GeekGrapher"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="AffineTransformations" Height="720" Width="1280">
+        Title="AffineTransformations"
+        WindowState="Maximized">
     <Window.Resources>
         <Style x:Key="VertexStyle" TargetType="GroupBox">
             <Setter Property="Margin" Value="0,2,0,3"/>
-            <Setter Property="Height" Value="50"/>
         </Style>
     </Window.Resources>
     <DockPanel>
@@ -39,82 +39,93 @@
             <Grid.RowDefinitions>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <local:ImageZoomer Grid.Row="1" Grid.Column="1"></local:ImageZoomer>
             <GroupBox Header="Parellelogram Properties" Grid.Column="0" Grid.Row="0">
-                <StackPanel Orientation="Vertical">
-                    <GroupBox Header="Coordinates">
-                        <StackPanel>
-                            <GroupBox Header="Vertex A" Style="{StaticResource VertexStyle}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="2*"></ColumnDefinition>
-                                        <ColumnDefinition Width="20"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="2*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "X:"/>
-                                    <TextBox Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center">-4.0</TextBox>
-                                    <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "Y:"/>
-                                    <TextBox Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center">2.0</TextBox>
-                                </Grid>
-                            </GroupBox>
-                            <GroupBox Header="Vertex B" Style="{StaticResource VertexStyle}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="2*"></ColumnDefinition>
-                                        <ColumnDefinition Width="20"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="2*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "X:"/>
-                                    <TextBox Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center">-4.0</TextBox>
-                                    <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "Y:"/>
-                                    <TextBox Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center">2.0</TextBox>
-                                </Grid>
-                            </GroupBox>
-                            <GroupBox Header="Vertex C" Style="{StaticResource VertexStyle}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="2*"></ColumnDefinition>
-                                        <ColumnDefinition Width="20"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="2*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "X:"/>
-                                    <TextBox Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center">-4.0</TextBox>
-                                    <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "Y:"/>
-                                    <TextBox Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center">2.0</TextBox>
-                                </Grid>
-                            </GroupBox>
-                            <GroupBox Header="Vertex D" Style="{StaticResource VertexStyle}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="2*"></ColumnDefinition>
-                                        <ColumnDefinition Width="20"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="2*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "X:"/>
-                                    <TextBox Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center">-4.0</TextBox>
-                                    <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "Y:"/>
-                                    <TextBox Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center">2.0</TextBox>
-                                </Grid>
-                            </GroupBox>
-                        </StackPanel>
-                    </GroupBox>
-                    <GroupBox Header="Colors">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="4*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <GroupBox Header="Coordinates" Grid.Row="0">
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <GroupBox Grid.Row="0" Header="Vertex A" Style="{StaticResource VertexStyle}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="10"></ColumnDefinition>
+                                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                                        <ColumnDefinition Width="20"></ColumnDefinition>
+                                        <ColumnDefinition Width="10"></ColumnDefinition>
+                                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "X:"/>
+                                    <TextBox Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center">-4.0</TextBox>
+                                    <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "Y:"/>
+                                    <TextBox Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center">2.0</TextBox>
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox Grid.Row="1" Header="Vertex B" Style="{StaticResource VertexStyle}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="10"></ColumnDefinition>
+                                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                                        <ColumnDefinition Width="20"></ColumnDefinition>
+                                        <ColumnDefinition Width="10"></ColumnDefinition>
+                                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "X:"/>
+                                    <TextBox Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center">-4.0</TextBox>
+                                    <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "Y:"/>
+                                    <TextBox Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center">2.0</TextBox>
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox Grid.Row="2" Header="Vertex C" Style="{StaticResource VertexStyle}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="10"></ColumnDefinition>
+                                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                                        <ColumnDefinition Width="20"></ColumnDefinition>
+                                        <ColumnDefinition Width="10"></ColumnDefinition>
+                                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "X:"/>
+                                    <TextBox Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center">-4.0</TextBox>
+                                    <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "Y:"/>
+                                    <TextBox Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center">2.0</TextBox>
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox Grid.Row="3" Header="Vertex D" Style="{StaticResource VertexStyle}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="10"></ColumnDefinition>
+                                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                                        <ColumnDefinition Width="20"></ColumnDefinition>
+                                        <ColumnDefinition Width="10"></ColumnDefinition>
+                                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "X:"/>
+                                    <TextBox Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center">-4.0</TextBox>
+                                    <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "Y:"/>
+                                    <TextBox Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center">2.0</TextBox>
+                                </Grid>
+                            </GroupBox>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Colors" Grid.Row="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
                                 <RowDefinition Height="10"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -127,7 +138,7 @@
                             <xctk:ColorPicker Grid.Row="2" Grid.Column="2" SelectedColor="Blue"></xctk:ColorPicker>
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Rotation">
+            <GroupBox Header="Rotation" Grid.Row="2">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -135,15 +146,15 @@
                                 <ColumnDefinition Width="50"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
                                 <RowDefinition Height="10"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
                                 <RowDefinition Height="10"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
                                 <RowDefinition Height="10"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
                                 <RowDefinition Height="10"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <TextBlock Grid.Row="0" Grid.Column="0">Vertex:</TextBlock>
                             <ComboBox Grid.Row="0" Grid.Column="2">
@@ -160,7 +171,7 @@
                             <Button Grid.Row="8" Grid.Column="2">Rotate</Button>
                         </Grid>
                     </GroupBox>
-                </StackPanel>
+                </Grid>
             </GroupBox>
         </Grid>
     </DockPanel>
