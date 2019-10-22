@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GeekGrapher"
              mc:Ignorable="d" 
-             d:DesignHeight="720" d:DesignWidth="640">
+             d:DesignHeight="360" d:DesignWidth="320">
     <Grid DockPanel.Dock="Bottom">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -14,7 +14,7 @@
         <ScrollViewer x:Name="scrollViewer1" Grid.Row="0" 
                   VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
             <Border BorderBrush="Black" BorderThickness="1.5" Margin="1">
-                <Image Name="img1" Height="{Binding ActualHeight}" Width="{Binding ActualWidth}" Source="/Images/cmyk.gif" />
+                <Image Name="img1" Source="/Images/cmyk.gif" />
             </Border>
         </ScrollViewer>
         <Grid Grid.Row="1">
@@ -28,7 +28,7 @@
                         <ColumnDefinition Width="200"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button Background="Transparent" BorderBrush="Transparent" Grid.Column="0" Padding="3,3,3,3">
+                    <Button Background="Transparent" BorderBrush="Transparent" Grid.Column="0" Padding="3,3,0,3">
                             <Viewbox>
                                 <TextBlock
                                 FontFamily="{StaticResource FontAwesomeFreeSolid}"
@@ -36,8 +36,8 @@
                                 ></TextBlock>
                             </Viewbox>
                     </Button>
-                    <Slider VerticalAlignment="Center" Grid.Column="1" Maximum="500" Value="100" TickPlacement="BottomRight" TickFrequency="25" />
-                    <Button Background="Transparent" BorderBrush="Transparent" Grid.Column="2" Padding = "3,3,3,3">
+                    <Slider VerticalAlignment="Center" Grid.Column="1" Maximum="500" Value="100" TickPlacement="BottomRight" TickFrequency="25" Margin="0,10,0,11" />
+                    <Button Background="Transparent" BorderBrush="Transparent" Grid.Column="2" Padding = "0,3,3,3">
                         <Viewbox>
                             <TextBlock
                                 FontFamily="{StaticResource FontAwesomeFreeSolid}"
