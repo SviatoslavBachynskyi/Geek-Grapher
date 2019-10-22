@@ -10,8 +10,9 @@
 
     <Window.Resources>
         <Style TargetType="Button">
-            <Setter Property="Background" Value="Gray"></Setter>
+            <Setter Property="Background" Value="#32ABBC"></Setter>
             <Setter Property="FontSize" Value="24"></Setter>
+            <Setter Property="Foreground" Value="#EFEFEF"></Setter>
         </Style>
     </Window.Resources>
 
@@ -36,7 +37,7 @@
             <Button Grid.Row="4">Paralelograms</Button>
             <Button Grid.Row="5">Affine transformations</Button>
         </Grid>
-        <RichTextBox VerticalScrollBarVisibility = "Visible" Margin="10" Grid.Column="1">
+        <RichTextBox VerticalScrollBarVisibility = "Visible" Grid.Column="1" Background="#EFEFEF">
             <FlowDocument>
                 <Paragraph FontSize="40" TextAlignment="Center" FontStyle="Normal" >Lorem ipsum</Paragraph>
                 
