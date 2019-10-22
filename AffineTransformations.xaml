@@ -68,9 +68,9 @@
                                         <ColumnDefinition Width="2*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "X:"/>
-                                    <TextBox Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center">-4.0</TextBox>
+                                    <TextBox MaxHeight="25" Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center">-4.0</TextBox>
                                     <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "Y:"/>
-                                    <TextBox Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center">2.0</TextBox>
+                                    <TextBox MaxHeight="25" Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center">2.0</TextBox>
                                 </Grid>
                             </GroupBox>
                             <GroupBox Grid.Row="1" Header="Vertex B" Style="{StaticResource VertexStyle}">
@@ -83,9 +83,9 @@
                                         <ColumnDefinition Width="2*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "X:"/>
-                                    <TextBox Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center">-4.0</TextBox>
+                                    <TextBox MaxHeight="25" Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center">-4.0</TextBox>
                                     <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "Y:"/>
-                                    <TextBox Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center">2.0</TextBox>
+                                    <TextBox MaxHeight="25" Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center">2.0</TextBox>
                                 </Grid>
                             </GroupBox>
                             <GroupBox Grid.Row="2" Header="Vertex C" Style="{StaticResource VertexStyle}">
@@ -98,9 +98,9 @@
                                         <ColumnDefinition Width="2*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "X:"/>
-                                    <TextBox Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center">-4.0</TextBox>
+                                    <TextBox MaxHeight="25" Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center" TextChanged="TextBox_TextChanged">-4.0</TextBox>
                                     <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "Y:"/>
-                                    <TextBox Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center">2.0</TextBox>
+                                    <TextBox MaxHeight="25" Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center">2.0</TextBox>
                                 </Grid>
                             </GroupBox>
                             <GroupBox Grid.Row="3" Header="Vertex D" Style="{StaticResource VertexStyle}">
@@ -113,9 +113,9 @@
                                         <ColumnDefinition Width="2*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "X:"/>
-                                    <TextBox Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center">-4.0</TextBox>
+                                    <TextBox MaxHeight="25" Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center">-4.0</TextBox>
                                     <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "Y:"/>
-                                    <TextBox Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center">2.0</TextBox>
+                                    <TextBox MaxHeight="25" Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center">2.0</TextBox>
                                 </Grid>
                             </GroupBox>
                         </Grid>
@@ -134,8 +134,8 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Row="0" Grid.Column="0">Line Color</TextBlock>
                             <TextBlock Grid.Row="2" Grid.Column="0">Fill Color</TextBlock>
-                            <xctk:ColorPicker Grid.Row="0" Grid.Column="2" SelectedColor="Black"></xctk:ColorPicker>
-                            <xctk:ColorPicker Grid.Row="2" Grid.Column="2" SelectedColor="Blue"></xctk:ColorPicker>
+                            <xctk:ColorPicker MaxHeight="25" Grid.Row="0" Grid.Column="2" SelectedColor="Black"></xctk:ColorPicker>
+                            <xctk:ColorPicker MaxHeight="25" Grid.Row="2" Grid.Column="2" SelectedColor="Blue"></xctk:ColorPicker>
                         </Grid>
                     </GroupBox>
             <GroupBox Header="Rotation" Grid.Row="2">
@@ -157,18 +157,18 @@
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <TextBlock Grid.Row="0" Grid.Column="0">Vertex:</TextBlock>
-                            <ComboBox Grid.Row="0" Grid.Column="2">
+                            <ComboBox MaxHeight="25" Grid.Row="0" Grid.Column="2">
                                 <ComboBoxItem IsSelected="True">A</ComboBoxItem>
                             </ComboBox>
                             <TextBlock Grid.Row="2" Grid.Column="0">Direction:</TextBlock>
-                            <ComboBox Grid.Row="2" Grid.Column="2">
+                            <ComboBox MaxHeight="25" Grid.Row="2" Grid.Column="2">
                                 <ComboBoxItem IsSelected="True">Left</ComboBoxItem>
                             </ComboBox>
                             <TextBlock Grid.Row="4" Grid.Column="0">Angle:</TextBlock>
-                            <xctk:IntegerUpDown Grid.Row="4" Grid.Column="2" Value="45" Minimum="0" Maximum="360"></xctk:IntegerUpDown>
-                            <TextBox Grid.Row="6" Grid.Column="2" TextAlignment="Center">1.2</TextBox>
+                            <xctk:IntegerUpDown MaxHeight="25" Grid.Row="4" Grid.Column="2" Value="45" Minimum="0" Maximum="360"></xctk:IntegerUpDown>
+                            <TextBox MaxHeight="25" Grid.Row="6" Grid.Column="2" TextAlignment="Center">1.2</TextBox>
                             <TextBlock Grid.Row="6" Grid.Column="0">Ratio:</TextBlock>
-                            <Button Grid.Row="8" Grid.Column="2">Rotate</Button>
+                            <Button MaxHeight="25" Grid.Row="8" Grid.Column="2">Rotate</Button>
                         </Grid>
                     </GroupBox>
                 </Grid>
