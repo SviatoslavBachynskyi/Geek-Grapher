@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GeekGrapher"
         mc:Ignorable="d"
-        Icon ="Icon.ico"
+        Icon ="Assets/Icons/MainIcon.ico"
         Title="Geek Grapher" Height="450" Width="850"
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen">
@@ -56,7 +56,7 @@
                     <TextBlock Foreground="#efefef"  Grid.Row="1" TextWrapping="Wrap" TextAlignment="Justify" VerticalAlignment="Center">
                             You can paint parallelgoram in color, move and rotate parallegoram relative to one of it's vertexs
                     </TextBlock>
-                    <Image Grid.Row ="2" VerticalAlignment="Center"   Source="/images/parallelogram.png" />
+                    <Image Grid.Row ="2" VerticalAlignment="Center"   Source="/Assets/Images/parallelogram.png" />
                 </Grid>
 
                 <Grid Grid.Column="1"  MouseLeftButtonDown="FractalPainter_MouseLeftButtonDown" Margin="5,0,5,0">
@@ -71,7 +71,7 @@
                     <TextBlock  Foreground="#efefef" Grid.Row="1" TextWrapping="Wrap" TextAlignment="Justify" VerticalAlignment="Center">
                             You can choose function that defines fractal, max iteration number, fractal color scheme
                     </TextBlock>
-                    <Image Grid.Row="2" VerticalAlignment="Center" Source="/images/fractal sample.png" />
+                    <Image Grid.Row="2" VerticalAlignment="Center" Source="/Assets/Images/fractal sample.png" />
                 </Grid>
 
                 <Grid Grid.Column="2"  MouseLeftButtonDown="ImageConverter_MouseLeftButtonDown" Margin="5,0,5,0">
@@ -86,7 +86,7 @@
                     <TextBlock Foreground="#efefef" Grid.Row="1" TextWrapping="Wrap" TextAlignment="Justify" VerticalAlignment="Center">
                             Convert image from HSL to CMYK, set yellow saturation
                     </TextBlock>
-                    <Image Grid.Row="2" VerticalAlignment="Center" Source="/images/cmyk.gif" />
+                    <Image Grid.Row="2" VerticalAlignment="Center" Source="/Assets/Images/cmyk.gif" />
                 </Grid>
                 
             </Grid>

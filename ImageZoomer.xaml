@@ -14,7 +14,7 @@
         <ScrollViewer x:Name="scrollViewer1" Grid.Row="0" 
                   VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
             <Border BorderBrush="Black" BorderThickness="1.5" Margin="1">
-                <Image Name="img1" Source="/Images/cmyk.gif" />
+                <Image Name="img1" Source="/Assets/Images/cmyk.gif" />
             </Border>
         </ScrollViewer>
         <Grid Grid.Row="1">

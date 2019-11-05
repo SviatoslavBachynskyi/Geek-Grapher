@@ -35,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <ApplicationIcon>Assets\Icons\MainIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -166,9 +166,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="Fonts\Font Awesome 5 Brands-Regular-400.otf" />
-    <Resource Include="Fonts\Font Awesome 5 Free-Regular-400.otf" />
-    <Resource Include="Fonts\Font Awesome 5 Free-Solid-900.otf" />
+    <Resource Include="Assets\Fonts\Font Awesome 5 Brands-Regular-400.otf" />
+    <Resource Include="Assets\Fonts\Font Awesome 5 Free-Regular-400.otf" />
+    <Resource Include="Assets\Fonts\Font Awesome 5 Free-Solid-900.otf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -179,16 +179,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icon.ico" />
+    <Resource Include="Assets\Icons\MainIcon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\parallelogram.png" />
+    <Resource Include="Assets\Images\parallelogram.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\fractal sample.png" />
+    <Resource Include="Assets\Images\fractal sample.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\cmyk.gif" />
+    <Resource Include="Assets\Images\cmyk.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
