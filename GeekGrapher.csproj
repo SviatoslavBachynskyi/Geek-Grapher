@@ -88,7 +88,10 @@
     <Compile Include="AffineTransformations.xaml.cs">
       <DependentUpon>AffineTransformations.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Main\Commands\OpenAffineTransformations.cs" />
+    <Compile Include="Main\Commands\OpenFractalPainter.cs" />
     <Compile Include="Main\Commands\OpenHelp.cs" />
+    <Compile Include="Main\Commands\OpenImageConverter.cs" />
     <Compile Include="Main\Commands\OpenSettings.cs" />
     <Compile Include="Main\MainViewModel.cs" />
     <Compile Include="QuickActionsBar.xaml.cs">

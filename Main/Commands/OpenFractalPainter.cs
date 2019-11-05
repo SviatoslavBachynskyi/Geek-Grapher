@@ -7,15 +7,14 @@ using System.Windows.Input;
 
 namespace GeekGrapher.Main.Commands
 {
-    internal class OpenSettings : ICommand
+    internal class OpenFractalPainter : ICommand
     {
         MainViewModel MainViewModel { get; set; }
 
-        public OpenSettings(MainViewModel mainViewModel)
+        public OpenFractalPainter(MainViewModel mainViewModel)
         {
             MainViewModel = mainViewModel;
         }
-
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
@@ -25,7 +24,8 @@ namespace GeekGrapher.Main.Commands
 
         public void Execute(object parameter)
         {
-            new Settings().ShowDialog();
+            new FractalPainter().Show();
+            MainViewModel.Window.Close();
         }
     }
 }

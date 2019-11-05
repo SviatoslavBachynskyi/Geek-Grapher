@@ -10,6 +10,13 @@ namespace GeekGrapher.Fractals
 {
     internal class FractalViewModel
     {
+        FractalPainter Window { get; set; }
+
+        public FractalViewModel(FractalPainter fractalPainter)
+        {
+            Window = fractalPainter;
+        }
+
         private ICommand _saveAsImage;
 
         public ICommand SaveAsImage
@@ -18,7 +25,7 @@ namespace GeekGrapher.Fractals
             {
                 if(_saveAsImage == null)
                 {
-                    _saveAsImage = new SaveAsImage();
+                    _saveAsImage = new SaveAsImage(this);
                 }
                 return _saveAsImage;
             }
@@ -32,7 +39,7 @@ namespace GeekGrapher.Fractals
             {
                 if (_close == null)
                 {
-                    _close = new Close();
+                    _close = new Close(this);
                 }
                 return _close;
             }
@@ -46,7 +53,7 @@ namespace GeekGrapher.Fractals
             {
                 if (_exit == null)
                 {
-                    _exit = new Exit();
+                    _exit = new Exit(this);
                 }
                 return _exit;
             }

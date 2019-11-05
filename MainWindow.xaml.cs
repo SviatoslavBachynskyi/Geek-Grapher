@@ -21,29 +21,46 @@ namespace GeekGrapher
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainViewModel _viewModel;
+        internal MainViewModel ViewModel
+        {
+            get => _viewModel;
+            set
+            {
+                _viewModel = value;
+                this.DataContext = value;
+            }
+        }
+
         public MainWindow()
         {
             InitializeComponent();
 
-            DataContext = new MainViewModel();
+            ViewModel = new MainViewModel(this);
         }
 
         private void AffineTransformations_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            new AffineTransformations().Show();
-            this.Close();
+            if (ViewModel.OpenAffineTransformations.CanExecute(null))
+            {
+                ViewModel.OpenAffineTransformations.Execute(null);
+            }
         }
 
         private void FractalPainter_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            new FractalPainter().Show();
-            this.Close();
+            if (ViewModel.OpenFractalPainter.CanExecute(null))
+            {
+                ViewModel.OpenFractalPainter.Execute(null);
+            }
         }
 
         private void ImageConverter_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            new ImageConverter().Show();
-            this.Close();
+            if (ViewModel.OpenImageConverter.CanExecute(null))
+            {
+                ViewModel.OpenImageConverter.Execute(null);
+            }
         }
     }
 }

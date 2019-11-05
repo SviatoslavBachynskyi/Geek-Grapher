@@ -10,6 +10,13 @@ namespace GeekGrapher.Fractals.Commands
 {
     internal class SaveAsImage : ICommand
     {
+        FractalViewModel FractalViewModel { get; set; }
+
+        public SaveAsImage(FractalViewModel fractalViewModel)
+        {
+            FractalViewModel = fractalViewModel;
+        }
+
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)

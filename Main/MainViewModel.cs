@@ -10,6 +10,13 @@ namespace GeekGrapher.Main
 {
     internal class MainViewModel
     {
+        public MainWindow Window { get; set; }
+
+        public MainViewModel(MainWindow mainWindow)
+        {
+            Window = mainWindow;
+        }
+
         private ICommand _openHelp;
 
         public ICommand OpenHelp
@@ -18,7 +25,7 @@ namespace GeekGrapher.Main
             {
                 if (_openHelp == null)
                 {
-                    _openHelp = new OpenHelp();
+                    _openHelp = new OpenHelp(this);
                 }
                 return _openHelp;
             }
@@ -32,10 +39,53 @@ namespace GeekGrapher.Main
             {
                 if (_openSettings == null)
                 {
-                    _openSettings = new OpenSettings();
+                    _openSettings = new OpenSettings(this);
                 }
                 return _openSettings;
             }
         }
+
+        private ICommand _openAffineTransformations;
+
+        public ICommand OpenAffineTransformations
+        {
+            get
+            {
+                if (_openAffineTransformations == null)
+                {
+                    _openAffineTransformations = new OpenAffineTransformations(this);
+                }
+                return _openAffineTransformations;
+            }
+        }
+
+        private ICommand _openFractalPainter;
+
+        public ICommand OpenFractalPainter
+        {
+            get
+            {
+                if (_openFractalPainter == null)
+                {
+                    _openFractalPainter = new OpenFractalPainter(this);
+                }
+                return _openFractalPainter;
+            }
+        }
+
+        private ICommand _openImageConverter;
+
+        public ICommand OpenImageConverter
+        {
+            get
+            {
+                if (_openImageConverter == null)
+                {
+                    _openImageConverter = new OpenImageConverter(this);
+                }
+                return _openImageConverter;
+            }
+        }
+
     }
 }

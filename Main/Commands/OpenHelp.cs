@@ -9,6 +9,12 @@ namespace GeekGrapher.Main.Commands
 {
     internal class OpenHelp : ICommand
     {
+        MainViewModel MainViewModel { get; set; }
+
+        public OpenHelp(MainViewModel mainViewModel)
+        {
+            MainViewModel = mainViewModel;
+        }
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)

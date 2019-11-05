@@ -9,6 +9,13 @@ namespace GeekGrapher.Fractals.Commands
 {
     internal class Close : ICommand
     {
+        FractalViewModel FractalViewModel { get; set; }
+
+        public Close(FractalViewModel fractalViewModel)
+        {
+            FractalViewModel = fractalViewModel;
+        }
+
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)

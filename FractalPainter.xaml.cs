@@ -24,7 +24,7 @@ namespace GeekGrapher
         {
             InitializeComponent();
 
-            DataContext = new FractalViewModel();
+            DataContext = new FractalViewModel(this);
         }
     }
 }
