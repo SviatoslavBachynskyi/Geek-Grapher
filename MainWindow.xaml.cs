@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GeekGrapher.Main;
 
 namespace GeekGrapher
 {
@@ -23,16 +24,8 @@ namespace GeekGrapher
         public MainWindow()
         {
             InitializeComponent();
-        }
 
-        private void Settings_Click(object sender, RoutedEventArgs e)
-        {
-            new Settings().ShowDialog();
-        }
-
-        private void Help_Click(object sender, RoutedEventArgs e)
-        {
-            new UserManual().Show();
+            DataContext = new MainViewModel();
         }
 
         private void AffineTransformations_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

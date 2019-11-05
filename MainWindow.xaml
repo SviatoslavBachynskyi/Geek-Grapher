@@ -13,6 +13,7 @@
     <DockPanel Background="#32ABBC">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
+                <!--
                 <MenuItem Header="_New" InputGestureText="Ctrl+N"/>
                 <Separator />
                 <MenuItem Header="_Open" InputGestureText="Ctrl+O"/>
@@ -24,10 +25,13 @@
                 <MenuItem Header="_Close" InputGestureText="Ctrl+Q"/>
                 <Separator />
                 <MenuItem Header="_Exit" />
+                -->
             </MenuItem>
+            <!--
             <MenuItem Header="_Start Page" InputGestureText="Ctrl+F5"/>
-            <MenuItem Header="_Settings" Click="Settings_Click"/>
-            <MenuItem Header="_Help" Click="Help_Click"/>
+            -->
+            <MenuItem Header="_Settings" Command="{Binding OpenSettings}"/>
+            <MenuItem Header="_Help" Command="{Binding OpenHelp}"/>
         </Menu>
         <Grid DockPanel.Dock="Bottom">
             <Grid.RowDefinitions>
@@ -88,7 +92,7 @@
                     </TextBlock>
                     <Image Grid.Row="2" VerticalAlignment="Center" Source="/Assets/Images/cmyk.gif" />
                 </Grid>
-                
+
             </Grid>
         </Grid>
     </DockPanel>

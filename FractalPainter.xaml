@@ -11,17 +11,19 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
+                <!--
                 <MenuItem Header="_New" InputGestureText="Ctrl+N"/>
                 <Separator />
                 <MenuItem Header="_Open" InputGestureText="Ctrl+O"/>
                 <MenuItem Header="_Open Recent ->"/>
                 <Separator />
                 <MenuItem Header="_Save" InputGestureText="Ctrl+S"/>
-                <MenuItem Header="_Save as" />
+                    -->
+                <MenuItem Header="_Save as Image" Command="{Binding SaveAsImage}" />
                 <Separator />
-                <MenuItem Header="_Close" InputGestureText="Ctrl+Q"/>
+                <MenuItem Header="_Close" InputGestureText="Ctrl+Q" Command="{Binding Close}"/>
                 <Separator />
-                <MenuItem Header="_Exit" />
+                <MenuItem Header="_Exit" Command="{Binding Exit}"/>
             </MenuItem>
             <MenuItem Header="_Start Page" InputGestureText="Ctrl+F5"/>
             <MenuItem Header="_Settings"/>
@@ -55,12 +57,12 @@
                         <ColumnDefinition Width="*" MinWidth="20"></ColumnDefinition>
                         <ColumnDefinition Width="100"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    
+
                     <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="0">Function:</TextBlock>
                     <ComboBox MaxHeight="25" Grid.Row="0" Grid.Column="2">
                         <ComboBoxItem IsSelected="True">Z = Sh(z) + C</ComboBoxItem>
                     </ComboBox>
-                    
+
                     <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">Max Iteration</TextBlock>
                     <xctk:IntegerUpDown  MaxHeight="25" Grid.Row="1" Grid.Column="2" Value="50" Minimum="0" Maximum="500"></xctk:IntegerUpDown>
 
@@ -78,7 +80,7 @@
                         <ComboBoxItem>Smooth Coloring</ComboBoxItem>
                         <ComboBoxItem>Histogram Coloring</ComboBoxItem>
                     </ComboBox>
-                    
+
                     <TextBlock VerticalAlignment="Center" Grid.Row="5" Grid.Column="0">Palette  Colors</TextBlock>
                     <xctk:IntegerUpDown  MaxHeight="25" Grid.Row="5" Grid.Column="2" Value="3" Minimum="2" Maximum="6"></xctk:IntegerUpDown>
 

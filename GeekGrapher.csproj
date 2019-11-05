@@ -78,12 +78,19 @@
     <Compile Include="FractalPainter.xaml.cs">
       <DependentUpon>FractalPainter.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Fractals\Commands\Close.cs" />
+    <Compile Include="Fractals\Commands\Exit.cs" />
+    <Compile Include="Fractals\FractalViewModel.cs" />
+    <Compile Include="Fractals\Commands\SaveAsImage.cs" />
     <Compile Include="ImageZoomer.xaml.cs">
       <DependentUpon>ImageZoomer.xaml</DependentUpon>
     </Compile>
     <Compile Include="AffineTransformations.xaml.cs">
       <DependentUpon>AffineTransformations.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Main\Commands\OpenHelp.cs" />
+    <Compile Include="Main\Commands\OpenSettings.cs" />
+    <Compile Include="Main\MainViewModel.cs" />
     <Compile Include="QuickActionsBar.xaml.cs">
       <DependentUpon>QuickActionsBar.xaml</DependentUpon>
     </Compile>

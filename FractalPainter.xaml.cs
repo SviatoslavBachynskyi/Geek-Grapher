@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using GeekGrapher.Fractals;
 
 namespace GeekGrapher
 {
@@ -22,6 +23,8 @@ namespace GeekGrapher
         public FractalPainter()
         {
             InitializeComponent();
+
+            DataContext = new FractalViewModel();
         }
     }
 }
