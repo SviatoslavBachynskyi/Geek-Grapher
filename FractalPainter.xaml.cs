@@ -20,11 +20,22 @@ namespace GeekGrapher
     /// </summary>
     public partial class FractalPainter : Window
     {
+        private FractalViewModel _viewModel;
+        internal FractalViewModel ViewModel
+        {
+            get => _viewModel;
+            set
+            {
+                _viewModel = value;
+                this.DataContext = value;
+            }
+        }
+
         public FractalPainter()
         {
             InitializeComponent();
 
-            DataContext = new FractalViewModel(this);
+            ViewModel = new FractalViewModel(this);
         }
     }
 }
