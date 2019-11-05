@@ -69,7 +69,7 @@
                         <TextBlock Foreground="#efefef">Fractal Painter</TextBlock>
                     </Viewbox>
                     <TextBlock  Foreground="#efefef" Grid.Row="1" TextWrapping="Wrap" TextAlignment="Justify" VerticalAlignment="Center">
-                            You can choose function that represents fractal, max iteration number, fractal color scheme
+                            You can choose function that defines fractal, max iteration number, fractal color scheme
                     </TextBlock>
                     <Image Grid.Row="2" VerticalAlignment="Center" Source="/images/fractal sample.png" />
                 </Grid>
