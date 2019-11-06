@@ -75,54 +75,54 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="FractalPainter.xaml.cs">
+    <Compile Include="FractalPainter\FractalPainter.xaml.cs">
       <DependentUpon>FractalPainter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Fractals\Commands\Close.cs" />
-    <Compile Include="Fractals\Commands\Exit.cs" />
-    <Compile Include="Fractals\FractalViewModel.cs" />
-    <Compile Include="Fractals\Commands\SaveAsImage.cs" />
-    <Compile Include="ImageZoomer.xaml.cs">
+    <Compile Include="FractalPainter\Commands\Close.cs" />
+    <Compile Include="FractalPainter\Commands\Exit.cs" />
+    <Compile Include="FractalPainter\FractalPainterViewModel.cs" />
+    <Compile Include="FractalPainter\Commands\SaveAsImage.cs" />
+    <Compile Include="General\ImageZoomer.xaml.cs">
       <DependentUpon>ImageZoomer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AffineTransformations.xaml.cs">
+    <Compile Include="AffineTransformations\AffineTransformations.xaml.cs">
       <DependentUpon>AffineTransformations.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Main\Commands\OpenAffineTransformations.cs" />
-    <Compile Include="Main\Commands\OpenFractalPainter.cs" />
-    <Compile Include="Main\Commands\OpenHelp.cs" />
-    <Compile Include="Main\Commands\OpenImageConverter.cs" />
-    <Compile Include="Main\Commands\OpenSettings.cs" />
-    <Compile Include="Main\MainViewModel.cs" />
-    <Compile Include="QuickActionsBar.xaml.cs">
+    <Compile Include="StartWindow\Commands\OpenAffineTransformations.cs" />
+    <Compile Include="StartWindow\Commands\OpenFractalPainter.cs" />
+    <Compile Include="StartWindow\Commands\OpenHelp.cs" />
+    <Compile Include="StartWindow\Commands\OpenImageConverter.cs" />
+    <Compile Include="StartWindow\Commands\OpenSettings.cs" />
+    <Compile Include="StartWindow\StartWindowViewModel.cs" />
+    <Compile Include="General\QuickActionsBar.xaml.cs">
       <DependentUpon>QuickActionsBar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vertex.xaml.cs">
+    <Compile Include="AffineTransformations\Vertex.xaml.cs">
       <DependentUpon>Vertex.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Settings.xaml.cs">
+    <Compile Include="Settings\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserManual.xaml.cs">
+    <Compile Include="UserManual\UserManual.xaml.cs">
       <DependentUpon>UserManual.xaml</DependentUpon>
     </Compile>
-    <Page Include="FontAwesomeDictionary.xaml">
+    <Page Include="Assets\Fonts\FontAwesome5\FontAwesome5Dictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FractalPainter.xaml">
+    <Page Include="FractalPainter\FractalPainter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ImageConverter.xaml">
+    <Page Include="ImageConverter\ImageConverter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ImageZoomer.xaml">
+    <Page Include="General\ImageZoomer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="StartWindow\StartWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -130,30 +130,30 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ImageConverter.xaml.cs">
+    <Compile Include="ImageConverter\ImageConverter.xaml.cs">
       <DependentUpon>ImageConverter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="StartWindow\StartWindow.xaml.cs">
+      <DependentUpon>StartWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="AffineTransformations.xaml">
+    <Page Include="AffineTransformations\AffineTransformations.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Settings.xaml">
+    <Page Include="Settings\Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="QuickActionsBar.xaml">
+    <Page Include="General\QuickActionsBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserManual.xaml">
+    <Page Include="UserManual\UserManual.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vertex.xaml">
+    <Page Include="AffineTransformations\Vertex.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -176,9 +176,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="Assets\Fonts\Font Awesome 5 Brands-Regular-400.otf" />
-    <Resource Include="Assets\Fonts\Font Awesome 5 Free-Regular-400.otf" />
-    <Resource Include="Assets\Fonts\Font Awesome 5 Free-Solid-900.otf" />
+    <Resource Include="Assets\Fonts\FontAwesome5\Font Awesome 5 Brands-Regular-400.otf" />
+    <Resource Include="Assets\Fonts\FontAwesome5\Font Awesome 5 Free-Regular-400.otf" />
+    <Resource Include="Assets\Fonts\FontAwesome5\Font Awesome 5 Free-Solid-900.otf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -200,5 +200,6 @@
   <ItemGroup>
     <Resource Include="Assets\Images\cmyk.gif" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
