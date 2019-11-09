@@ -37,8 +37,24 @@ namespace GeekGrapher.FractalPainter
 
             ViewModel = new FractalPainterViewModel(this);
 
-            var drawer = new Drawer((z, c) => z * z + c);
+            var width = 700;
+            var height = 700;
 
+            var drawer = new Drawer((z, c) => z * z + c)
+            {
+                Width = width,
+                Height = height
+            };
+
+            var bitmap = new WriteableBitmap(width, height, 96, 96, PixelFormats.Bgr24, null);
+
+            var int32Rect = new Int32Rect(0, 0, width, height);
+
+            var pixels = drawer.Draw();
+
+            bitmap.WritePixels(int32Rect, pixels, 3* width, 0);
+
+            Image.Source = bitmap;
         }
     }
 }

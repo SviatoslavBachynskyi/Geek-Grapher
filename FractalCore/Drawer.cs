@@ -4,7 +4,6 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-using System.Drawing;
 
 namespace GeekGrapher.FractalCore
 {
@@ -18,21 +17,27 @@ namespace GeekGrapher.FractalCore
         }
 
         public double XStart { get; set; } = -2;
-        public double XFinish { get; set; } = 2;
-        public double YStart { get; set; } = -2;
-        public double YFinish { get; set; } = 2;
+        public double XFinish { get; set; } = 1;
+        public double YStart { get; set; } = -1.5;
+        public double YFinish { get; set; } = 1.5;
 
-        public Bitmap Draw(Image image)
+        public int Height { get; set; } = 400;
+
+        public int Width { get; set; } = 600;
+
+        public byte[] Draw()
         {
-            var result = new Bitmap(image);
-            for (int y = 0; y < image.Height; y++)
-                for (int x = 0; x < image.Width; x++)
+            var result = new byte[Height * Width * 3];
+            for (int y = 0; y < Height; y++)
+                for (int x = 0; x < Width; x++)
                 {
-                    var z = new Complex(XStart + (XFinish - XStart) * x / image.Width,
-                        YStart + (YFinish - YStart) * y / image.Height);
+                    var z = new Complex(XStart + (XFinish - XStart) * x / Width,
+                        YStart + (YFinish - YStart) * y / Height);
                     var iter = Calculation.CalculateIteration(_func, z);
                     var color = 255 - (iter * 255) / Calculation.MaxIter;
-                    result.SetPixel(x, y, Color.FromArgb(color, color, color));
+                    result[3 * (y * Width + x)] = (byte)color;
+                    result[3 * (y * Width + x) +1] = (byte)color;
+                    result[3 * (y * Width + x) + 2] = (byte)color;
                 }
 
             return result;
