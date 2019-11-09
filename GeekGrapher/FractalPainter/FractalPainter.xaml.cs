@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -40,11 +41,10 @@ namespace GeekGrapher.FractalPainter
             var width = 700;
             var height = 700;
 
-            var drawer = new Drawer((z, c) => z * z + c)
-            {
-                Width = width,
-                Height = height
-            };
+            var drawer = DrawerFactory.Create(FractalFunction.SinzCosz, ColorScheme.BlackAndWhite);
+            drawer.Width = width;
+            drawer.Height = height;
+            drawer.C = new Complex(-0.4, 0.6);
 
             var bitmap = new WriteableBitmap(width, height, 96, 96, PixelFormats.Bgr24, null);
 
@@ -52,7 +52,7 @@ namespace GeekGrapher.FractalPainter
 
             var pixels = drawer.Draw();
 
-            bitmap.WritePixels(int32Rect, pixels, 3* width, 0);
+            bitmap.WritePixels(int32Rect, pixels, 3 * width, 0);
 
             Image.Source = bitmap;
         }

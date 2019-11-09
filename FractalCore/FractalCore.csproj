@@ -43,8 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Calculation.cs" />
+    <Compile Include="ColorCalculators\BlackWhiteCalculator.cs" />
+    <Compile Include="IterationCalculator.cs" />
+    <Compile Include="ColorCalculators\IColorCalculator.cs" />
     <Compile Include="Drawer.cs" />
+    <Compile Include="DrawerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
