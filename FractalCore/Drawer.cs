@@ -54,9 +54,9 @@ namespace GeekGrapher.FractalCore
                     var iter = calculator.Calculate(_func, z, C);
 
                     var color = _colorCalculator.Calculate(iter);
-                    result[3 * (y * Width + x)] = (byte)color.R;
-                    result[3 * (y * Width + x) +1] = (byte)color.G;
-                    result[3 * (y * Width + x) + 2] = (byte)color.B;
+                    result[3 * (y * Width + x)] = (byte)color.B;
+                    result[3 * (y * Width + x) + 1] = (byte)color.G;
+                    result[3 * (y * Width + x) + 2] = (byte)color.R;
                 }
 
             return result;

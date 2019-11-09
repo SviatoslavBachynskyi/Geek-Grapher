@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{51FE4B3E-D75C-43D6-9CA4-22853E64D913}</ProjectGuid>
+    <ProjectGuid>{1ED1B17D-97CB-45B9-8548-48F66BC5C9DA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GeekGrapher.FractalCore</RootNamespace>
-    <AssemblyName>FractalCore</AssemblyName>
+    <RootNamespace>GeekGrapher.Shared</RootNamespace>
+    <AssemblyName>Shared</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -34,7 +34,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,19 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ColorCalculators\BlackWhiteCalculator.cs" />
-    <Compile Include="ColorCalculators\HSVCalculator.cs" />
-    <Compile Include="IterationCalculator.cs" />
-    <Compile Include="ColorCalculators\IColorCalculator.cs" />
-    <Compile Include="Drawer.cs" />
-    <Compile Include="DrawerFactory.cs" />
+    <Compile Include="ColorModelConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{1ed1b17d-97cb-45b9-8548-48f66bc5c9da}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

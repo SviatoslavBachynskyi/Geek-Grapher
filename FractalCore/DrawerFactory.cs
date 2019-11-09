@@ -28,15 +28,20 @@ namespace GeekGrapher.FractalCore
         {
             Drawer result;
             IColorCalculator colorCalculator;
-            int maxIteration = 80;
+            int maxIteration = 50;
 
-            switch(colorScheme){
+            switch (colorScheme)
+            {
                 case ColorScheme.BlackAndWhite:
                     colorCalculator = new BlackWhiteCalculator(maxIteration);
+                    break;
+                case ColorScheme.HSVBased:
+                    colorCalculator = new HSVCalculator(maxIteration);
                     break;
                 default:
                     throw new NotImplementedException();
             }
+
             switch (function)
             {
                 case FractalFunction.Chz:
@@ -49,7 +54,7 @@ namespace GeekGrapher.FractalCore
                     };
                     break;
                 case FractalFunction.Shz:
-                    result = new Drawer((z, c) => Complex.Sinh(z) + c,colorCalculator)
+                    result = new Drawer((z, c) => Complex.Sinh(z) + c, colorCalculator)
                     {
                         XStart = -2,
                         XFinish = 2,

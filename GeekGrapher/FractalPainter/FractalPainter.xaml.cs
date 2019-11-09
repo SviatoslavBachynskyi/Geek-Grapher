@@ -41,7 +41,7 @@ namespace GeekGrapher.FractalPainter
             var width = 700;
             var height = 700;
 
-            var drawer = DrawerFactory.Create(FractalFunction.SinzCosz, ColorScheme.BlackAndWhite);
+            var drawer = DrawerFactory.Create(FractalFunction.SinzCosz, ColorScheme.HSVBased);
             drawer.Width = width;
             drawer.Height = height;
             drawer.C = new Complex(-0.4, 0.6);
