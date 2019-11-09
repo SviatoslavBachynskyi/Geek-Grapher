@@ -38,7 +38,7 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="5*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <general:ImageZoomer Grid.Column="1"></general:ImageZoomer>
+            <Image x:Name ="Image" Grid.Column="0"></Image>
             <GroupBox Header="Fractal properties" Grid.Column="0">
                 <Grid>
                     <Grid.RowDefinitions>

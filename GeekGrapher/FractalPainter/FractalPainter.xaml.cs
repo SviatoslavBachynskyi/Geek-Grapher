@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using GeekGrapher.FractalCore;
 
 namespace GeekGrapher.FractalPainter
 {
@@ -35,6 +36,9 @@ namespace GeekGrapher.FractalPainter
             InitializeComponent();
 
             ViewModel = new FractalPainterViewModel(this);
+
+            var drawer = new Drawer((z, c) => z * z + c);
+
         }
     }
 }
