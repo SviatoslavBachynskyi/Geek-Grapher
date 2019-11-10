@@ -9,9 +9,9 @@ namespace GeekGrapher.FractalCore.IterationCalculators
 {
     internal class JuliaCalculator : IterationCalculator
     {
-        internal override int Calculate(double x, double y)
+        internal override int Calculate(double x, double y, out Complex z)
         {
-            Complex z = new Complex(x, y);
+            z = new Complex(x, y);
             Complex c = Drawer.C;
             for (int i = 0; i < Drawer.MaxIteration; i++)
             {

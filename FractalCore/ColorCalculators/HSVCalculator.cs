@@ -10,7 +10,7 @@ namespace GeekGrapher.FractalCore.ColorCalculators
 {
     internal class HSVCalculator : ColorCalculator
     {
-        internal override Color Calculate(int iteration)
+        internal override Color Calculate(double iteration)
         {
             if (iteration == Drawer.MaxIteration) return Color.Black;
 

@@ -33,17 +33,19 @@ namespace GeekGrapher.FractalCore
 
         public int Width { get; set; } = 600;
 
+        public bool Smooth { get; set; } = true;
+
         public Complex C { get; set; }
 
         public int MaxIteration { get; set; } = 80;
 
-        internal int[,] Iterations { get; set; }
+        internal double[,] Iterations { get; set; }
 
         public Color[,] Draw()
         {
             var result = new Color[Height, Width];
 
-            Iterations = new int[Height, Width];
+            Iterations = new double[Height, Width];
 
             IterationCalculator.PreCalculate(this);
 
@@ -52,9 +54,15 @@ namespace GeekGrapher.FractalCore
                 {
                     for (int x = 0; x < Width; x++)
                     {
-                        Iterations[y, x] = IterationCalculator.Calculate(
+                        Complex z;
+                        var iter = IterationCalculator.Calculate(
                            XStart + (XFinish - XStart) * x / Width,
-                           YStart + (YFinish - YStart) * y / Height);
+                           YStart + (YFinish - YStart) * y / Height, out z);
+
+                        if (Smooth)
+                            Iterations[y, x] = IterationSmoother.MakeSmooth(this, iter,z);
+                        else 
+                            Iterations[y, x] = iter;
                     }
                 }
                 );

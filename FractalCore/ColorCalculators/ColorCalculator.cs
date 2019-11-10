@@ -15,6 +15,6 @@ namespace GeekGrapher.FractalCore.ColorCalculators
             this.Drawer = drawer;
         }
 
-        internal abstract Color Calculate(int iteration);
+        internal abstract Color Calculate(double iteration);
     }
 }

@@ -9,10 +9,10 @@ namespace GeekGrapher.FractalCore.IterationCalculators
 {
     internal class MandelbrotCalculator : IterationCalculator
     {
-        internal override int Calculate(double x, double y)
+        internal override int Calculate(double x, double y, out Complex z)
         {
             //TODO: Check this
-            Complex z = Drawer.C;
+            z = Drawer.C;
             Complex c = new Complex(x, y);
             for (int i = 0; i < Drawer.MaxIteration; i++)
             {

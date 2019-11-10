@@ -10,9 +10,9 @@ namespace GeekGrapher.FractalCore.ColorCalculators
     internal class BlackWhiteCalculator : ColorCalculator
     {
 
-        internal override Color Calculate(int iteration)
+        internal override Color Calculate(double iteration)
         {
-            var Hue = 255 - (iteration * 255) / Drawer.MaxIteration;
+            var Hue = (int)(255 - (iteration * 255) / Drawer.MaxIteration);
             return Color.FromArgb(Hue, Hue, Hue);
         }
     }

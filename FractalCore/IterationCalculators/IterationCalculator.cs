@@ -15,6 +15,6 @@ namespace GeekGrapher.FractalCore.IterationCalculators
             this.Drawer = drawer;
         }
 
-        internal abstract int Calculate(double x, double y);
+        internal abstract int Calculate(double x, double y, out Complex z);
     }
 }

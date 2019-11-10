@@ -46,6 +46,7 @@ namespace GeekGrapher.FractalPainter
             drawer.Width = width;
             drawer.Height = height;
             drawer.C = new Complex(-0.4, 0.6);
+            drawer.Smooth = false;
 
             var bitmap = new WriteableBitmap(width, height, 96, 96, PixelFormats.Bgr24, null);
 
