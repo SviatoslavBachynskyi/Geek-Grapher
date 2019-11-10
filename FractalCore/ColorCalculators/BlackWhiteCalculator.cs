@@ -7,16 +7,12 @@ using System.Threading.Tasks;
 
 namespace GeekGrapher.FractalCore.ColorCalculators
 {
-    internal class BlackWhiteCalculator : IColorCalculator
+    internal class BlackWhiteCalculator : ColorCalculator
     {
-        private int _maxIteration;
-        public BlackWhiteCalculator(int maxIteration)
+
+        internal override Color Calculate(int iteration)
         {
-            _maxIteration = maxIteration;
-        }
-        public Color Calculate(int iteration)
-        {
-            var Hue = 255 - (iteration * 255) / _maxIteration;
+            var Hue = 255 - (iteration * 255) / Drawer.MaxIteration;
             return Color.FromArgb(Hue, Hue, Hue);
         }
     }

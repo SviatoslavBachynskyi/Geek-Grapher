@@ -45,10 +45,12 @@
   <ItemGroup>
     <Compile Include="ColorCalculators\BlackWhiteCalculator.cs" />
     <Compile Include="ColorCalculators\HSVCalculator.cs" />
-    <Compile Include="IterationCalculator.cs" />
-    <Compile Include="ColorCalculators\IColorCalculator.cs" />
+    <Compile Include="ColorCalculators\ColorCalculator.cs" />
     <Compile Include="Drawer.cs" />
     <Compile Include="DrawerFactory.cs" />
+    <Compile Include="IterationCalculators\IterationCalculator.cs" />
+    <Compile Include="IterationCalculators\JuliaCalculator.cs" />
+    <Compile Include="IterationCalculators\MandelbrotCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

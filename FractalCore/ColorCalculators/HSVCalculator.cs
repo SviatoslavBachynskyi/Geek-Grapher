@@ -8,19 +8,14 @@ using GeekGrapher.Shared;
 
 namespace GeekGrapher.FractalCore.ColorCalculators
 {
-    internal class HSVCalculator : IColorCalculator
+    internal class HSVCalculator : ColorCalculator
     {
-        private int _maxIteration;
-        public HSVCalculator(int maxIteration)
+        internal override Color Calculate(int iteration)
         {
-            _maxIteration = maxIteration;
-        }
-        public Color Calculate(int iteration)
-        {
-            if (iteration == _maxIteration) return Color.Black;
+            if (iteration == Drawer.MaxIteration) return Color.Black;
 
             return ColorModelConverter.ColorFromHSV(
-                255.0 * iteration / _maxIteration, 1.0, 1.0);
+                255.0 * iteration / Drawer.MaxIteration, 1.0, 1.0);
         }
     }
 }

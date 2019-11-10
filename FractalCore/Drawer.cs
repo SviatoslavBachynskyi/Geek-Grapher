@@ -6,18 +6,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using GeekGrapher.FractalCore.ColorCalculators;
+using GeekGrapher.FractalCore.IterationCalculators;
 
 namespace GeekGrapher.FractalCore
 {
     public class Drawer
     {
-        private Func<Complex, Complex, Complex> _func;
-        private IColorCalculator _colorCalculator;
+        internal Func<Complex, Complex, Complex> Function { get; set; }
+        public ColorCalculator ColorCalculator { get; set; }
 
-        internal Drawer(Func<Complex, Complex, Complex> func, IColorCalculator colorCalculator)
+        public IterationCalculator IterationCalculator { get; set; } 
+
+        internal Drawer(Func<Complex, Complex, Complex> function, ColorCalculator colorCalculator, IterationCalculator iterationCalculator)
         {
-            this._func = func;
-            this._colorCalculator = colorCalculator;
+            this.Function = function;
+            this.ColorCalculator = colorCalculator;
+            this.IterationCalculator = iterationCalculator;
         }
 
         public double XStart { get; set; } = -2;
@@ -42,18 +46,18 @@ namespace GeekGrapher.FractalCore
         public byte[] Draw()
         {
             var result = new byte[Height * Width * 3];
-            var calculator = new IterationCalculator()
-            {
-                MaxIteration = MaxIteration
-            };
+
+            IterationCalculator.PreCalculate(this);
+            ColorCalculator.PreCalculate(this);
+
             for (int y = 0; y < Height; y++)
                 for (int x = 0; x < Width; x++)
                 {
-                    var z = new Complex(XStart + (XFinish - XStart) * x / Width,
+                    var iter = IterationCalculator.Calculate(
+                        XStart + (XFinish - XStart) * x / Width,
                         YStart + (YFinish - YStart) * y / Height);
-                    var iter = calculator.Calculate(_func, z, C);
 
-                    var color = _colorCalculator.Calculate(iter);
+                    var color = ColorCalculator.Calculate(iter);
                     result[3 * (y * Width + x)] = (byte)color.B;
                     result[3 * (y * Width + x) + 1] = (byte)color.G;
                     result[3 * (y * Width + x) + 2] = (byte)color.R;

@@ -1,4 +1,5 @@
 ﻿using GeekGrapher.FractalCore.ColorCalculators;
+using GeekGrapher.FractalCore.IterationCalculators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,30 +23,49 @@ namespace GeekGrapher.FractalCore
         HistogramHSV,
         PaleteBased
     }
+    public enum IterationPrinciple
+    {
+        Julia,
+        Mandelbrot
+    }
     public static class DrawerFactory
     {
-        public static Drawer Create(FractalFunction function, ColorScheme colorScheme)
+        public static ColorCalculator CreateColorCalculator(ColorScheme colorScheme)
         {
-            Drawer result;
-            IColorCalculator colorCalculator;
-            int maxIteration = 50;
-
             switch (colorScheme)
             {
                 case ColorScheme.BlackAndWhite:
-                    colorCalculator = new BlackWhiteCalculator(maxIteration);
-                    break;
+                    return new BlackWhiteCalculator();
                 case ColorScheme.HSVBased:
-                    colorCalculator = new HSVCalculator(maxIteration);
-                    break;
+                    return new HSVCalculator();
                 default:
                     throw new NotImplementedException();
             }
+        }
+
+        public static IterationCalculator CreateIterationCalculator(IterationPrinciple iterationPrinciple)
+        {
+            switch (iterationPrinciple)
+            {
+                case IterationPrinciple.Mandelbrot:
+                    return new MandelbrotCalculator();
+                case IterationPrinciple.Julia:
+                    return new JuliaCalculator();
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+
+        public static Drawer CreateDrawer(FractalFunction function, ColorScheme colorScheme, IterationPrinciple iterationPrinciple)
+        {
+            Drawer result;
+            var colorCalculator = CreateColorCalculator(colorScheme);
+            var iterationCalculator = CreateIterationCalculator(iterationPrinciple);
 
             switch (function)
             {
                 case FractalFunction.Chz:
-                    result = new Drawer((z, c) => Complex.Cosh(z) + c, colorCalculator)
+                    result = new Drawer((z, c) => Complex.Cosh(z) + c, colorCalculator, iterationCalculator)
                     {
                         XStart = -2,
                         XFinish = 2,
@@ -54,7 +74,7 @@ namespace GeekGrapher.FractalCore
                     };
                     break;
                 case FractalFunction.Shz:
-                    result = new Drawer((z, c) => Complex.Sinh(z) + c, colorCalculator)
+                    result = new Drawer((z, c) => Complex.Sinh(z) + c, colorCalculator, iterationCalculator)
                     {
                         XStart = -2,
                         XFinish = 2,
@@ -63,7 +83,7 @@ namespace GeekGrapher.FractalCore
                     };
                     break;
                 case FractalFunction.SinzCosz:
-                    result = new Drawer((z, c) => Complex.Sin(z) * Complex.Cos(z) + c, colorCalculator)
+                    result = new Drawer((z, c) => Complex.Sin(z) * Complex.Cos(z) + c, colorCalculator, iterationCalculator)
                     {
                         XStart = -2,
                         XFinish = 2,
@@ -74,8 +94,6 @@ namespace GeekGrapher.FractalCore
                 default:
                     throw new NotImplementedException();
             }
-
-            result.MaxIteration = maxIteration;
 
             return result;
         }

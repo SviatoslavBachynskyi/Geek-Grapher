@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using GeekGrapher.FractalCore;
+using GeekGrapher.FractalCore.ColorCalculators;
 
 namespace GeekGrapher.FractalPainter
 {
@@ -41,7 +42,7 @@ namespace GeekGrapher.FractalPainter
             var width = 700;
             var height = 700;
 
-            var drawer = DrawerFactory.Create(FractalFunction.SinzCosz, ColorScheme.HSVBased);
+            var drawer = DrawerFactory.CreateDrawer(FractalFunction.SinzCosz,ColorScheme.HSVBased, IterationPrinciple.Julia);
             drawer.Width = width;
             drawer.Height = height;
             drawer.C = new Complex(-0.4, 0.6);
