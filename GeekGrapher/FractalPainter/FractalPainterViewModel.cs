@@ -10,12 +10,13 @@ namespace GeekGrapher.FractalPainter
 {
     internal class FractalPainterViewModel
     {
-        FractalPainter Window { get; set; }
+        public FractalPainter Window { get; set; }
 
         public FractalPainterViewModel(FractalPainter fractalPainter)
         {
             Window = fractalPainter;
         }
+        #region Commands
 
         private ICommand _saveAsImage;
 
@@ -58,5 +59,20 @@ namespace GeekGrapher.FractalPainter
                 return _exit;
             }
         }
+
+        private ICommand _draw;
+
+        public ICommand Draw
+        {
+            get
+            {
+                if (_draw == null)
+                {
+                    _draw = new Draw(this);
+                }
+                return _draw;
+            }
+        }
+        #endregion
     }
 }

@@ -94,7 +94,7 @@
                     <TextBlock VerticalAlignment="Center" Grid.Row="8" Grid.Column="0">Color #3</TextBlock>
                     <xctk:ColorPicker MaxHeight="25" Grid.Row="8" Grid.Column="2" SelectedColor="Purple"></xctk:ColorPicker>
 
-                    <Button MaxHeight="25" Grid.Row="9" Grid.Column="2" >Draw</Button>
+                    <Button MaxHeight="25" Grid.Row="9" Grid.Column="2" Command ="{Binding Draw}">Draw</Button>
                 </Grid>
             </GroupBox>
         </Grid>
