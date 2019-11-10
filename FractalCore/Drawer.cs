@@ -37,12 +37,6 @@ namespace GeekGrapher.FractalCore
 
         public int MaxIteration { get; set; } = 80;
 
-        //TODO: maybe return Color array and change it in viewmodel
-        /// <summary>
-        /// Calculate color value for each pixel
-        /// </summary>
-        /// <returns> linear byte array with color value 
-        /// </returns>
         public byte[] Draw()
         {
             var result = new byte[Height * Width * 3];

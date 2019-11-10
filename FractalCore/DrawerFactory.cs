@@ -19,7 +19,6 @@ namespace GeekGrapher.FractalCore
     {
         BlackAndWhite,
         HSVBased,
-        SmoothHSV,
         HistogramHSV,
         PaleteBased
     }
