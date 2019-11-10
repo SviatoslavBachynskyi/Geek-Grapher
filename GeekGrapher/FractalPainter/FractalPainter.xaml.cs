@@ -51,7 +51,7 @@ namespace GeekGrapher.FractalPainter
 
             var int32Rect = new Int32Rect(0, 0, width, height);
 
-            var pixels = drawer.Draw();
+            var pixels = ColorsToBytesConverter.Convert(drawer.Draw());
 
             bitmap.WritePixels(int32Rect, pixels, 3 * width, 0);
 

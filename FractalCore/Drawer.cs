@@ -37,34 +37,39 @@ namespace GeekGrapher.FractalCore
 
         public int MaxIteration { get; set; } = 80;
 
-        public byte[] Draw()
+        internal int[,] Iterations { get; set; }
+
+        public Color[,] Draw()
         {
-            var result = new byte[Height * Width * 3];
+            var result = new Color[Height, Width];
+
+            Iterations = new int[Height, Width];
 
             IterationCalculator.PreCalculate(this);
-            ColorCalculator.PreCalculate(this);
-            var test = new int[Height, Width];
 
             Parallel.For(0, Height,
                 (y) =>
                 {
                     for (int x = 0; x < Width; x++)
                     {
-                        test[y, x] = IterationCalculator.Calculate(
-                            XStart + (XFinish - XStart) * x / Width,
-                            YStart + (YFinish - YStart) * y / Height);
+                        Iterations[y, x] = IterationCalculator.Calculate(
+                           XStart + (XFinish - XStart) * x / Width,
+                           YStart + (YFinish - YStart) * y / Height);
                     }
                 }
                 );
 
-            for (int y = 0; y < Height; y++)
-                for (int x = 0; x < Width; x++)
+            ColorCalculator.PreCalculate(this);
+
+            Parallel.For(0, Height,
+                (y) =>
                 {
-                    var color = ColorCalculator.Calculate(test[y, x]);
-                    result[3 * (y * Width + x)] = (byte)color.B;
-                    result[3 * (y * Width + x) + 1] = (byte)color.G;
-                    result[3 * (y * Width + x) + 2] = (byte)color.R;
+                    for (int x = 0; x < Width; x++)
+                    {
+                        result[y, x] = ColorCalculator.Calculate(Iterations[y, x]);
+                    }
                 }
+                );
 
             return result;
         }

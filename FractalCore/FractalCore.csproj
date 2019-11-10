@@ -51,6 +51,7 @@
     <Compile Include="IterationCalculators\IterationCalculator.cs" />
     <Compile Include="IterationCalculators\JuliaCalculator.cs" />
     <Compile Include="IterationCalculators\MandelbrotCalculator.cs" />
+    <Compile Include="IterationSmoother.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
