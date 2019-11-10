@@ -15,7 +15,7 @@ namespace GeekGrapher.FractalCore
         internal Func<Complex, Complex, Complex> Function { get; set; }
         public ColorCalculator ColorCalculator { get; set; }
 
-        public IterationCalculator IterationCalculator { get; set; } 
+        public IterationCalculator IterationCalculator { get; set; }
 
         internal Drawer(Func<Complex, Complex, Complex> function, ColorCalculator colorCalculator, IterationCalculator iterationCalculator)
         {
@@ -43,15 +43,24 @@ namespace GeekGrapher.FractalCore
 
             IterationCalculator.PreCalculate(this);
             ColorCalculator.PreCalculate(this);
+            var test = new int[Height, Width];
+
+            Parallel.For(0, Height,
+                (y) =>
+                {
+                    for (int x = 0; x < Width; x++)
+                    {
+                        test[y, x] = IterationCalculator.Calculate(
+                            XStart + (XFinish - XStart) * x / Width,
+                            YStart + (YFinish - YStart) * y / Height);
+                    }
+                }
+                );
 
             for (int y = 0; y < Height; y++)
                 for (int x = 0; x < Width; x++)
                 {
-                    var iter = IterationCalculator.Calculate(
-                        XStart + (XFinish - XStart) * x / Width,
-                        YStart + (YFinish - YStart) * y / Height);
-
-                    var color = ColorCalculator.Calculate(iter);
+                    var color = ColorCalculator.Calculate(test[y, x]);
                     result[3 * (y * Width + x)] = (byte)color.B;
                     result[3 * (y * Width + x) + 1] = (byte)color.G;
                     result[3 * (y * Width + x) + 2] = (byte)color.R;
