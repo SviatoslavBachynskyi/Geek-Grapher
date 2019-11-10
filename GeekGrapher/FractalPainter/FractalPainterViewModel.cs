@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -11,6 +12,12 @@ namespace GeekGrapher.FractalPainter
     internal class FractalPainterViewModel
     {
         public FractalPainter Window { get; set; }
+
+        public double CReal { get; set; }
+
+        public double CImaginary { get; set; }
+
+        public int MaxIterations { get; set; } = 50;
 
         public FractalPainterViewModel(FractalPainter fractalPainter)
         {

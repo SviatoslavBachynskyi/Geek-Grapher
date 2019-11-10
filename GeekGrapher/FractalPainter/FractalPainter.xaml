@@ -65,15 +65,15 @@
                     </ComboBox>
 
                     <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">Max Iteration</TextBlock>
-                    <xctk:IntegerUpDown  MaxHeight="25" Grid.Row="1" Grid.Column="2" Value="50" Minimum="0" Maximum="500"></xctk:IntegerUpDown>
+                    <xctk:IntegerUpDown  MaxHeight="25" Grid.Row="1" Grid.Column="2" Value="{Binding Path=MaxIterations}" Minimum="1" Maximum="500"></xctk:IntegerUpDown>
 
                     <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="0">C Real
                     </TextBlock>
-                    <TextBox MaxHeight="25" Grid.Row="2" Grid.Column="2" HorizontalContentAlignment="Right">0.5</TextBox>
+                    <TextBox MaxHeight="25" Text ="{Binding Path=CReal}"  Grid.Row="2" Grid.Column="2" HorizontalContentAlignment="Right"></TextBox>
 
                     <TextBlock VerticalAlignment="Center" Grid.Row="3" Grid.Column="0">C Imaginary
                     </TextBlock>
-                    <TextBox MaxHeight="25" Grid.Row="3" Grid.Column="2" HorizontalContentAlignment="Right">-1</TextBox>
+                    <TextBox MaxHeight="25" Text ="{Binding Path=CImaginary}" Grid.Row="3" Grid.Column="2" HorizontalContentAlignment="Right"></TextBox>
 
                     <TextBlock VerticalAlignment="Center" Grid.Row="4" Grid.Column="0">Color Scheme:</TextBlock>
                     <ComboBox MaxHeight="25" Grid.Row="4" Grid.Column="2">

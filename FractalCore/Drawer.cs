@@ -37,7 +37,7 @@ namespace GeekGrapher.FractalCore
 
         public Complex C { get; set; }
 
-        public int MaxIteration { get; set; } = 80;
+        public int MaxIterations { get; set; } = 80;
 
         internal double[,] Iterations { get; set; }
 

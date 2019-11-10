@@ -36,9 +36,9 @@ namespace GeekGrapher.FractalPainter.Commands
             var drawer = DrawerFactory.CreateDrawer(FractalFunction.SinzCosz, ColorScheme.HSVBased, IterationPrinciple.Julia);
             drawer.Width = width;
             drawer.Height = height;
-            drawer.C = new Complex(-0.4, 0.6);
+            drawer.C = new Complex(WindowViewModel.CReal, WindowViewModel.CImaginary);
             drawer.Smooth = false;
-            drawer.MaxIteration = 80;
+            drawer.MaxIterations = WindowViewModel.MaxIterations;
 
             var bitmap = new WriteableBitmap(width, height, 96, 96, PixelFormats.Bgr24, null);
 

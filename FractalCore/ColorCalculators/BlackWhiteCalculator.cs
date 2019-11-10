@@ -12,7 +12,7 @@ namespace GeekGrapher.FractalCore.ColorCalculators
 
         internal override Color Calculate(double iteration)
         {
-            var Hue = (int)(255 - (iteration * 255) / Drawer.MaxIteration);
+            var Hue = (int)(255 - (iteration * 255) / Drawer.MaxIterations);
             return Color.FromArgb(Hue, Hue, Hue);
         }
     }

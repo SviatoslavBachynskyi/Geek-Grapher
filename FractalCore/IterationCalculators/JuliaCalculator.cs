@@ -13,13 +13,13 @@ namespace GeekGrapher.FractalCore.IterationCalculators
         {
             z = new Complex(x, y);
             Complex c = Drawer.C;
-            for (int i = 0; i < Drawer.MaxIteration; i++)
+            for (int i = 0; i < Drawer.MaxIterations; i++)
             {
                 z = Drawer.Function(z, c);
                 if (Complex.Abs(z) > 2) return i;
             }
 
-            return Drawer.MaxIteration;
+            return Drawer.MaxIterations;
         }
     }
 }
