@@ -19,7 +19,7 @@ namespace GeekGrapher.FractalCore.ColorCalculators
 
         internal override Color Calculate(double iteration)
         {
-            if (iteration == Drawer.MaxIteration) return Color.Black;
+            if (iteration == Drawer.MaxIterations) return Color.Black;
 
             return palette[(int)iteration % palette.Length];
         }

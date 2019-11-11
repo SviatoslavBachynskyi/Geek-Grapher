@@ -38,7 +38,7 @@ namespace GeekGrapher.FractalCore
                     return new BlackWhiteCalculator();
                 case ColorScheme.HSVBased:
                     return new HSVCalculator();
-                case ColorScheme.PaleteBased:
+                case ColorScheme.PaletteBased:
                     return new PaletteCalculator(palette);
                 default:
                     throw new NotImplementedException();
@@ -58,7 +58,7 @@ namespace GeekGrapher.FractalCore
             }
         }
 
-        public static Drawer CreateDrawer(FractalFunction function, ColorScheme colorScheme, IterationPrinciple iterationPrinciple, Color[] palette)
+        public static Drawer CreateDrawer(FractalFunction function, ColorScheme colorScheme, Color[] palette, IterationPrinciple iterationPrinciple)
         {
             Drawer result;
             var colorCalculator = CreateColorCalculator(colorScheme, palette);
