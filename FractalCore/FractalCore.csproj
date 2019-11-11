@@ -46,6 +46,7 @@
     <Compile Include="ColorCalculators\BlackWhiteCalculator.cs" />
     <Compile Include="ColorCalculators\HSVCalculator.cs" />
     <Compile Include="ColorCalculators\ColorCalculator.cs" />
+    <Compile Include="ColorCalculators\PaletteCalculator.cs" />
     <Compile Include="Drawer.cs" />
     <Compile Include="DrawerFactory.cs" />
     <Compile Include="IterationCalculators\IterationCalculator.cs" />

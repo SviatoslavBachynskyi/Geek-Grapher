@@ -35,7 +35,7 @@ namespace GeekGrapher.FractalPainter.Commands
 
             var drawer = DrawerFactory.CreateDrawer(
                 WindowViewModel.SelectedFractalFunction,
-                WindowViewModel.SelectedColorScheme,
+                WindowViewModel.SelectedColorScheme, null,
                 IterationPrinciple.Julia);
             drawer.Width = width;
             drawer.Height = height;
