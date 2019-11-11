@@ -33,7 +33,10 @@ namespace GeekGrapher.FractalPainter.Commands
             var width = 700;
             var height = 700;
 
-            var drawer = DrawerFactory.CreateDrawer(FractalFunction.SinzCosz, ColorScheme.HSVBased, IterationPrinciple.Julia);
+            var drawer = DrawerFactory.CreateDrawer(
+                WindowViewModel.SelectedFractalFunction,
+                ColorScheme.HSVBased,
+                IterationPrinciple.Julia);
             drawer.Width = width;
             drawer.Height = height;
             drawer.C = new Complex(WindowViewModel.CReal, WindowViewModel.CImaginary);

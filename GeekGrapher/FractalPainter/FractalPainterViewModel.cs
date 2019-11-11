@@ -5,6 +5,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using GeekGrapher.FractalCore;
 using GeekGrapher.FractalPainter.Commands;
 
 namespace GeekGrapher.FractalPainter
@@ -18,6 +19,16 @@ namespace GeekGrapher.FractalPainter
         public double CImaginary { get; set; }
 
         public int MaxIterations { get; set; } = 50;
+
+        public static Dictionary<FractalFunction, string> FractalFunctions =
+            new Dictionary<FractalFunction, string>()
+            {
+                {FractalFunction.Shz, "z = sh(z) + C" },
+                {FractalFunction.Chz, "z = ch(z) + C" },
+                {FractalFunction.SinzCosz, "z = sin(z)*cos(z) + C" }
+            };
+
+        public FractalFunction SelectedFractalFunction { get; set; } = FractalFunction.Shz;
 
         public FractalPainterViewModel(FractalPainter fractalPainter)
         {

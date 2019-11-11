@@ -60,8 +60,10 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="0">Function:</TextBlock>
-                    <ComboBox MaxHeight="25" Grid.Row="0" Grid.Column="2">
-                        <ComboBoxItem IsSelected="True">Z = Sh(z) + C</ComboBoxItem>
+                    <ComboBox MaxHeight="25" ItemsSource="{Binding Path=FractalFunctions}" 
+                              DisplayMemberPath="Value" SelectedValuePath="Key"
+                              SelectedValue="SelectedFractalFunction" 
+                              Grid.Row="0" Grid.Column="2">
                     </ComboBox>
 
                     <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">Max Iteration</TextBlock>
