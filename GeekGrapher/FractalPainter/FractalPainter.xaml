@@ -62,7 +62,7 @@
                     <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="0">Function:</TextBlock>
                     <ComboBox MaxHeight="25" ItemsSource="{Binding Path=FractalFunctions}" 
                               DisplayMemberPath="Value" SelectedValuePath="Key"
-                              SelectedValue="SelectedFractalFunction" 
+                              SelectedValue="{Binding SelectedFractalFunction}" 
                               Grid.Row="0" Grid.Column="2">
                     </ComboBox>
 

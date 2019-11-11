@@ -79,6 +79,7 @@
     <Compile Include="FractalPainter\ColorsToBytesConverter.cs" />
     <Compile Include="FractalPainter\Commands\Draw.cs" />
     <Compile Include="BindingErrorListener.cs" />
+    <Compile Include="FractalPainter\Definitions\FractalFunctionsDefinition.cs" />
     <Compile Include="FractalPainter\FractalPainter.xaml.cs">
       <DependentUpon>FractalPainter.xaml</DependentUpon>
     </Compile>
