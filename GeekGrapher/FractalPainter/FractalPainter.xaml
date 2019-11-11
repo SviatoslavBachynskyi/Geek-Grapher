@@ -1,0 +1,102 @@
+﻿<Window x:Class="GeekGrapher.FractalPainter.FractalPainter"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GeekGrapher.FractalPainter"
+        xmlns:general="clr-namespace:GeekGrapher.General"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="FractalPainter"
+        WindowState="Maximized">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <!--
+                <MenuItem Header="_New" InputGestureText="Ctrl+N"/>
+                <Separator />
+                <MenuItem Header="_Open" InputGestureText="Ctrl+O"/>
+                <MenuItem Header="_Open Recent ->"/>
+                <Separator />
+                <MenuItem Header="_Save" InputGestureText="Ctrl+S"/>
+                    -->
+                <MenuItem Header="_Save as Image" Command="{Binding SaveAsImage}" />
+                <Separator />
+                <MenuItem Header="_Close" InputGestureText="Ctrl+Q" Command="{Binding Close}"/>
+                <Separator />
+                <MenuItem Header="_Exit" Command="{Binding Exit}"/>
+            </MenuItem>
+            <MenuItem Header="_Start Page" InputGestureText="Ctrl+F5"/>
+            <MenuItem Header="_Settings"/>
+            <MenuItem Header="_Help"/>
+        </Menu>
+        <Canvas DockPanel.Dock="Right">
+            <general:QuickActionsBar Width="180" Height="45" Canvas.Top="0" Canvas.Right="5"/>
+        </Canvas>
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <general:ImageZoomer Grid.Column="1"></general:ImageZoomer>
+            <GroupBox Header="Fractal properties" Grid.Column="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*" MinWidth="20"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="0">Function:</TextBlock>
+                    <ComboBox MaxHeight="25" Grid.Row="0" Grid.Column="2">
+                        <ComboBoxItem IsSelected="True">Z = Sh(z) + C</ComboBoxItem>
+                    </ComboBox>
+
+                    <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">Max Iteration</TextBlock>
+                    <xctk:IntegerUpDown  MaxHeight="25" Grid.Row="1" Grid.Column="2" Value="50" Minimum="0" Maximum="500"></xctk:IntegerUpDown>
+
+                    <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="0">C Real
+                    </TextBlock>
+                    <TextBox MaxHeight="25" Grid.Row="2" Grid.Column="2" HorizontalContentAlignment="Right">0.5</TextBox>
+
+                    <TextBlock VerticalAlignment="Center" Grid.Row="3" Grid.Column="0">C Imaginary
+                    </TextBlock>
+                    <TextBox MaxHeight="25" Grid.Row="3" Grid.Column="2" HorizontalContentAlignment="Right">-1</TextBox>
+
+                    <TextBlock VerticalAlignment="Center" Grid.Row="4" Grid.Column="0">Color Scheme:</TextBlock>
+                    <ComboBox MaxHeight="25" Grid.Row="4" Grid.Column="2">
+                        <ComboBoxItem IsSelected="True">Palette</ComboBoxItem>
+                        <ComboBoxItem>Smooth Coloring</ComboBoxItem>
+                        <ComboBoxItem>Histogram Coloring</ComboBoxItem>
+                    </ComboBox>
+
+                    <TextBlock VerticalAlignment="Center" Grid.Row="5" Grid.Column="0">Palette  Colors</TextBlock>
+                    <xctk:IntegerUpDown  MaxHeight="25" Grid.Row="5" Grid.Column="2" Value="3" Minimum="2" Maximum="6"></xctk:IntegerUpDown>
+
+                    <TextBlock VerticalAlignment="Center" Grid.Row="6" Grid.Column="0">Color #1</TextBlock>
+                    <xctk:ColorPicker MaxHeight="25" Grid.Row="6" Grid.Column="2" SelectedColor="Red"></xctk:ColorPicker>
+
+                    <TextBlock VerticalAlignment="Center" Grid.Row="7" Grid.Column="0">Color #2</TextBlock>
+                    <xctk:ColorPicker MaxHeight="25" Grid.Row="7" Grid.Column="2" SelectedColor="Cyan"></xctk:ColorPicker>
+
+                    <TextBlock VerticalAlignment="Center" Grid.Row="8" Grid.Column="0">Color #3</TextBlock>
+                    <xctk:ColorPicker MaxHeight="25" Grid.Row="8" Grid.Column="2" SelectedColor="Purple"></xctk:ColorPicker>
+
+                    <Button MaxHeight="25" Grid.Row="9" Grid.Column="2" >Draw</Button>
+                </Grid>
+            </GroupBox>
+        </Grid>
+    </DockPanel>
+</Window>
