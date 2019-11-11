@@ -75,6 +75,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BindingErrorListener.cs" />
     <Compile Include="FractalPainter\FractalPainter.xaml.cs">
       <DependentUpon>FractalPainter.xaml</DependentUpon>
     </Compile>
