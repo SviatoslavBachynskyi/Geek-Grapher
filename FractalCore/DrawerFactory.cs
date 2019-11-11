@@ -2,6 +2,7 @@
 using GeekGrapher.FractalCore.IterationCalculators;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -29,7 +30,7 @@ namespace GeekGrapher.FractalCore
     }
     public static class DrawerFactory
     {
-        public static ColorCalculator CreateColorCalculator(ColorScheme colorScheme)
+        public static ColorCalculator CreateColorCalculator(ColorScheme colorScheme, Color[] palette)
         {
             switch (colorScheme)
             {
@@ -37,6 +38,8 @@ namespace GeekGrapher.FractalCore
                     return new BlackWhiteCalculator();
                 case ColorScheme.HSVBased:
                     return new HSVCalculator();
+                case ColorScheme.PaletteBased:
+                    return new PaletteCalculator(palette);
                 default:
                     throw new NotImplementedException();
             }
@@ -55,10 +58,10 @@ namespace GeekGrapher.FractalCore
             }
         }
 
-        public static Drawer CreateDrawer(FractalFunction function, ColorScheme colorScheme, IterationPrinciple iterationPrinciple)
+        public static Drawer CreateDrawer(FractalFunction function, ColorScheme colorScheme, Color[] palette, IterationPrinciple iterationPrinciple)
         {
             Drawer result;
-            var colorCalculator = CreateColorCalculator(colorScheme);
+            var colorCalculator = CreateColorCalculator(colorScheme, palette);
             var iterationCalculator = CreateIterationCalculator(iterationPrinciple);
 
             switch (function)

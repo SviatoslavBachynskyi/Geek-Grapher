@@ -33,7 +33,7 @@ namespace GeekGrapher.FractalPainter.Commands
 
             var drawer = DrawerFactory.CreateDrawer(
                 WindowViewModel.SelectedFractalFunction,
-                WindowViewModel.SelectedColorScheme,
+                WindowViewModel.SelectedColorScheme, null,
                 IterationPrinciple.Julia);
             drawer.C = new Complex(WindowViewModel.CReal, WindowViewModel.CImaginary);
             drawer.Smooth = false;
