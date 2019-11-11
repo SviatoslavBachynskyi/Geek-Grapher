@@ -77,6 +77,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="FractalPainter\ColorsToBytesConverter.cs" />
+    <Compile Include="FractalPainter\Commands\Draw.cs" />
+    <Compile Include="BindingErrorListener.cs" />
+    <Compile Include="FractalPainter\EnumDefinitions\ColosSchemeDefinitions.cs" />
+    <Compile Include="FractalPainter\EnumDefinitions\FractalFunctionDefinitions.cs" />
     <Compile Include="FractalPainter\FractalPainter.xaml.cs">
       <DependentUpon>FractalPainter.xaml</DependentUpon>
     </Compile>

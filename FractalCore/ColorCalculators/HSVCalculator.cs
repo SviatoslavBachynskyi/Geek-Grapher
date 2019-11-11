@@ -12,10 +12,10 @@ namespace GeekGrapher.FractalCore.ColorCalculators
     {
         internal override Color Calculate(double iteration)
         {
-            if (iteration == Drawer.MaxIteration) return Color.Black;
+            if (iteration == Drawer.MaxIterations) return Color.Black;
 
             return ColorModelConverter.ColorFromHSV(
-                255.0 * iteration / Drawer.MaxIteration, 1.0, 1.0);
+                255.0 * iteration / Drawer.MaxIterations, 1.0, 1.0);
         }
     }
 }

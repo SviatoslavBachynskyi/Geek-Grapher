@@ -60,26 +60,29 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="0">Function:</TextBlock>
-                    <ComboBox MaxHeight="25" Grid.Row="0" Grid.Column="2">
-                        <ComboBoxItem IsSelected="True">Z = Sh(z) + C</ComboBoxItem>
+                    <ComboBox MaxHeight="25" ItemsSource="{Binding Path=FractalFunctions}" 
+                              DisplayMemberPath="Value" SelectedValuePath="Key"
+                              SelectedValue="{Binding SelectedFractalFunction}" 
+                              Grid.Row="0" Grid.Column="2">
                     </ComboBox>
 
                     <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">Max Iteration</TextBlock>
-                    <xctk:IntegerUpDown  MaxHeight="25" Grid.Row="1" Grid.Column="2" Value="50" Minimum="0" Maximum="500"></xctk:IntegerUpDown>
+                    <xctk:IntegerUpDown  MaxHeight="25" Grid.Row="1" Grid.Column="2" Value="{Binding Path=MaxIterations}" Minimum="1" Maximum="500"></xctk:IntegerUpDown>
 
                     <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="0">C Real
                     </TextBlock>
-                    <TextBox MaxHeight="25" Grid.Row="2" Grid.Column="2" HorizontalContentAlignment="Right">0.5</TextBox>
+                    <TextBox MaxHeight="25" Text ="{Binding Path=CReal}"  Grid.Row="2" Grid.Column="2" HorizontalContentAlignment="Right"></TextBox>
 
                     <TextBlock VerticalAlignment="Center" Grid.Row="3" Grid.Column="0">C Imaginary
                     </TextBlock>
-                    <TextBox MaxHeight="25" Grid.Row="3" Grid.Column="2" HorizontalContentAlignment="Right">-1</TextBox>
+                    <TextBox MaxHeight="25" Text ="{Binding Path=CImaginary}" Grid.Row="3" Grid.Column="2" HorizontalContentAlignment="Right"></TextBox>
 
                     <TextBlock VerticalAlignment="Center" Grid.Row="4" Grid.Column="0">Color Scheme:</TextBlock>
-                    <ComboBox MaxHeight="25" Grid.Row="4" Grid.Column="2">
-                        <ComboBoxItem IsSelected="True">Palette</ComboBoxItem>
-                        <ComboBoxItem>Smooth Coloring</ComboBoxItem>
-                        <ComboBoxItem>Histogram Coloring</ComboBoxItem>
+                    <ComboBox ItemsSource="{Binding Path=ColorSchemes}"
+                              DisplayMemberPath="Value"
+                              SelectedValuePath="Key"
+                              SelectedValue="{Binding Path=SelectedColorScheme}"
+                              MaxHeight="25" Grid.Row="4" Grid.Column="2">
                     </ComboBox>
 
                     <TextBlock VerticalAlignment="Center" Grid.Row="5" Grid.Column="0">Palette  Colors</TextBlock>
@@ -94,7 +97,7 @@
                     <TextBlock VerticalAlignment="Center" Grid.Row="8" Grid.Column="0">Color #3</TextBlock>
                     <xctk:ColorPicker MaxHeight="25" Grid.Row="8" Grid.Column="2" SelectedColor="Purple"></xctk:ColorPicker>
 
-                    <Button MaxHeight="25" Grid.Row="9" Grid.Column="2" >Draw</Button>
+                    <Button MaxHeight="25" Grid.Row="9" Grid.Column="2" Command ="{Binding Draw}">Draw</Button>
                 </Grid>
             </GroupBox>
         </Grid>

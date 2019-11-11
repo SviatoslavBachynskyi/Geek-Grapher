@@ -1,21 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using GeekGrapher.FractalCore;
 using GeekGrapher.FractalPainter.Commands;
+using GeekGrapher.FractalPainter.EnumDefinitions;
 
 namespace GeekGrapher.FractalPainter
 {
     internal class FractalPainterViewModel
     {
-        FractalPainter Window { get; set; }
+        public FractalPainter Window { get; set; }
+
+        public double CReal { get; set; }
+
+        public double CImaginary { get; set; }
+
+        public int MaxIterations { get; set; } = 50;
+
+        public Dictionary<FractalFunction, string> FractalFunctions { get => FractalFunctionDefinitions.FractalFunctions; }
+
+        public FractalFunction SelectedFractalFunction { get; set; } = FractalFunction.Shz;
+
+        public Dictionary<ColorScheme, string> ColorSchemes { get => ColosSchemeDefinitions.ColorSchemes; }
+
+        public ColorScheme SelectedColorScheme { get; set; } = ColorScheme.HSVBased;
 
         public FractalPainterViewModel(FractalPainter fractalPainter)
         {
             Window = fractalPainter;
         }
+        #region Commands
 
         private ICommand _saveAsImage;
 
@@ -23,7 +41,7 @@ namespace GeekGrapher.FractalPainter
         {
             get
             {
-                if(_saveAsImage == null)
+                if (_saveAsImage == null)
                 {
                     _saveAsImage = new SaveAsImage(this);
                 }
@@ -58,5 +76,20 @@ namespace GeekGrapher.FractalPainter
                 return _exit;
             }
         }
+
+        private ICommand _draw;
+
+        public ICommand Draw
+        {
+            get
+            {
+                if (_draw == null)
+                {
+                    _draw = new Draw(this);
+                }
+                return _draw;
+            }
+        }
+        #endregion
     }
 }

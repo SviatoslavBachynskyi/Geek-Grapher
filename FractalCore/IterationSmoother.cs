@@ -11,11 +11,11 @@ namespace GeekGrapher.FractalCore
     {
         internal static double MakeSmooth(Drawer drawer, int iteration, Complex z)
         {
-            if (iteration == drawer.MaxIteration) return iteration;
+            if (iteration == drawer.MaxIterations) return iteration;
 
             var result = iteration + 1 - Math.Log(Math.Log(Complex.Abs(z), 2));
 
-            if (result > drawer.MaxIteration) result = drawer.MaxIteration;
+            if (result > drawer.MaxIterations) result = drawer.MaxIterations;
             if (result < 0) result = 0;
 
             return result;
