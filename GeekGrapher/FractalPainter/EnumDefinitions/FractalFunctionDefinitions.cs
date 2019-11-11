@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GeekGrapher.FractalPainter.Definitions
+namespace GeekGrapher.FractalPainter.EnumDefinitions
 {
-    internal class FractalFunctionsDefinition
+    internal class FractalFunctionDefinitions
     {
         public static Dictionary<FractalFunction, string> FractalFunctions =
             new Dictionary<FractalFunction, string>()

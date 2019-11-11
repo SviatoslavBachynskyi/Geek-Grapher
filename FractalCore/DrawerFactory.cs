@@ -20,7 +20,7 @@ namespace GeekGrapher.FractalCore
         BlackAndWhite,
         HSVBased,
         HistogramHSV,
-        PaleteBased
+        PaletteBased
     }
     public enum IterationPrinciple
     {

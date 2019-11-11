@@ -78,10 +78,11 @@
                     <TextBox MaxHeight="25" Text ="{Binding Path=CImaginary}" Grid.Row="3" Grid.Column="2" HorizontalContentAlignment="Right"></TextBox>
 
                     <TextBlock VerticalAlignment="Center" Grid.Row="4" Grid.Column="0">Color Scheme:</TextBlock>
-                    <ComboBox MaxHeight="25" Grid.Row="4" Grid.Column="2">
-                        <ComboBoxItem IsSelected="True">Palette</ComboBoxItem>
-                        <ComboBoxItem>Smooth Coloring</ComboBoxItem>
-                        <ComboBoxItem>Histogram Coloring</ComboBoxItem>
+                    <ComboBox ItemsSource="{Binding Path=ColorSchemes}"
+                              DisplayMemberPath="Value"
+                              SelectedValuePath="Key"
+                              SelectedValue="{Binding Path=SelectedColorScheme}"
+                              MaxHeight="25" Grid.Row="4" Grid.Column="2">
                     </ComboBox>
 
                     <TextBlock VerticalAlignment="Center" Grid.Row="5" Grid.Column="0">Palette  Colors</TextBlock>

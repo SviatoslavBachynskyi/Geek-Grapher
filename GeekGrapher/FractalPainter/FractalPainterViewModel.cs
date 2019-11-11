@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using GeekGrapher.FractalCore;
 using GeekGrapher.FractalPainter.Commands;
-using GeekGrapher.FractalPainter.Definitions;
+using GeekGrapher.FractalPainter.EnumDefinitions;
 
 namespace GeekGrapher.FractalPainter
 {
@@ -21,9 +21,13 @@ namespace GeekGrapher.FractalPainter
 
         public int MaxIterations { get; set; } = 50;
 
-        public Dictionary<FractalFunction, string> FractalFunctions { get => FractalFunctionsDefinition.FractalFunctions; }
+        public Dictionary<FractalFunction, string> FractalFunctions { get => FractalFunctionDefinitions.FractalFunctions; }
 
         public FractalFunction SelectedFractalFunction { get; set; } = FractalFunction.Shz;
+
+        public Dictionary<ColorScheme, string> ColorSchemes { get => ColosSchemeDefinitions.ColorSchemes; }
+
+        public ColorScheme SelectedColorScheme { get; set; } = ColorScheme.HSVBased;
 
         public FractalPainterViewModel(FractalPainter fractalPainter)
         {
@@ -37,7 +41,7 @@ namespace GeekGrapher.FractalPainter
         {
             get
             {
-                if(_saveAsImage == null)
+                if (_saveAsImage == null)
                 {
                     _saveAsImage = new SaveAsImage(this);
                 }
