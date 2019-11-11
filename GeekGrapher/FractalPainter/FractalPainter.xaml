@@ -38,7 +38,14 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="5*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Image x:Name ="Image" Grid.Column="1" Stretch="None"></Image>
+            <Canvas x:Name="Canvas" Grid.Column="1" Margin="50">
+                <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
+            Margin="0,0,0,0" Canvas.Left="0" Canvas.Top="0"
+            Width="{Binding ActualWidth, ElementName=Canvas}"
+            Height="{Binding ActualHeight, ElementName=Canvas}">
+                    <Image x:Name ="Image" Stretch="None"></Image>
+                </DockPanel>
+            </Canvas>
             <GroupBox Header="Fractal properties" Grid.Column="0">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -66,7 +73,7 @@
                               Grid.Row="0" Grid.Column="2">
                     </ComboBox>
 
-                    <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">Max Iteration</TextBlock>
+                    <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">Max Iterations</TextBlock>
                     <xctk:IntegerUpDown  MaxHeight="25" Grid.Row="1" Grid.Column="2" Value="{Binding Path=MaxIterations}" Minimum="1" Maximum="500"></xctk:IntegerUpDown>
 
                     <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="0">C Real
