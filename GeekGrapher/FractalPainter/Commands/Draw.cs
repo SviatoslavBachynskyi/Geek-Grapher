@@ -30,7 +30,6 @@ namespace GeekGrapher.FractalPainter.Commands
 
         public void Execute(object parameter)
         {
-
             var drawer = DrawerFactory.CreateDrawer(
                 WindowViewModel.SelectedFractalFunction,
                 WindowViewModel.SelectedColorScheme, null,
