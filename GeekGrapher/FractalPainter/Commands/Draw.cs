@@ -30,19 +30,7 @@ namespace GeekGrapher.FractalPainter.Commands
 
         public void Execute(object parameter)
         {
-            var drawer = DrawerFactory.CreateDrawer(
-                WindowViewModel.SelectedFractalFunction,
-                WindowViewModel.SelectedColorScheme, WindowViewModel._palette.Select(cw => cw.Value).ToArray(),
-                IterationPrinciple.Julia);
-
-            var cReal = Double.Parse(WindowViewModel.CReal);
-            var CImaginary = Double.Parse(WindowViewModel.CImaginary);
-            var maxIterations = Int32.Parse(WindowViewModel.MaxIterations);
-
-            drawer.C = new Complex(cReal, CImaginary);
-            drawer.Smooth = false;
-            drawer.MaxIterations = maxIterations;
-
+            var drawer = WindowViewModel.Drawer;
             int height;
             int width;
             ImageFitter.Fit(

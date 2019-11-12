@@ -71,6 +71,8 @@ namespace GeekGrapher.FractalPainter
             }
         }
 
+        public Drawer Drawer { get; set; }
+
         public FractalPainterViewModel(FractalPainter fractalPainter)
             : this()
         {
@@ -131,6 +133,20 @@ namespace GeekGrapher.FractalPainter
                     _draw = new Draw(this);
                 }
                 return _draw;
+            }
+        }
+
+        private ICommand _drawAndCreate;
+
+        public ICommand DrawAndCreate
+        {
+            get
+            {
+                if (_drawAndCreate == null)
+                {
+                    _drawAndCreate = new DrawAndCreate(this);
+                }
+                return _drawAndCreate;
             }
         }
         #endregion

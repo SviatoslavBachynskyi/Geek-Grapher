@@ -40,12 +40,32 @@
                 <ColumnDefinition Width="5*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Canvas x:Name="Canvas" Grid.Column="1" Margin="50">
-                <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
+                <DockPanel x:Name="ImageDockPanel"
+                    VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
             Margin="0,0,0,0" Canvas.Left="0" Canvas.Top="0"
             Width="{Binding ActualWidth, ElementName=Canvas}"
             Height="{Binding ActualHeight, ElementName=Canvas}">
-                    <Image x:Name ="Image" Stretch="None"></Image>
+                    <Image  x:Name="Image" 
+                            MouseDown="Selection_MouseDown"
+                            MouseUp="Selection_MouseUp"
+                            MouseMove="Selection_MouseMove"
+                            Stretch="None"></Image>
                 </DockPanel>
+            </Canvas>
+            <Canvas Grid.Column="1" Margin="50">
+                <Grid  Width="{Binding ActualWidth, ElementName=Canvas}"
+            Height="{Binding ActualHeight, ElementName=Canvas}">
+                    <Canvas VerticalAlignment="Center" 
+                            HorizontalAlignment="Center" 
+                            Width="{Binding ActualWidth, ElementName=Image}" 
+                            Height="{Binding ActualHeight, ElementName=Image}">
+                        <Rectangle Width="{Binding ActualWidth, ElementName=Image}" Height="{Binding ActualHeight, ElementName=Image}"
+                        x:Name="selectionBox"
+                        Visibility="Collapsed"
+                        Stroke="Orange"
+                        StrokeThickness="3"/>
+                    </Canvas>
+                </Grid>
             </Canvas>
             <GroupBox Header="Fractal properties" Grid.Column="0">
                 <Grid>
@@ -232,7 +252,7 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                    <Button MaxHeight="25" Grid.Row="9" Grid.Column="2" Command ="{Binding Draw}">Draw</Button>
+                    <Button MaxHeight="25" Grid.Row="9" Grid.Column="2" Command ="{Binding DrawAndCreate}">Draw</Button>
                 </Grid>
             </GroupBox>
         </Grid>

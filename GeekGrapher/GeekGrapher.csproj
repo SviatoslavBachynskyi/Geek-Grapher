@@ -76,9 +76,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="FractalPainter\ColorWrapper.cs" />
+    <Compile Include="FractalPainter\Commands\Draw.cs" />
     <Compile Include="FractalPainter\Validations\DoubleValidation.cs" />
     <Compile Include="FractalPainter\ColorsToBytesConverter.cs" />
-    <Compile Include="FractalPainter\Commands\Draw.cs" />
+    <Compile Include="FractalPainter\Commands\DrawAndCreate.cs" />
     <Compile Include="BindingErrorListener.cs" />
     <Compile Include="FractalPainter\EnumDefinitions\ColosSchemeDefinitions.cs" />
     <Compile Include="FractalPainter\EnumDefinitions\FractalFunctionDefinitions.cs" />
