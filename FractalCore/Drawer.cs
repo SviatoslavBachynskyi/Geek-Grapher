@@ -61,7 +61,7 @@ namespace GeekGrapher.FractalCore
 
                         if (Smooth)
                             Iterations[y, x] = IterationSmoother.MakeSmooth(this, iter,z);
-                        else 
+                        else
                             Iterations[y, x] = iter;
                     }
                 }

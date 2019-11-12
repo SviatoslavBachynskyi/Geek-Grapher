@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColorCalculators\BlackWhiteCalculator.cs" />
+    <Compile Include="ColorCalculators\HistogramHSVCalculator.cs" />
     <Compile Include="ColorCalculators\HSVCalculator.cs" />
     <Compile Include="ColorCalculators\ColorCalculator.cs" />
     <Compile Include="ColorCalculators\PaletteCalculator.cs" />
