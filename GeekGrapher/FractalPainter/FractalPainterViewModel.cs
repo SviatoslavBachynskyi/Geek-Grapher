@@ -1,25 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media;
 using GeekGrapher.FractalCore;
 using GeekGrapher.FractalPainter.Commands;
 using GeekGrapher.FractalPainter.EnumDefinitions;
+using GeekGrapher.General;
 
 namespace GeekGrapher.FractalPainter
 {
-    internal class FractalPainterViewModel
+    internal class FractalPainterViewModel : BaseViewModel
     {
         public FractalPainter Window { get; set; }
 
-        public double CReal { get; set; }
+        public string CReal { get; set; } = "0";
 
-        public double CImaginary { get; set; }
+        public string CImaginary { get; set; } = "0";
 
-        public int MaxIterations { get; set; } = 50;
+        public string MaxIterations { get; set; } = "50";
 
         public Dictionary<FractalFunction, string> FractalFunctions { get => FractalFunctionDefinitions.FractalFunctions; }
 
@@ -29,7 +32,49 @@ namespace GeekGrapher.FractalPainter
 
         public ColorScheme SelectedColorScheme { get; set; } = ColorScheme.HSVBased;
 
+        public string colorCount = "3";
+        public string ColorCount
+        {
+            get => colorCount;
+            set
+            {
+                colorCount = value;
+                OnPropertyChanged(nameof(ColorCount));
+                OnPropertyChanged(nameof(Palette));
+            }
+        }
+
+        public ColorWrapper[] Palette
+        {
+            get
+            {
+                if (Window.ColorCount.BindingGroup.HasValidationError)
+                    return null;
+                return _palette.Take(Convert.ToInt32(ColorCount)).ToArray();
+            }
+        }
+
+        public ColorWrapper[] _palette;
+
+        public int MaxColors { get => 50; }
+
+        public FractalPainterViewModel()
+        {
+            var random = new Random((int)DateTime.Now.ToBinary());
+            _palette = new ColorWrapper[MaxColors];
+            for (int i = 0; i < MaxColors; i++)
+            {
+                _palette[i] = new ColorWrapper()
+                {
+                    Value = Color.FromRgb((byte)random.Next(), (byte)random.Next(), (byte)random.Next())
+                };
+            }
+        }
+
+        public Drawer Drawer { get; set; }
+
         public FractalPainterViewModel(FractalPainter fractalPainter)
+            : this()
         {
             Window = fractalPainter;
         }
@@ -88,6 +133,20 @@ namespace GeekGrapher.FractalPainter
                     _draw = new Draw(this);
                 }
                 return _draw;
+            }
+        }
+
+        private ICommand _drawAndCreate;
+
+        public ICommand DrawAndCreate
+        {
+            get
+            {
+                if (_drawAndCreate == null)
+                {
+                    _drawAndCreate = new DrawAndCreate(this);
+                }
+                return _drawAndCreate;
             }
         }
         #endregion

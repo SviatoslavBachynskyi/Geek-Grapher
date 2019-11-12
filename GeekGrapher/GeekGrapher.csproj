@@ -40,7 +40,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -76,8 +75,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="FractalPainter\ColorsToBytesConverter.cs" />
+    <Compile Include="FractalPainter\ColorWrapper.cs" />
     <Compile Include="FractalPainter\Commands\Draw.cs" />
+    <Compile Include="FractalPainter\Validations\DoubleValidation.cs" />
+    <Compile Include="FractalPainter\ColorsToBytesConverter.cs" />
+    <Compile Include="FractalPainter\Commands\DrawAndCreate.cs" />
     <Compile Include="BindingErrorListener.cs" />
     <Compile Include="FractalPainter\EnumDefinitions\ColosSchemeDefinitions.cs" />
     <Compile Include="FractalPainter\EnumDefinitions\FractalFunctionDefinitions.cs" />
@@ -88,12 +90,15 @@
     <Compile Include="FractalPainter\Commands\Exit.cs" />
     <Compile Include="FractalPainter\FractalPainterViewModel.cs" />
     <Compile Include="FractalPainter\Commands\SaveAsImage.cs" />
+    <Compile Include="FractalPainter\Validations\IntegerValidation.cs" />
+    <Compile Include="General\BaseViewModel.cs" />
     <Compile Include="General\ImageZoomer.xaml.cs">
       <DependentUpon>ImageZoomer.xaml</DependentUpon>
     </Compile>
     <Compile Include="AffineTransformations\AffineTransformations.xaml.cs">
       <DependentUpon>AffineTransformations.xaml</DependentUpon>
     </Compile>
+    <Compile Include="General\StringExt.cs" />
     <Compile Include="StartWindow\Commands\OpenAffineTransformations.cs" />
     <Compile Include="StartWindow\Commands\OpenFractalPainter.cs" />
     <Compile Include="StartWindow\Commands\OpenHelp.cs" />

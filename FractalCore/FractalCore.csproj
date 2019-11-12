@@ -31,9 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -55,6 +55,7 @@
     <Compile Include="IterationCalculators\MandelbrotCalculator.cs" />
     <Compile Include="IterationSmoother.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ImageFitter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj">

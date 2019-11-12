@@ -2,7 +2,7 @@
 using GeekGrapher.FractalCore.IterationCalculators;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using System.Windows.Media;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -80,10 +80,10 @@ namespace GeekGrapher.FractalCore
                 case FractalFunction.Shz:
                     result = new Drawer((z, c) => Complex.Sinh(z) + c, colorCalculator, iterationCalculator)
                     {
-                        XStart = -2,
-                        XFinish = 2,
-                        YStart = -2,
-                        YFinish = 2
+                        XStart = -3.2,
+                        XFinish = 3.2,
+                        YStart = -3.2,
+                        YFinish = 3.2
                     };
                     break;
                 case FractalFunction.SinzCosz:
