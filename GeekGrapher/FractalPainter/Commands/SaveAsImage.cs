@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Forms;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Drawing;
 using System.Windows.Media.Imaging;
