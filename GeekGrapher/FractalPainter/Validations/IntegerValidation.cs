@@ -6,32 +6,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using System.Windows.Data;
 
-namespace GeekGrapher.FractalPainter
+namespace GeekGrapher.FractalPainter.Validations
 {
-    class ComplexPartValidation : ValidationRule
+    class IntegerValidation : ValidationRule
     {
-        public double Min { get; set; }
-        public double Max { get; set; }
+        public int Min { get; set; } = Int32.MaxValue;
+        public int Max { get; set; } = Int32.MinValue;
 
         public string DisplayName { get; set; }
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            double part;
+            int part;
             string str = value as string;
 
-            if (str.Trim() == "")
+            if (str is null || str.Trim() == "")
                 return new ValidationResult(false, $"{DisplayName} cannot be empty");
 
-            if (!double.TryParse(str, out part))
+            if (!int.TryParse(str, out part))
             {
-                return new ValidationResult(false, $"{str.Truncate(15)} is not a numeric number");
+                return new ValidationResult(false, $"{str.Truncate(15)} is not a integer number");
             };
 
-            if (part < -2 || part > 2)
+            if (part < Min || part > Max)
             {
-                return new ValidationResult(false, $"{DisplayName} must be in range from -2 to 2");
+                return new ValidationResult(false, $"{DisplayName} must be in range from {Min} to {Max}");
             }
 
             return ValidationResult.ValidResult;

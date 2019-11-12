@@ -37,10 +37,11 @@ namespace GeekGrapher.FractalPainter.Commands
 
             var cReal = Double.Parse(WindowViewModel.CReal);
             var CImaginary = Double.Parse(WindowViewModel.CImaginary);
+            var maxIterations = Int32.Parse(WindowViewModel.MaxIterations);
 
             drawer.C = new Complex(cReal, CImaginary);
             drawer.Smooth = false;
-            drawer.MaxIterations = WindowViewModel.MaxIterations;
+            drawer.MaxIterations = maxIterations;
 
             int height;
             int width;

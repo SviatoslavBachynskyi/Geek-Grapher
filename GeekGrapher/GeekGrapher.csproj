@@ -76,7 +76,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="FractalPainter\ComplexPartValidation.cs" />
+    <Compile Include="FractalPainter\Validations\DoubleValidation.cs" />
     <Compile Include="FractalPainter\ColorsToBytesConverter.cs" />
     <Compile Include="FractalPainter\Commands\Draw.cs" />
     <Compile Include="BindingErrorListener.cs" />
@@ -89,6 +89,7 @@
     <Compile Include="FractalPainter\Commands\Exit.cs" />
     <Compile Include="FractalPainter\FractalPainterViewModel.cs" />
     <Compile Include="FractalPainter\Commands\SaveAsImage.cs" />
+    <Compile Include="FractalPainter\Validations\IntegerValidation.cs" />
     <Compile Include="General\ImageZoomer.xaml.cs">
       <DependentUpon>ImageZoomer.xaml</DependentUpon>
     </Compile>

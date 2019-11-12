@@ -19,7 +19,7 @@ namespace GeekGrapher.FractalPainter
 
         public string CImaginary { get; set; } = "0";
 
-        public int MaxIterations { get; set; } = 50;
+        public string MaxIterations { get; set; } = "50";
 
         public Dictionary<FractalFunction, string> FractalFunctions { get => FractalFunctionDefinitions.FractalFunctions; }
 
