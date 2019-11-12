@@ -35,8 +35,6 @@ namespace GeekGrapher.FractalPainter.Commands
             saveFileDialog.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif|Png Image|*.png";
             saveFileDialog.Title = "Save an Image File";
 
-            saveFileDialog.ShowDialog();
-
             BitmapEncoder encoder = null;
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
