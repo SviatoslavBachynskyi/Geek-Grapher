@@ -37,54 +37,59 @@ namespace GeekGrapher.FractalPainter.Commands
             saveFileDialog.Title = "Save an Image File";
 
             saveFileDialog.ShowDialog();
+
             BitmapEncoder encoder = null;
 
-            if (saveFileDialog.FileName != "")
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                switch (saveFileDialog.FilterIndex)
+                if (saveFileDialog.FileName != "")
                 {
-                    case 1:
-                        encoder = new JpegBitmapEncoder();
-                        break;
-               
-                    case 2:
-                        encoder = new BmpBitmapEncoder();
-                        break;
-
-                    case 3:
-                        encoder = new GifBitmapEncoder();
-                        break;
-
-                    case 4:
-                        encoder = new PngBitmapEncoder();
-                        break;
-                }
-
-                var bitmapSource = _windowViewModel.Window.Image.Source as BitmapSource;
-
-                if (bitmapSource != null)
-                {
-                    Stream fileStream = (FileStream)saveFileDialog.OpenFile();
-                    byte[] imageByteArray = null;
-
-                    encoder.Frames.Add(BitmapFrame.Create(bitmapSource));
-
-                    using (var stream = new MemoryStream())
+                    switch (saveFileDialog.FilterIndex)
                     {
-                        encoder.Save(stream);
-                        imageByteArray = stream.ToArray();
+                        case 1:
+                            encoder = new JpegBitmapEncoder();
+                            break;
+
+                        case 2:
+                            encoder = new BmpBitmapEncoder();
+                            break;
+
+                        case 3:
+                            encoder = new GifBitmapEncoder();
+                            break;
+
+                        case 4:
+                            encoder = new PngBitmapEncoder();
+                            break;
                     }
 
-                    fileStream.Write(imageByteArray, 0, imageByteArray.Length);
-                    fileStream.Close();
+                    var bitmapSource = _windowViewModel.Window.Image.Source as BitmapSource;
+
+                    if (bitmapSource != null)
+                    {
+                        Stream fileStream = (FileStream)saveFileDialog.OpenFile();
+                        byte[] imageByteArray = null;
+
+                        encoder.Frames.Add(BitmapFrame.Create(bitmapSource));
+
+                        using (var stream = new MemoryStream())
+                        {
+                            encoder.Save(stream);
+                            imageByteArray = stream.ToArray();
+                        }
+
+                        fileStream.Write(imageByteArray, 0, imageByteArray.Length);
+                        fileStream.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nothing to save!");
+                        return;
+                    }
+
                 }
-                else
-                {
-                    MessageBox.Show("Nothing to save!");
-                    return;
-                }
-                
             }
+                
 
         }
     }
