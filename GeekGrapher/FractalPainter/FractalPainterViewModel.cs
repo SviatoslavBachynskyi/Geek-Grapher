@@ -71,6 +71,9 @@ namespace GeekGrapher.FractalPainter
             }
         }
 
+        public List<Frame> Frames { get; set; } = new List<Frame>();
+        public int FrameIndex = 0;
+
         public Drawer Drawer { get; set; }
 
         public FractalPainterViewModel(FractalPainter fractalPainter)
@@ -133,6 +136,34 @@ namespace GeekGrapher.FractalPainter
                     _draw = new Draw(this);
                 }
                 return _draw;
+            }
+        }
+
+        private ICommand _undo;
+
+        public ICommand Undo
+        {
+            get
+            {
+                if (_undo == null)
+                {
+                    _undo = new Undo(this);
+                }
+                return _undo;
+            }
+        }
+
+        private ICommand _redo;
+
+        public ICommand Redo
+        {
+            get
+            {
+                if (_redo == null)
+                {
+                    _redo = new Redo(this);
+                }
+                return _redo;
             }
         }
 

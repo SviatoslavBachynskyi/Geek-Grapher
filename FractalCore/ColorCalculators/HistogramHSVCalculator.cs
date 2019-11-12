@@ -9,8 +9,6 @@ namespace GeekGrapher.FractalCore.ColorCalculators
 {
     class HistogramHSVCalculator : ColorCalculator
     {
-
-
         internal override Color Calculate(double iteration)
         {
             throw new NotImplementedException();

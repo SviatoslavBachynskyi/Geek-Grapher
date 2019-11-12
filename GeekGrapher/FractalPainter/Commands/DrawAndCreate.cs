@@ -46,6 +46,9 @@ namespace GeekGrapher.FractalPainter.Commands
             drawer.Smooth = true;
             drawer.MaxIterations = maxIterations;
 
+            WindowViewModel.Frames = new List<Frame>();
+            WindowViewModel.FrameIndex = 0;
+
             WindowViewModel.Draw.Execute(parameter);
         }
     }

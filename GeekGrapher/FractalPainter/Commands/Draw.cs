@@ -51,6 +51,17 @@ namespace GeekGrapher.FractalPainter.Commands
 
             bitmap.WritePixels(int32Rect, pixels, 3 * width, 0);
 
+            WindowViewModel.Frames.RemoveRange(WindowViewModel.FrameIndex, WindowViewModel.Frames.Count - WindowViewModel.FrameIndex);
+            WindowViewModel.Frames.Add(new Frame()
+            {
+                Image = bitmap,
+                XStart = drawer.XStart,
+                XFinish = drawer.XFinish,
+                YStart = drawer.YStart,
+                YFinish = drawer.YFinish
+            });
+            WindowViewModel.FrameIndex++;
+
             WindowViewModel.Window.Image.Source = bitmap;
         }
     }
