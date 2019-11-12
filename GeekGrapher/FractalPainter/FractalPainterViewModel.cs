@@ -30,7 +30,11 @@ namespace GeekGrapher.FractalPainter
 
         public ColorScheme SelectedColorScheme { get; set; } = ColorScheme.HSVBased;
 
-        public Color Color { get; set; }
+        public ColorWrapper[] Palette { get; set; } = new ColorWrapper[3] {
+        new ColorWrapper{ Value = Color.FromRgb(255,0,0) },
+        new ColorWrapper{ Value = Color.FromRgb(0,255,0) },
+            new ColorWrapper{ Value =Color.FromRgb(0,0,255)}
+            };
 
         public FractalPainterViewModel(FractalPainter fractalPainter)
         {

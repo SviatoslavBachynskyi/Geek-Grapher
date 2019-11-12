@@ -75,6 +75,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="FractalPainter\ColorWrapper.cs" />
     <Compile Include="FractalPainter\Validations\DoubleValidation.cs" />
     <Compile Include="FractalPainter\ColorsToBytesConverter.cs" />
     <Compile Include="FractalPainter\Commands\Draw.cs" />

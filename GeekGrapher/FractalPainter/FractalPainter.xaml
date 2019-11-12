@@ -185,13 +185,14 @@
                     <TextBlock VerticalAlignment="Center" Grid.Row="5" Grid.Column="0">Palette  Colors</TextBlock>
                     <xctk:IntegerUpDown  MaxHeight="25" Grid.Row="5" Grid.Column="2" Value="3" Minimum="2" Maximum="6"></xctk:IntegerUpDown>
 
-                    <TextBlock VerticalAlignment="Center" Grid.Row="6" Grid.Column="0">Color #1</TextBlock>
-                    <xctk:ColorPicker MaxHeight="25" Grid.Row="6" Grid.Column="2" SelectedColor="{Binding Color}"></xctk:ColorPicker>
 
-                    <!--
-                    <ItemsControl ItemsSource="">
+                    <ItemsControl Grid.Row="6" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding Palette}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <xctk:ColorPicker Height="25" SelectedColor="{Binding Path=Value}"></xctk:ColorPicker>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                    -->
 
                     <Button MaxHeight="25" Grid.Row="9" Grid.Column="2" Command ="{Binding Draw}">Draw</Button>
                 </Grid>
