@@ -182,18 +182,56 @@
                               MaxHeight="25" Grid.Row="4" Grid.Column="2">
                     </ComboBox>
 
-                    <TextBlock VerticalAlignment="Center" Grid.Row="5" Grid.Column="0">Palette  Colors</TextBlock>
-                    <xctk:IntegerUpDown  MaxHeight="25" Grid.Row="5" Grid.Column="2" Value="3" Minimum="2" Maximum="6"></xctk:IntegerUpDown>
+                    <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" x:Name="ColorCount">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*" MinWidth="20"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.BindingGroup>
+                            <BindingGroup Name="ColorCount">
+                            </BindingGroup>
+                        </Grid.BindingGroup>
+                        <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">Color Count
+                        </TextBlock>
+                        <xctk:IntegerUpDown Height="25"  Grid.Row="1" Grid.Column="2" Minimum="2" Maximum="{Binding MaxColors}" HorizontalContentAlignment="Right">
+                            <xctk:IntegerUpDown.Text>
+                                <Binding
+                                Path="ColorCount"
+                                BindingGroupName="ColorCount"
+                                UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <validations:IntegerValidation Min="2" Max="50" DisplayName="Color Count"/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </xctk:IntegerUpDown.Text>
+                        </xctk:IntegerUpDown>
+                        <Label Grid.Row="2" Grid.Column="0" Padding="0,1,0,0" Grid.ColumnSpan="3" Foreground="Red"
+                           Content="{Binding BindingGroupName=ColorCount, Path=(Validation.Errors)[0].ErrorContent, ElementName=ColorCount, FallbackValue=''}"/>
+                    </Grid>
 
-
-                    <ItemsControl Grid.Row="6" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding Palette}">
+                    <ItemsControl Grid.Row="6"
+                                  Grid.RowSpan="3"
+                                  Grid.Column="0"
+                                  Grid.ColumnSpan="3"
+                                  ItemsSource="{Binding Palette}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid></UniformGrid>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <xctk:ColorPicker Height="25" SelectedColor="{Binding Path=Value}"></xctk:ColorPicker>
+                                <xctk:ColorPicker MaxHeight="40" MaxWidth="40" SelectedColor="{Binding Path=Value}"></xctk:ColorPicker>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-
                     <Button MaxHeight="25" Grid.Row="9" Grid.Column="2" Command ="{Binding Draw}">Draw</Button>
                 </Grid>
             </GroupBox>

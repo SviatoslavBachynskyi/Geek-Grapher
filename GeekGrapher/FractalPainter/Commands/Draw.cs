@@ -32,7 +32,7 @@ namespace GeekGrapher.FractalPainter.Commands
         {
             var drawer = DrawerFactory.CreateDrawer(
                 WindowViewModel.SelectedFractalFunction,
-                WindowViewModel.SelectedColorScheme, WindowViewModel.Palette.Select(cw => cw.Value).ToArray(),
+                WindowViewModel.SelectedColorScheme, WindowViewModel._palette.Select(cw => cw.Value).ToArray(),
                 IterationPrinciple.Julia);
 
             var cReal = Double.Parse(WindowViewModel.CReal);

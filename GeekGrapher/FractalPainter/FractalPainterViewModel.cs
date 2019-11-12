@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -9,10 +10,11 @@ using System.Windows.Media;
 using GeekGrapher.FractalCore;
 using GeekGrapher.FractalPainter.Commands;
 using GeekGrapher.FractalPainter.EnumDefinitions;
+using GeekGrapher.General;
 
 namespace GeekGrapher.FractalPainter
 {
-    internal class FractalPainterViewModel
+    internal class FractalPainterViewModel : BaseViewModel
     {
         public FractalPainter Window { get; set; }
 
@@ -30,13 +32,47 @@ namespace GeekGrapher.FractalPainter
 
         public ColorScheme SelectedColorScheme { get; set; } = ColorScheme.HSVBased;
 
-        public ColorWrapper[] Palette { get; set; } = new ColorWrapper[3] {
-        new ColorWrapper{ Value = Color.FromRgb(255,0,0) },
-        new ColorWrapper{ Value = Color.FromRgb(0,255,0) },
-            new ColorWrapper{ Value =Color.FromRgb(0,0,255)}
-            };
+        public string colorCount = "3";
+        public string ColorCount
+        {
+            get => colorCount;
+            set
+            {
+                colorCount = value;
+                OnPropertyChanged(nameof(ColorCount));
+                OnPropertyChanged(nameof(Palette));
+            }
+        }
+
+        public ColorWrapper[] Palette
+        {
+            get
+            {
+                if (Window.ColorCount.BindingGroup.HasValidationError)
+                    return null;
+                return _palette.Take(Convert.ToInt32(ColorCount)).ToArray();
+            }
+        }
+
+        public ColorWrapper[] _palette;
+
+        public int MaxColors { get => 50; }
+
+        public FractalPainterViewModel()
+        {
+            var random = new Random((int)DateTime.Now.ToBinary());
+            _palette = new ColorWrapper[MaxColors];
+            for (int i = 0; i < MaxColors; i++)
+            {
+                _palette[i] = new ColorWrapper()
+                {
+                    Value = Color.FromRgb((byte)random.Next(), (byte)random.Next(), (byte)random.Next())
+                };
+            }
+        }
 
         public FractalPainterViewModel(FractalPainter fractalPainter)
+            : this()
         {
             Window = fractalPainter;
         }

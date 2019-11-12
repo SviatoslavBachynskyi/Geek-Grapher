@@ -90,6 +90,7 @@
     <Compile Include="FractalPainter\FractalPainterViewModel.cs" />
     <Compile Include="FractalPainter\Commands\SaveAsImage.cs" />
     <Compile Include="FractalPainter\Validations\IntegerValidation.cs" />
+    <Compile Include="General\BaseViewModel.cs" />
     <Compile Include="General\ImageZoomer.xaml.cs">
       <DependentUpon>ImageZoomer.xaml</DependentUpon>
     </Compile>
