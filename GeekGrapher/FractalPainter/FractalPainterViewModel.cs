@@ -15,9 +15,9 @@ namespace GeekGrapher.FractalPainter
     {
         public FractalPainter Window { get; set; }
 
-        public double CReal { get; set; }
+        public string CReal { get; set; } = "0";
 
-        public double CImaginary { get; set; }
+        public string CImaginary { get; set; } = "0";
 
         public int MaxIterations { get; set; } = 50;
 

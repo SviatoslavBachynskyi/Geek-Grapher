@@ -95,6 +95,7 @@
     <Compile Include="AffineTransformations\AffineTransformations.xaml.cs">
       <DependentUpon>AffineTransformations.xaml</DependentUpon>
     </Compile>
+    <Compile Include="General\StringExt.cs" />
     <Compile Include="StartWindow\Commands\OpenAffineTransformations.cs" />
     <Compile Include="StartWindow\Commands\OpenFractalPainter.cs" />
     <Compile Include="StartWindow\Commands\OpenHelp.cs" />

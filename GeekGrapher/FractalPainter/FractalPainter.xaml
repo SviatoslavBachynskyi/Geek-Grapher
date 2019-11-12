@@ -35,7 +35,7 @@
         </Canvas>
         <Grid DockPanel.Dock="Bottom">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="1.1*"></ColumnDefinition>
                 <ColumnDefinition Width="5*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Canvas x:Name="Canvas" Grid.Column="1" Margin="50">
@@ -101,7 +101,7 @@
                                 BindingGroupName="CReal"
                                 UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
-                                        <local:ComplexPartValidation></local:ComplexPartValidation>
+                                        <local:ComplexPartValidation Min="-2" Max="2" DisplayName="C Real"/>
                                     </Binding.ValidationRules>
                                 </Binding>
                             </TextBox.Text>
@@ -110,10 +110,39 @@
                            Content="{Binding BindingGroupName=CReal, Path=(Validation.Errors)[0].ErrorContent, ElementName=CReal, FallbackValue=''}"/>
                     </Grid>
 
-                    <TextBlock VerticalAlignment="Center" Grid.Row="3" Grid.Column="0">C Imaginary
-                    </TextBlock>
-                    <TextBox MaxHeight="25" Text ="{Binding Path=CImaginary}" Grid.Row="3" Grid.Column="2" HorizontalContentAlignment="Right"></TextBox>
-
+                    <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" x:Name="CImaginary">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*" MinWidth="20"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.BindingGroup>
+                            <BindingGroup Name="CImaginary">
+                            </BindingGroup>
+                        </Grid.BindingGroup>
+                        <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">C Imaginary
+                        </TextBlock>
+                        <TextBox Height="25"  Grid.Row="1" Grid.Column="2" HorizontalContentAlignment="Right">
+                            <TextBox.Text>
+                                <Binding
+                                Path="CImaginary"
+                                BindingGroupName="CImaginary"
+                                UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <local:ComplexPartValidation Min="-2" Max="2" DisplayName="C Imaginary"/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Label Grid.Row="2" Grid.Column="0" Padding="0,1,0,0" Grid.ColumnSpan="3" Foreground="Red"
+                           Content="{Binding BindingGroupName=CImaginary, Path=(Validation.Errors)[0].ErrorContent, ElementName=CImaginary, FallbackValue=''}"/>
+                    </Grid>
 
                     <TextBlock VerticalAlignment="Center" Grid.Row="4" Grid.Column="0">Color Scheme:</TextBlock>
                     <ComboBox ItemsSource="{Binding Path=ColorSchemes}"

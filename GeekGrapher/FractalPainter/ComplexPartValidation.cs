@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GeekGrapher.General;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -11,18 +12,26 @@ namespace GeekGrapher.FractalPainter
 {
     class ComplexPartValidation : ValidationRule
     {
+        public double Min { get; set; }
+        public double Max { get; set; }
+
+        public string DisplayName { get; set; }
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            double cReal;
+            double part;
+            string str = value as string;
 
-            if (!double.TryParse(value as string, out cReal))
+            if (str.Trim() == "")
+                return new ValidationResult(false, $"{DisplayName} cannot be empty");
+
+            if (!double.TryParse(str, out part))
             {
-                return new ValidationResult(false, "CReal is not a numeric number");
+                return new ValidationResult(false, $"{str.Truncate(15)} is not a numeric number");
             };
 
-            if (cReal < -2 || cReal > 2)
+            if (part < -2 || part > 2)
             {
-                return new ValidationResult(false, "C Real must be in range from -2 to 2");
+                return new ValidationResult(false, $"{DisplayName} must be in range from -2 to 2");
             }
 
             return ValidationResult.ValidResult;

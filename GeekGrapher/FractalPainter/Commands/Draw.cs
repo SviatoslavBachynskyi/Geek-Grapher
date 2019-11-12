@@ -34,7 +34,11 @@ namespace GeekGrapher.FractalPainter.Commands
                 WindowViewModel.SelectedFractalFunction,
                 WindowViewModel.SelectedColorScheme, null,
                 IterationPrinciple.Julia);
-            drawer.C = new Complex(WindowViewModel.CReal, WindowViewModel.CImaginary);
+
+            var cReal = Double.Parse(WindowViewModel.CReal);
+            var CImaginary = Double.Parse(WindowViewModel.CImaginary);
+
+            drawer.C = new Complex(cReal, CImaginary);
             drawer.Smooth = false;
             drawer.MaxIterations = WindowViewModel.MaxIterations;
 
