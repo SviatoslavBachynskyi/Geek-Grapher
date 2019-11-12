@@ -21,7 +21,7 @@
                 <Separator />
                 <MenuItem Header="_Save" InputGestureText="Ctrl+S"/>
                     -->
-                <MenuItem Header="_Save as Image" Command="{Binding SaveAsImage}" />
+                <MenuItem Header="_Save as Image" Command="{Binding SaveAsImage}" InputGestureText="Ctrl+S" />
                 <Separator />
                 <MenuItem Header="_Close" InputGestureText="Ctrl+Q" Command="{Binding Close}"/>
                 <Separator />
@@ -107,7 +107,6 @@
                         <Label Grid.Row="2" Grid.Column="0" Padding="0,1,0,0" Grid.ColumnSpan="3" Foreground="Red"
                            Content="{Binding BindingGroupName=MaxIterations, Path=(Validation.Errors)[0].ErrorContent, ElementName=MaxIterations, FallbackValue=''}"/>
                     </Grid>
-
                     <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" x:Name="CReal">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
@@ -187,13 +186,12 @@
                     <xctk:IntegerUpDown  MaxHeight="25" Grid.Row="5" Grid.Column="2" Value="3" Minimum="2" Maximum="6"></xctk:IntegerUpDown>
 
                     <TextBlock VerticalAlignment="Center" Grid.Row="6" Grid.Column="0">Color #1</TextBlock>
-                    <xctk:ColorPicker MaxHeight="25" Grid.Row="6" Grid.Column="2" SelectedColor="Red"></xctk:ColorPicker>
+                    <xctk:ColorPicker MaxHeight="25" Grid.Row="6" Grid.Column="2" SelectedColor="{Binding Color}"></xctk:ColorPicker>
 
-                    <TextBlock VerticalAlignment="Center" Grid.Row="7" Grid.Column="0">Color #2</TextBlock>
-                    <xctk:ColorPicker MaxHeight="25" Grid.Row="7" Grid.Column="2" SelectedColor="Cyan"></xctk:ColorPicker>
-
-                    <TextBlock VerticalAlignment="Center" Grid.Row="8" Grid.Column="0">Color #3</TextBlock>
-                    <xctk:ColorPicker MaxHeight="25" Grid.Row="8" Grid.Column="2" SelectedColor="Purple"></xctk:ColorPicker>
+                    <!--
+                    <ItemsControl ItemsSource="">
+                    </ItemsControl>
+                    -->
 
                     <Button MaxHeight="25" Grid.Row="9" Grid.Column="2" Command ="{Binding Draw}">Draw</Button>
                 </Grid>

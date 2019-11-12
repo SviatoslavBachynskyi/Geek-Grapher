@@ -5,6 +5,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media;
 using GeekGrapher.FractalCore;
 using GeekGrapher.FractalPainter.Commands;
 using GeekGrapher.FractalPainter.EnumDefinitions;
@@ -28,6 +29,8 @@ namespace GeekGrapher.FractalPainter
         public Dictionary<ColorScheme, string> ColorSchemes { get => ColosSchemeDefinitions.ColorSchemes; }
 
         public ColorScheme SelectedColorScheme { get; set; } = ColorScheme.HSVBased;
+
+        public Color Color { get; set; }
 
         public FractalPainterViewModel(FractalPainter fractalPainter)
         {

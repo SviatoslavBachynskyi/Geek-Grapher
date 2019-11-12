@@ -4,9 +4,9 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-using System.Drawing;
 using GeekGrapher.FractalCore.ColorCalculators;
 using GeekGrapher.FractalCore.IterationCalculators;
+using System.Windows.Media;
 
 namespace GeekGrapher.FractalCore
 {

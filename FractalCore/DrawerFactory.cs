@@ -2,7 +2,7 @@
 using GeekGrapher.FractalCore.IterationCalculators;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using System.Windows.Media;
 using System.Linq;
 using System.Numerics;
 using System.Text;
