@@ -30,40 +30,42 @@ namespace GeekGrapher.FractalPainter.Commands
         public void Execute(object parameter)
         {
 
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            
+            var bitmapSource = _windowViewModel.Window.Image.Source as BitmapSource;
 
-            saveFileDialog.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif|Png Image|*.png";
-            saveFileDialog.Title = "Save an Image File";
-
-            BitmapEncoder encoder = null;
-
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            if (bitmapSource != null)
             {
-                if (saveFileDialog.FileName != "")
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+                saveFileDialog.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif|Png Image|*.png";
+                saveFileDialog.Title = "Save an Image File";
+
+                BitmapEncoder encoder = null;
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    switch (saveFileDialog.FilterIndex)
+                    if (saveFileDialog.FileName != "")
                     {
-                        case 1:
-                            encoder = new JpegBitmapEncoder();
-                            break;
+                        switch (saveFileDialog.FilterIndex)
+                        {
+                            case 1:
+                                encoder = new JpegBitmapEncoder();
+                                break;
 
-                        case 2:
-                            encoder = new BmpBitmapEncoder();
-                            break;
+                            case 2:
+                                encoder = new BmpBitmapEncoder();
+                                break;
 
-                        case 3:
-                            encoder = new GifBitmapEncoder();
-                            break;
+                            case 3:
+                                encoder = new GifBitmapEncoder();
+                                break;
 
-                        case 4:
-                            encoder = new PngBitmapEncoder();
-                            break;
-                    }
+                            case 4:
+                                encoder = new PngBitmapEncoder();
+                                break;
+                        }
 
-                    var bitmapSource = _windowViewModel.Window.Image.Source as BitmapSource;
-
-                    if (bitmapSource != null)
-                    {
+                    
                         Stream fileStream = (FileStream)saveFileDialog.OpenFile();
                         byte[] imageByteArray = null;
 
@@ -78,16 +80,13 @@ namespace GeekGrapher.FractalPainter.Commands
                         fileStream.Write(imageByteArray, 0, imageByteArray.Length);
                         fileStream.Close();
                     }
-                    else
-                    {
-                        MessageBox.Show("Nothing to save!");
-                        return;
-                    }
-
-                }
+                }   
             }
-                
-
+            else
+            {
+                MessageBox.Show("Nothing to save!");
+                return;
+            }
         }
     }
 }
