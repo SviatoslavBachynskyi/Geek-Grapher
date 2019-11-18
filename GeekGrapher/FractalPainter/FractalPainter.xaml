@@ -5,11 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GeekGrapher.FractalPainter"
         xmlns:validations="clr-namespace:GeekGrapher.FractalPainter.Validations"
-        xmlns:general="clr-namespace:GeekGrapher.General"
+        xmlns:general="clr-namespace:GeekGrapher.General.Controls"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="FractalPainter"
-        WindowState="Maximized">
+        WindowState="Maximized" MinWidth="800" MinHeight="600">
+    <Window.Resources>
+        <Style x:Key="PaletteSchemeColors" TargetType="FrameworkElement">
+            <Setter Property="Visibility" Value="Hidden"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding SelectedColorScheme}" Value="PaletteBased">  
+            <Setter Property="Visibility"  Value="Visible"/>
+            </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="S" Modifiers="Ctrl" Command="{Binding SaveAsImage}"></KeyBinding>
+        <KeyBinding Key="Q" Modifiers="Ctrl" Command="{Binding Close}"></KeyBinding>
+        <KeyBinding Key="F1" Command="{Binding OpenHelp}"></KeyBinding>
+        <KeyBinding Key="F5" Modifiers="Ctrl"></KeyBinding>
+    </Window.InputBindings>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
@@ -21,24 +37,34 @@
                 <Separator />
                 <MenuItem Header="_Save" InputGestureText="Ctrl+S"/>
                     -->
-                <MenuItem Header="_Save as Image" Command="{Binding SaveAsImage}" InputGestureText="Ctrl+S" />
+                <MenuItem Header="_Save as Image" Command="{Binding SaveAsImage}" InputGestureText="Ctrl+S"/>
                 <Separator />
                 <MenuItem Header="_Close" InputGestureText="Ctrl+Q" Command="{Binding Close}"/>
                 <Separator />
                 <MenuItem Header="_Exit" Command="{Binding Exit}"/>
             </MenuItem>
             <MenuItem Header="_Start Page" InputGestureText="Ctrl+F5"/>
-            <MenuItem Header="_Settings"/>
-            <MenuItem Header="_Help"/>
+            <MenuItem Header="_Settings" Command="{Binding OpenSettings}"/>
+            <MenuItem Header="_Help" Command="{Binding OpenHelp}" InputGestureText="F1"/>
         </Menu>
         <Canvas DockPanel.Dock="Right">
-            <general:QuickActionsBar Width="180" Height="45" Canvas.Top="0" Canvas.Right="5"/>
+            <general:QuickActionsBar Canvas.Right="5" Canvas.Top="0" Width="180" Height="45" 
+                                     UndoCommand="{Binding DataContext.Undo,
+                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FractalPainter}}"
+                                     RedoCommand="{Binding DataContext.Redo,
+                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FractalPainter}}"
+                                     SaveCommand="{Binding DataContext.SaveAsImage,
+                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FractalPainter}}"/>
         </Canvas>
+
         <Grid DockPanel.Dock="Bottom">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.1*"></ColumnDefinition>
+                <ColumnDefinition Width="1.2*" MinWidth="240"></ColumnDefinition>
                 <ColumnDefinition Width="5*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition MinHeight="500"></RowDefinition>
+            </Grid.RowDefinitions>
             <Canvas x:Name="Canvas" Grid.Column="1" Margin="50">
                 <DockPanel x:Name="ImageDockPanel"
                     VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
@@ -87,13 +113,16 @@
                         <ColumnDefinition Width="100"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
+                    <!---Function-->
                     <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="0">Function:</TextBlock>
                     <ComboBox MaxHeight="25" ItemsSource="{Binding Path=FractalFunctions}" 
                               DisplayMemberPath="Value" SelectedValuePath="Key"
                               SelectedValue="{Binding SelectedFractalFunction}" 
                               Grid.Row="0" Grid.Column="2">
                     </ComboBox>
+                    <!---Function-->
 
+                    <!---Max Iterations-->
                     <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" x:Name="MaxIterations">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
@@ -127,6 +156,9 @@
                         <Label Grid.Row="2" Grid.Column="0" Padding="0,1,0,0" Grid.ColumnSpan="3" Foreground="Red"
                            Content="{Binding BindingGroupName=MaxIterations, Path=(Validation.Errors)[0].ErrorContent, ElementName=MaxIterations, FallbackValue=''}"/>
                     </Grid>
+                    <!---Max Iterations-->
+
+                    <!---CReal-->
                     <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" x:Name="CReal">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
@@ -160,6 +192,9 @@
                         <Label Grid.Row="2" Grid.Column="0" Padding="0,1,0,0" Grid.ColumnSpan="3" Foreground="Red"
                            Content="{Binding BindingGroupName=CReal, Path=(Validation.Errors)[0].ErrorContent, ElementName=CReal, FallbackValue=''}"/>
                     </Grid>
+                    <!---CReal-->
+
+                    <!---CImaginary-->
                     <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" x:Name="CImaginary">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
@@ -193,7 +228,9 @@
                         <Label Grid.Row="2" Grid.Column="0" Padding="0,1,0,0" Grid.ColumnSpan="3" Foreground="Red"
                            Content="{Binding BindingGroupName=CImaginary, Path=(Validation.Errors)[0].ErrorContent, ElementName=CImaginary, FallbackValue=''}"/>
                     </Grid>
+                    <!---CImaginary-->
 
+                    <!---Color Scheme-->
                     <TextBlock VerticalAlignment="Center" Grid.Row="4" Grid.Column="0">Color Scheme:</TextBlock>
                     <ComboBox ItemsSource="{Binding Path=ColorSchemes}"
                               DisplayMemberPath="Value"
@@ -201,8 +238,10 @@
                               SelectedValue="{Binding Path=SelectedColorScheme}"
                               MaxHeight="25" Grid.Row="4" Grid.Column="2">
                     </ComboBox>
+                    <!---Color Scheme-->
 
-                    <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" x:Name="ColorCount">
+                    <!---Color Count-->
+                    <Grid Style="{StaticResource PaletteSchemeColors}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" x:Name="ColorCount">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="Auto"></RowDefinition>
@@ -235,8 +274,12 @@
                         <Label Grid.Row="2" Grid.Column="0" Padding="0,1,0,0" Grid.ColumnSpan="3" Foreground="Red"
                            Content="{Binding BindingGroupName=ColorCount, Path=(Validation.Errors)[0].ErrorContent, ElementName=ColorCount, FallbackValue=''}"/>
                     </Grid>
+                    <!---Color Count-->
 
-                    <ItemsControl Grid.Row="6"
+                    <!---Colors for palette-->
+                    <ItemsControl 
+                                  Style="{StaticResource PaletteSchemeColors}"
+                                  Grid.Row="6"
                                   Grid.RowSpan="3"
                                   Grid.Column="0"
                                   Grid.ColumnSpan="3"
@@ -252,6 +295,8 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
+                    <!---Colors for palette-->
+
                     <Button MaxHeight="25" Grid.Row="9" Grid.Column="2" Command ="{Binding DrawAndCreate}">Draw</Button>
                 </Grid>
             </GroupBox>

@@ -77,6 +77,9 @@
     </ApplicationDefinition>
     <Compile Include="FractalPainter\ColorWrapper.cs" />
     <Compile Include="FractalPainter\Commands\Draw.cs" />
+    <Compile Include="FractalPainter\Commands\Redo.cs" />
+    <Compile Include="FractalPainter\Commands\Undo.cs" />
+    <Compile Include="FractalPainter\Frame.cs" />
     <Compile Include="FractalPainter\Validations\DoubleValidation.cs" />
     <Compile Include="FractalPainter\ColorsToBytesConverter.cs" />
     <Compile Include="FractalPainter\Commands\DrawAndCreate.cs" />
@@ -92,7 +95,7 @@
     <Compile Include="FractalPainter\Commands\SaveAsImage.cs" />
     <Compile Include="FractalPainter\Validations\IntegerValidation.cs" />
     <Compile Include="General\BaseViewModel.cs" />
-    <Compile Include="General\ImageZoomer.xaml.cs">
+    <Compile Include="General\Controls\ImageZoomer.xaml.cs">
       <DependentUpon>ImageZoomer.xaml</DependentUpon>
     </Compile>
     <Compile Include="AffineTransformations\AffineTransformations.xaml.cs">
@@ -101,11 +104,11 @@
     <Compile Include="General\StringExt.cs" />
     <Compile Include="StartWindow\Commands\OpenAffineTransformations.cs" />
     <Compile Include="StartWindow\Commands\OpenFractalPainter.cs" />
-    <Compile Include="StartWindow\Commands\OpenHelp.cs" />
+    <Compile Include="General\Commands\OpenHelp.cs" />
     <Compile Include="StartWindow\Commands\OpenImageConverter.cs" />
-    <Compile Include="StartWindow\Commands\OpenSettings.cs" />
+    <Compile Include="General\Commands\OpenSettings.cs" />
     <Compile Include="StartWindow\StartWindowViewModel.cs" />
-    <Compile Include="General\QuickActionsBar.xaml.cs">
+    <Compile Include="General\Controls\QuickActionsBar.xaml.cs">
       <DependentUpon>QuickActionsBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="AffineTransformations\Vertex.xaml.cs">
@@ -129,7 +132,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="General\ImageZoomer.xaml">
+    <Page Include="General\Controls\ImageZoomer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -156,7 +159,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="General\QuickActionsBar.xaml">
+    <Page Include="General\Controls\QuickActionsBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

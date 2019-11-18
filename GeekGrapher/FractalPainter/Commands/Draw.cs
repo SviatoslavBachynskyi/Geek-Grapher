@@ -30,28 +30,48 @@ namespace GeekGrapher.FractalPainter.Commands
 
         public void Execute(object parameter)
         {
-            var drawer = WindowViewModel.Drawer;
-            int height;
-            int width;
-            ImageFitter.Fit(
-                (int)WindowViewModel.Window.Canvas.ActualWidth,
-            (int)WindowViewModel.Window.Canvas.ActualHeight,
-            (drawer.XFinish - drawer.XStart),
-            (drawer.YFinish - drawer.YStart),
-            out width,
-            out height);
+            try
+            {
+                Mouse.OverrideCursor = Cursors.Wait;
 
-            drawer.Height = height;
-            drawer.Width = width;
-            var bitmap = new WriteableBitmap(width, height, 96, 96, PixelFormats.Bgr24, null);
+                var drawer = WindowViewModel.Drawer;
+                int height;
+                int width;
+                ImageFitter.Fit(
+                    (int)WindowViewModel.Window.Canvas.ActualWidth,
+                (int)WindowViewModel.Window.Canvas.ActualHeight,
+                (drawer.XFinish - drawer.XStart),
+                (drawer.YFinish - drawer.YStart),
+                out width,
+                out height);
 
-            var int32Rect = new Int32Rect(0, 0, width, height);
+                drawer.Height = height;
+                drawer.Width = width;
+                var bitmap = new WriteableBitmap(width, height, 96, 96, PixelFormats.Bgr24, null);
 
-            var pixels = ColorsToBytesConverter.Convert(drawer.Draw());
+                var int32Rect = new Int32Rect(0, 0, width, height);
 
-            bitmap.WritePixels(int32Rect, pixels, 3 * width, 0);
+                var pixels = ColorsToBytesConverter.Convert(drawer.Draw());
 
-            WindowViewModel.Window.Image.Source = bitmap;
+                bitmap.WritePixels(int32Rect, pixels, 3 * width, 0);
+
+                WindowViewModel.Frames.RemoveRange(WindowViewModel.FrameIndex, WindowViewModel.Frames.Count - WindowViewModel.FrameIndex);
+                WindowViewModel.Frames.Add(new Frame()
+                {
+                    Image = bitmap,
+                    XStart = drawer.XStart,
+                    XFinish = drawer.XFinish,
+                    YStart = drawer.YStart,
+                    YFinish = drawer.YFinish
+                });
+                WindowViewModel.FrameIndex++;
+
+                WindowViewModel.Window.Image.Source = bitmap;
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
         }
     }
 }

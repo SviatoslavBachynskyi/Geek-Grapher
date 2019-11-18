@@ -77,19 +77,32 @@ namespace GeekGrapher.FractalPainter
             var width = ViewModel.Drawer.XFinish - ViewModel.Drawer.XStart;
             var height = ViewModel.Drawer.YFinish - ViewModel.Drawer.YStart;
 
-            ViewModel.Drawer.XStart += (left / Image.ActualWidth) * width;
-            ViewModel.Drawer.XFinish -= ((Image.ActualWidth - right) / Image.ActualWidth) * width;
-            ViewModel.Drawer.YStart += (top / Image.ActualHeight) * height;
-            ViewModel.Drawer.YFinish -= ((Image.ActualHeight - bottom) / Image.ActualHeight) * height;
+            var oldXStart = ViewModel.Drawer.XStart;
+            var oldXFinish = ViewModel.Drawer.XFinish;
+            var oldYStart = ViewModel.Drawer.YStart;
+            var oldYFinish = ViewModel.Drawer.YFinish;
 
-            ViewModel.Draw.Execute(null);
+            var newXStart = ViewModel.Drawer.XStart + (left / Image.ActualWidth) * width;
+            var newXFinish = ViewModel.Drawer.XFinish - ((Image.ActualWidth - right) / Image.ActualWidth) * width;
+            var newYStart = ViewModel.Drawer.YStart + (top / Image.ActualHeight) * height;
+            var newYFinish = ViewModel.Drawer.YFinish - ((Image.ActualHeight - bottom) / Image.ActualHeight) * height;
 
-            // TODO: 
-            //
-            // The mouse has been released, check to see if any of the items 
-            // in the other canvas are contained within mouseDownPos and 
-            // mouseUpPos, for any that are, select them!
-            //
+            try
+            {
+                if (newXFinish - newXStart == 0 || newYFinish - newYStart == 0) return;
+                ViewModel.Drawer.XStart = newXStart;
+                ViewModel.Drawer.XFinish = newXFinish;
+                ViewModel.Drawer.YStart = newYStart;
+                ViewModel.Drawer.YFinish = newYFinish;
+                ViewModel.Draw.Execute(null);
+            }
+            catch (OverflowException)
+            {
+                ViewModel.Drawer.XStart = oldXStart;
+                ViewModel.Drawer.XFinish = oldXFinish;
+                ViewModel.Drawer.YStart = oldYStart;
+                ViewModel.Drawer.YFinish = oldYFinish;
+            }
         }
 
         private double Limit(double pos, double lowerBound, double upperBound)

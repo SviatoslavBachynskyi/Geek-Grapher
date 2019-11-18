@@ -5,17 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace GeekGrapher.StartWindow.Commands
+namespace GeekGrapher.General.Commands
 {
-    internal class OpenSettings : ICommand
+    internal class OpenHelp : ICommand
     {
-        private readonly StartWindowViewModel _windowViewModel;
-
-        public OpenSettings(StartWindowViewModel windowViewModel)
-        {
-            _windowViewModel = windowViewModel;
-        }
-
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
@@ -25,7 +18,7 @@ namespace GeekGrapher.StartWindow.Commands
 
         public void Execute(object parameter)
         {
-            new Settings.Settings().ShowDialog();
+            new UserManual.UserManual().Show();
         }
     }
 }

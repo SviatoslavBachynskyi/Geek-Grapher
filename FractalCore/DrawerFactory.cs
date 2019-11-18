@@ -40,6 +40,8 @@ namespace GeekGrapher.FractalCore
                     return new HSVCalculator();
                 case ColorScheme.PaletteBased:
                     return new PaletteCalculator(palette);
+                case ColorScheme.HistogramHSV:
+                    return new HistogramHSVCalculator();
                 default:
                     throw new NotImplementedException();
             }

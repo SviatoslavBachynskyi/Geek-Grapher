@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GeekGrapher.General
+namespace GeekGrapher.General.Controls
 {
     /// <summary>
     /// Interaction logic for ImageZoomer.xaml

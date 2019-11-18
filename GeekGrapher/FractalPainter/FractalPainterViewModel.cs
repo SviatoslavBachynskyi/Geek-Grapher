@@ -11,6 +11,7 @@ using GeekGrapher.FractalCore;
 using GeekGrapher.FractalPainter.Commands;
 using GeekGrapher.FractalPainter.EnumDefinitions;
 using GeekGrapher.General;
+using GeekGrapher.General.Commands;
 
 namespace GeekGrapher.FractalPainter
 {
@@ -30,7 +31,19 @@ namespace GeekGrapher.FractalPainter
 
         public Dictionary<ColorScheme, string> ColorSchemes { get => ColosSchemeDefinitions.ColorSchemes; }
 
-        public ColorScheme SelectedColorScheme { get; set; } = ColorScheme.HSVBased;
+        public ColorScheme _colorScheme = ColorScheme.HSVBased;
+        public ColorScheme SelectedColorScheme
+        {
+            get
+            {
+                return _colorScheme;
+            }
+            set
+            {
+                _colorScheme = value;
+                OnPropertyChanged(nameof(SelectedColorScheme));
+            }
+        }
 
         public string colorCount = "3";
         public string ColorCount
@@ -71,6 +84,9 @@ namespace GeekGrapher.FractalPainter
             }
         }
 
+        public List<Frame> Frames { get; set; } = new List<Frame>();
+        public int FrameIndex = 0;
+
         public Drawer Drawer { get; set; }
 
         public FractalPainterViewModel(FractalPainter fractalPainter)
@@ -81,7 +97,6 @@ namespace GeekGrapher.FractalPainter
         #region Commands
 
         private ICommand _saveAsImage;
-
         public ICommand SaveAsImage
         {
             get
@@ -95,7 +110,6 @@ namespace GeekGrapher.FractalPainter
         }
 
         private ICommand _close;
-
         public ICommand Close
         {
             get
@@ -109,7 +123,6 @@ namespace GeekGrapher.FractalPainter
         }
 
         private ICommand _exit;
-
         public ICommand Exit
         {
             get
@@ -123,7 +136,6 @@ namespace GeekGrapher.FractalPainter
         }
 
         private ICommand _draw;
-
         public ICommand Draw
         {
             get
@@ -136,8 +148,33 @@ namespace GeekGrapher.FractalPainter
             }
         }
 
-        private ICommand _drawAndCreate;
+        private ICommand _undo;
+        public ICommand Undo
+        {
+            get
+            {
+                if (_undo == null)
+                {
+                    _undo = new Undo(this);
+                }
+                return _undo;
+            }
+        }
 
+        private ICommand _redo;
+        public ICommand Redo
+        {
+            get
+            {
+                if (_redo == null)
+                {
+                    _redo = new Redo(this);
+                }
+                return _redo;
+            }
+        }
+
+        private ICommand _drawAndCreate;
         public ICommand DrawAndCreate
         {
             get
@@ -147,6 +184,32 @@ namespace GeekGrapher.FractalPainter
                     _drawAndCreate = new DrawAndCreate(this);
                 }
                 return _drawAndCreate;
+            }
+        }
+
+        private ICommand _openHelp;
+        public ICommand OpenHelp
+        {
+            get
+            {
+                if (_openHelp == null)
+                {
+                    _openHelp = new OpenHelp();
+                }
+                return _openHelp;
+            }
+        }
+
+        private ICommand _openSettings;
+        public ICommand OpenSettings
+        {
+            get
+            {
+                if (_openSettings == null)
+                {
+                    _openSettings = new OpenSettings();
+                }
+                return _openSettings;
             }
         }
         #endregion
