@@ -31,7 +31,19 @@ namespace GeekGrapher.FractalPainter
 
         public Dictionary<ColorScheme, string> ColorSchemes { get => ColosSchemeDefinitions.ColorSchemes; }
 
-        public ColorScheme SelectedColorScheme { get; set; } = ColorScheme.HSVBased;
+        public ColorScheme _colorScheme = ColorScheme.HSVBased;
+        public ColorScheme SelectedColorScheme
+        {
+            get
+            {
+                return _colorScheme;
+            }
+            set
+            {
+                _colorScheme = value;
+                OnPropertyChanged(nameof(SelectedColorScheme));
+            }
+        }
 
         public string colorCount = "3";
         public string ColorCount

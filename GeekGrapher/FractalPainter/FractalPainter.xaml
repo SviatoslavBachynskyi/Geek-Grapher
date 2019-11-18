@@ -10,6 +10,16 @@
         mc:Ignorable="d"
         Title="FractalPainter"
         WindowState="Maximized" MinWidth="800" MinHeight="600">
+    <Window.Resources>
+        <Style x:Key="PaletteSchemeColors" TargetType="FrameworkElement">
+            <Setter Property="Visibility" Value="Hidden"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding SelectedColorScheme}" Value="PaletteBased">  
+            <Setter Property="Visibility"  Value="Visible"/>
+            </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Window.InputBindings>
         <KeyBinding Key="S" Modifiers="Ctrl" Command="{Binding SaveAsImage}"></KeyBinding>
         <KeyBinding Key="Q" Modifiers="Ctrl" Command="{Binding Close}"></KeyBinding>
@@ -231,7 +241,7 @@
                     <!---Color Scheme-->
 
                     <!---Color Count-->
-                    <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" x:Name="ColorCount">
+                    <Grid Style="{StaticResource PaletteSchemeColors}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" x:Name="ColorCount">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="Auto"></RowDefinition>
@@ -267,7 +277,9 @@
                     <!---Color Count-->
 
                     <!---Colors for palette-->
-                    <ItemsControl Grid.Row="6"
+                    <ItemsControl 
+                                  Style="{StaticResource PaletteSchemeColors}"
+                                  Grid.Row="6"
                                   Grid.RowSpan="3"
                                   Grid.Column="0"
                                   Grid.ColumnSpan="3"
