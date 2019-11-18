@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FractalCore", "FractalCore\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{1ED1B17D-97CB-45B9-8548-48F66BC5C9DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AboutUsCore", "AboutUsCore\AboutUsCore.csproj", "{E1600470-54C4-4EB8-9808-0D8720251906}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1ED1B17D-97CB-45B9-8548-48F66BC5C9DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1ED1B17D-97CB-45B9-8548-48F66BC5C9DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1ED1B17D-97CB-45B9-8548-48F66BC5C9DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1600470-54C4-4EB8-9808-0D8720251906}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1600470-54C4-4EB8-9808-0D8720251906}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1600470-54C4-4EB8-9808-0D8720251906}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1600470-54C4-4EB8-9808-0D8720251906}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

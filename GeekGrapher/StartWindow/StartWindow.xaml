@@ -35,6 +35,7 @@
             -->
             <MenuItem Header="_Settings" Command="{Binding OpenSettings}"/>
             <MenuItem Header="_Help" Command="{Binding OpenHelp}" InputGestureText="F1"/>
+            <MenuItem Header="_About Us" Command="{Binding OpenAboutUS}"/>
         </Menu>
         <Grid DockPanel.Dock="Bottom">
             <Grid.RowDefinitions>
