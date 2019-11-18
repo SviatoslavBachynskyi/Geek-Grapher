@@ -5,18 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GeekGrapher.FractalPainter"
         xmlns:validations="clr-namespace:GeekGrapher.FractalPainter.Validations"
-        xmlns:general="clr-namespace:GeekGrapher.General"
+        xmlns:general="clr-namespace:GeekGrapher.General.Controls"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="FractalPainter"
         WindowState="Maximized" MinWidth="800" MinHeight="600">
-    <Window.Resources>
-        <Style TargetType="Button" x:Key="TransparentButton">
-            <Setter Property="BorderThickness" Value="0"></Setter>
-            <Setter Property="Background" Value="Transparent"></Setter>
-            <Setter Property="BorderBrush" Value="Black"></Setter>
-        </Style>
-    </Window.Resources>
     <Window.InputBindings>
         <KeyBinding Key="S" Modifiers="Ctrl" Command="{Binding SaveAsImage}"></KeyBinding>
         <KeyBinding Key="Q" Modifiers="Ctrl" Command="{Binding Close}"></KeyBinding>
@@ -45,44 +38,15 @@
             <MenuItem Header="_Help" Command="{Binding OpenHelp}" InputGestureText="F1"/>
         </Menu>
         <Canvas DockPanel.Dock="Right">
-            <Border Width="180" Height="45" Canvas.Top="0" Canvas.Right="5" BorderThickness="0" BorderBrush="Blue" CornerRadius="10">
-                <Grid >
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition Height="0*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Grid.RowSpan="2" Style="{StaticResource TransparentButton}"  Command="{Binding Undo}">
-                        <Viewbox>
-                            <TextBlock Padding="5,5,5,5"
-                        FontFamily="{StaticResource FontAwesomeFreeSolid}"
-                               Text="{StaticResource FontAwesomeUndo}" Foreground="#cf2a27"
-                     ></TextBlock>
-                        </Viewbox>
-                    </Button>
-                    <Button Grid.Column="1" Grid.RowSpan="2" Style="{StaticResource TransparentButton}" Command="{Binding Redo}">
-                        <Viewbox>
-                            <TextBlock Padding="5,5,5,5"
-                        FontFamily="{StaticResource FontAwesomeFreeSolid}"
-                               Text="{StaticResource FontAwesomeRedo}" Foreground="#009e0f"
-                     ></TextBlock>
-                        </Viewbox>
-                    </Button>
-                    <Button Grid.Column="2" Grid.RowSpan="2" Style="{StaticResource TransparentButton}" Command="{Binding SaveAsImage}">
-                        <Viewbox>
-                            <TextBlock Padding="5,5,5,5"
-                        FontFamily="{StaticResource FontAwesomeFreeRegular}"
-                               Text="{StaticResource FontAwesomeSave}" Foreground="#2b78e4"
-                     ></TextBlock>
-                        </Viewbox>
-                    </Button>
-                </Grid>
-            </Border>
+            <general:QuickActionsBar Canvas.Right="5" Canvas.Top="0" Width="180" Height="45" 
+                                     UndoCommand="{Binding DataContext.Undo,
+                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FractalPainter}}"
+                                     RedoCommand="{Binding DataContext.Redo,
+                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FractalPainter}}"
+                                     SaveCommand="{Binding DataContext.SaveAsImage,
+                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FractalPainter}}"/>
         </Canvas>
+
         <Grid DockPanel.Dock="Bottom">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.2*" MinWidth="240"></ColumnDefinition>
@@ -320,7 +284,7 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                     <!---Colors for palette-->
-                    
+
                     <Button MaxHeight="25" Grid.Row="9" Grid.Column="2" Command ="{Binding DrawAndCreate}">Draw</Button>
                 </Grid>
             </GroupBox>
