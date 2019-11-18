@@ -11,6 +11,7 @@ using GeekGrapher.FractalCore;
 using GeekGrapher.FractalPainter.Commands;
 using GeekGrapher.FractalPainter.EnumDefinitions;
 using GeekGrapher.General;
+using GeekGrapher.General.Commands;
 
 namespace GeekGrapher.FractalPainter
 {
@@ -84,7 +85,6 @@ namespace GeekGrapher.FractalPainter
         #region Commands
 
         private ICommand _saveAsImage;
-
         public ICommand SaveAsImage
         {
             get
@@ -98,7 +98,6 @@ namespace GeekGrapher.FractalPainter
         }
 
         private ICommand _close;
-
         public ICommand Close
         {
             get
@@ -112,7 +111,6 @@ namespace GeekGrapher.FractalPainter
         }
 
         private ICommand _exit;
-
         public ICommand Exit
         {
             get
@@ -126,7 +124,6 @@ namespace GeekGrapher.FractalPainter
         }
 
         private ICommand _draw;
-
         public ICommand Draw
         {
             get
@@ -140,7 +137,6 @@ namespace GeekGrapher.FractalPainter
         }
 
         private ICommand _undo;
-
         public ICommand Undo
         {
             get
@@ -154,7 +150,6 @@ namespace GeekGrapher.FractalPainter
         }
 
         private ICommand _redo;
-
         public ICommand Redo
         {
             get
@@ -168,7 +163,6 @@ namespace GeekGrapher.FractalPainter
         }
 
         private ICommand _drawAndCreate;
-
         public ICommand DrawAndCreate
         {
             get
@@ -178,6 +172,32 @@ namespace GeekGrapher.FractalPainter
                     _drawAndCreate = new DrawAndCreate(this);
                 }
                 return _drawAndCreate;
+            }
+        }
+
+        private ICommand _openHelp;
+        public ICommand OpenHelp
+        {
+            get
+            {
+                if (_openHelp == null)
+                {
+                    _openHelp = new OpenHelp();
+                }
+                return _openHelp;
+            }
+        }
+
+        private ICommand _openSettings;
+        public ICommand OpenSettings
+        {
+            get
+            {
+                if (_openSettings == null)
+                {
+                    _openSettings = new OpenSettings();
+                }
+                return _openSettings;
             }
         }
         #endregion
