@@ -30,39 +30,48 @@ namespace GeekGrapher.FractalPainter.Commands
 
         public void Execute(object parameter)
         {
-            var drawer = WindowViewModel.Drawer;
-            int height;
-            int width;
-            ImageFitter.Fit(
-                (int)WindowViewModel.Window.Canvas.ActualWidth,
-            (int)WindowViewModel.Window.Canvas.ActualHeight,
-            (drawer.XFinish - drawer.XStart),
-            (drawer.YFinish - drawer.YStart),
-            out width,
-            out height);
-
-            drawer.Height = height;
-            drawer.Width = width;
-            var bitmap = new WriteableBitmap(width, height, 96, 96, PixelFormats.Bgr24, null);
-
-            var int32Rect = new Int32Rect(0, 0, width, height);
-
-            var pixels = ColorsToBytesConverter.Convert(drawer.Draw());
-
-            bitmap.WritePixels(int32Rect, pixels, 3 * width, 0);
-
-            WindowViewModel.Frames.RemoveRange(WindowViewModel.FrameIndex, WindowViewModel.Frames.Count - WindowViewModel.FrameIndex);
-            WindowViewModel.Frames.Add(new Frame()
+            try
             {
-                Image = bitmap,
-                XStart = drawer.XStart,
-                XFinish = drawer.XFinish,
-                YStart = drawer.YStart,
-                YFinish = drawer.YFinish
-            });
-            WindowViewModel.FrameIndex++;
+                Mouse.OverrideCursor = Cursors.Wait;
 
-            WindowViewModel.Window.Image.Source = bitmap;
+                var drawer = WindowViewModel.Drawer;
+                int height;
+                int width;
+                ImageFitter.Fit(
+                    (int)WindowViewModel.Window.Canvas.ActualWidth,
+                (int)WindowViewModel.Window.Canvas.ActualHeight,
+                (drawer.XFinish - drawer.XStart),
+                (drawer.YFinish - drawer.YStart),
+                out width,
+                out height);
+
+                drawer.Height = height;
+                drawer.Width = width;
+                var bitmap = new WriteableBitmap(width, height, 96, 96, PixelFormats.Bgr24, null);
+
+                var int32Rect = new Int32Rect(0, 0, width, height);
+
+                var pixels = ColorsToBytesConverter.Convert(drawer.Draw());
+
+                bitmap.WritePixels(int32Rect, pixels, 3 * width, 0);
+
+                WindowViewModel.Frames.RemoveRange(WindowViewModel.FrameIndex, WindowViewModel.Frames.Count - WindowViewModel.FrameIndex);
+                WindowViewModel.Frames.Add(new Frame()
+                {
+                    Image = bitmap,
+                    XStart = drawer.XStart,
+                    XFinish = drawer.XFinish,
+                    YStart = drawer.YStart,
+                    YFinish = drawer.YFinish
+                });
+                WindowViewModel.FrameIndex++;
+
+                WindowViewModel.Window.Image.Source = bitmap;
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
         }
     }
 }

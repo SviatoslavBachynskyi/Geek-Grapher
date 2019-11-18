@@ -30,6 +30,7 @@ namespace GeekGrapher.FractalPainter.Commands
 
         public void Execute(object parameter)
         {
+
             var drawer =
         DrawerFactory.CreateDrawer(
             WindowViewModel.SelectedFractalFunction,
@@ -50,6 +51,7 @@ namespace GeekGrapher.FractalPainter.Commands
             WindowViewModel.FrameIndex = 0;
 
             WindowViewModel.Draw.Execute(parameter);
+
         }
     }
 }
