@@ -40,7 +40,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,19 +55,19 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="Xceed.Wpf.AvalonDock, Version=3.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
     </Reference>
     <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
     </Reference>
     <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
     </Reference>
     <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
     </Reference>
     <Reference Include="Xceed.Wpf.Toolkit, Version=3.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -75,7 +75,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="FractalPainter\ColorWrapper.cs" />
+    <Compile Include="FractalPainter\Commands\Draw.cs" />
+    <Compile Include="FractalPainter\Commands\Redo.cs" />
+    <Compile Include="FractalPainter\Commands\Undo.cs" />
+    <Compile Include="FractalPainter\Frame.cs" />
+    <Compile Include="FractalPainter\Validations\DoubleValidation.cs" />
+    <Compile Include="FractalPainter\ColorsToBytesConverter.cs" />
+    <Compile Include="FractalPainter\Commands\DrawAndCreate.cs" />
     <Compile Include="BindingErrorListener.cs" />
+    <Compile Include="FractalPainter\EnumDefinitions\ColosSchemeDefinitions.cs" />
+    <Compile Include="FractalPainter\EnumDefinitions\FractalFunctionDefinitions.cs" />
     <Compile Include="FractalPainter\FractalPainter.xaml.cs">
       <DependentUpon>FractalPainter.xaml</DependentUpon>
     </Compile>
@@ -83,19 +93,22 @@
     <Compile Include="FractalPainter\Commands\Exit.cs" />
     <Compile Include="FractalPainter\FractalPainterViewModel.cs" />
     <Compile Include="FractalPainter\Commands\SaveAsImage.cs" />
-    <Compile Include="General\ImageZoomer.xaml.cs">
+    <Compile Include="FractalPainter\Validations\IntegerValidation.cs" />
+    <Compile Include="General\BaseViewModel.cs" />
+    <Compile Include="General\Controls\ImageZoomer.xaml.cs">
       <DependentUpon>ImageZoomer.xaml</DependentUpon>
     </Compile>
     <Compile Include="AffineTransformations\AffineTransformations.xaml.cs">
       <DependentUpon>AffineTransformations.xaml</DependentUpon>
     </Compile>
+    <Compile Include="General\StringExt.cs" />
     <Compile Include="StartWindow\Commands\OpenAffineTransformations.cs" />
     <Compile Include="StartWindow\Commands\OpenFractalPainter.cs" />
-    <Compile Include="StartWindow\Commands\OpenHelp.cs" />
+    <Compile Include="General\Commands\OpenHelp.cs" />
     <Compile Include="StartWindow\Commands\OpenImageConverter.cs" />
-    <Compile Include="StartWindow\Commands\OpenSettings.cs" />
+    <Compile Include="General\Commands\OpenSettings.cs" />
     <Compile Include="StartWindow\StartWindowViewModel.cs" />
-    <Compile Include="General\QuickActionsBar.xaml.cs">
+    <Compile Include="General\Controls\QuickActionsBar.xaml.cs">
       <DependentUpon>QuickActionsBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="AffineTransformations\Vertex.xaml.cs">
@@ -119,7 +132,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="General\ImageZoomer.xaml">
+    <Page Include="General\Controls\ImageZoomer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -146,7 +159,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="General\QuickActionsBar.xaml">
+    <Page Include="General\Controls\QuickActionsBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -201,6 +214,11 @@
   <ItemGroup>
     <Resource Include="Assets\Images\cmyk.gif" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\FractalCore\FractalCore.csproj">
+      <Project>{51fe4b3e-d75c-43d6-9ca4-22853e64d913}</Project>
+      <Name>FractalCore</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

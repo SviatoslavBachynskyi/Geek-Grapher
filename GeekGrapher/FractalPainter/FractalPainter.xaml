@@ -4,11 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GeekGrapher.FractalPainter"
-        xmlns:general="clr-namespace:GeekGrapher.General"
+        xmlns:validations="clr-namespace:GeekGrapher.FractalPainter.Validations"
+        xmlns:general="clr-namespace:GeekGrapher.General.Controls"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="FractalPainter"
-        WindowState="Maximized">
+        WindowState="Maximized" MinWidth="800" MinHeight="600">
+    <Window.Resources>
+        <Style x:Key="PaletteSchemeColors" TargetType="FrameworkElement">
+            <Setter Property="Visibility" Value="Hidden"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding SelectedColorScheme}" Value="PaletteBased">  
+            <Setter Property="Visibility"  Value="Visible"/>
+            </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="S" Modifiers="Ctrl" Command="{Binding SaveAsImage}"></KeyBinding>
+        <KeyBinding Key="Q" Modifiers="Ctrl" Command="{Binding Close}"></KeyBinding>
+        <KeyBinding Key="F1" Command="{Binding OpenHelp}"></KeyBinding>
+        <KeyBinding Key="F5" Modifiers="Ctrl"></KeyBinding>
+    </Window.InputBindings>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
@@ -20,25 +37,62 @@
                 <Separator />
                 <MenuItem Header="_Save" InputGestureText="Ctrl+S"/>
                     -->
-                <MenuItem Header="_Save as Image" Command="{Binding SaveAsImage}" />
+                <MenuItem Header="_Save as Image" Command="{Binding SaveAsImage}" InputGestureText="Ctrl+S"/>
                 <Separator />
                 <MenuItem Header="_Close" InputGestureText="Ctrl+Q" Command="{Binding Close}"/>
                 <Separator />
                 <MenuItem Header="_Exit" Command="{Binding Exit}"/>
             </MenuItem>
             <MenuItem Header="_Start Page" InputGestureText="Ctrl+F5"/>
-            <MenuItem Header="_Settings"/>
-            <MenuItem Header="_Help"/>
+            <MenuItem Header="_Settings" Command="{Binding OpenSettings}"/>
+            <MenuItem Header="_Help" Command="{Binding OpenHelp}" InputGestureText="F1"/>
         </Menu>
         <Canvas DockPanel.Dock="Right">
-            <general:QuickActionsBar Width="180" Height="45" Canvas.Top="0" Canvas.Right="5"/>
+            <general:QuickActionsBar Canvas.Right="5" Canvas.Top="0" Width="180" Height="45" 
+                                     UndoCommand="{Binding DataContext.Undo,
+                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FractalPainter}}"
+                                     RedoCommand="{Binding DataContext.Redo,
+                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FractalPainter}}"
+                                     SaveCommand="{Binding DataContext.SaveAsImage,
+                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FractalPainter}}"/>
         </Canvas>
+
         <Grid DockPanel.Dock="Bottom">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="1.2*" MinWidth="240"></ColumnDefinition>
                 <ColumnDefinition Width="5*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <general:ImageZoomer Grid.Column="1"></general:ImageZoomer>
+            <Grid.RowDefinitions>
+                <RowDefinition MinHeight="500"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Canvas x:Name="Canvas" Grid.Column="1" Margin="50">
+                <DockPanel x:Name="ImageDockPanel"
+                    VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
+            Margin="0,0,0,0" Canvas.Left="0" Canvas.Top="0"
+            Width="{Binding ActualWidth, ElementName=Canvas}"
+            Height="{Binding ActualHeight, ElementName=Canvas}">
+                    <Image  x:Name="Image" 
+                            MouseDown="Selection_MouseDown"
+                            MouseUp="Selection_MouseUp"
+                            MouseMove="Selection_MouseMove"
+                            Stretch="None"></Image>
+                </DockPanel>
+            </Canvas>
+            <Canvas Grid.Column="1" Margin="50">
+                <Grid  Width="{Binding ActualWidth, ElementName=Canvas}"
+            Height="{Binding ActualHeight, ElementName=Canvas}">
+                    <Canvas VerticalAlignment="Center" 
+                            HorizontalAlignment="Center" 
+                            Width="{Binding ActualWidth, ElementName=Image}" 
+                            Height="{Binding ActualHeight, ElementName=Image}">
+                        <Rectangle Width="{Binding ActualWidth, ElementName=Image}" Height="{Binding ActualHeight, ElementName=Image}"
+                        x:Name="selectionBox"
+                        Visibility="Collapsed"
+                        Stroke="Orange"
+                        StrokeThickness="3"/>
+                    </Canvas>
+                </Grid>
+            </Canvas>
             <GroupBox Header="Fractal properties" Grid.Column="0">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -59,42 +113,191 @@
                         <ColumnDefinition Width="100"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
+                    <!---Function-->
                     <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="0">Function:</TextBlock>
-                    <ComboBox MaxHeight="25" Grid.Row="0" Grid.Column="2">
-                        <ComboBoxItem IsSelected="True">Z = Sh(z) + C</ComboBoxItem>
+                    <ComboBox MaxHeight="25" ItemsSource="{Binding Path=FractalFunctions}" 
+                              DisplayMemberPath="Value" SelectedValuePath="Key"
+                              SelectedValue="{Binding SelectedFractalFunction}" 
+                              Grid.Row="0" Grid.Column="2">
                     </ComboBox>
+                    <!---Function-->
 
-                    <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">Max Iteration</TextBlock>
-                    <xctk:IntegerUpDown  MaxHeight="25" Grid.Row="1" Grid.Column="2" Value="50" Minimum="0" Maximum="500"></xctk:IntegerUpDown>
+                    <!---Max Iterations-->
+                    <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" x:Name="MaxIterations">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*" MinWidth="20"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.BindingGroup>
+                            <BindingGroup Name="MaxIterations">
+                            </BindingGroup>
+                        </Grid.BindingGroup>
+                        <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">Max Iterations
+                        </TextBlock>
+                        <xctk:IntegerUpDown Height="25"  Grid.Row="1" Grid.Column="2" Minimum="1" Maximum="500" HorizontalContentAlignment="Right">
+                            <xctk:IntegerUpDown.Text>
+                                <Binding
+                                Path="MaxIterations"
+                                BindingGroupName="MaxIterations"
+                                UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <validations:IntegerValidation Min="1" Max="500" DisplayName="Max Iterations"/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </xctk:IntegerUpDown.Text>
+                        </xctk:IntegerUpDown>
+                        <Label Grid.Row="2" Grid.Column="0" Padding="0,1,0,0" Grid.ColumnSpan="3" Foreground="Red"
+                           Content="{Binding BindingGroupName=MaxIterations, Path=(Validation.Errors)[0].ErrorContent, ElementName=MaxIterations, FallbackValue=''}"/>
+                    </Grid>
+                    <!---Max Iterations-->
 
-                    <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="0">C Real
-                    </TextBlock>
-                    <TextBox MaxHeight="25" Grid.Row="2" Grid.Column="2" HorizontalContentAlignment="Right">0.5</TextBox>
+                    <!---CReal-->
+                    <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" x:Name="CReal">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*" MinWidth="20"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.BindingGroup>
+                            <BindingGroup Name="CReal">
+                            </BindingGroup>
+                        </Grid.BindingGroup>
+                        <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">C Real
+                        </TextBlock>
+                        <TextBox Height="25"  Grid.Row="1" Grid.Column="2" HorizontalContentAlignment="Right">
+                            <TextBox.Text>
+                                <Binding
+                                Path="CReal"
+                                BindingGroupName="CReal"
+                                UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <validations:DoubleValidation Min="-2" Max="2" DisplayName="C Real"/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Label Grid.Row="2" Grid.Column="0" Padding="0,1,0,0" Grid.ColumnSpan="3" Foreground="Red"
+                           Content="{Binding BindingGroupName=CReal, Path=(Validation.Errors)[0].ErrorContent, ElementName=CReal, FallbackValue=''}"/>
+                    </Grid>
+                    <!---CReal-->
 
-                    <TextBlock VerticalAlignment="Center" Grid.Row="3" Grid.Column="0">C Imaginary
-                    </TextBlock>
-                    <TextBox MaxHeight="25" Grid.Row="3" Grid.Column="2" HorizontalContentAlignment="Right">-1</TextBox>
+                    <!---CImaginary-->
+                    <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" x:Name="CImaginary">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*" MinWidth="20"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.BindingGroup>
+                            <BindingGroup Name="CImaginary">
+                            </BindingGroup>
+                        </Grid.BindingGroup>
+                        <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">C Imaginary
+                        </TextBlock>
+                        <TextBox Height="25"  Grid.Row="1" Grid.Column="2" HorizontalContentAlignment="Right">
+                            <TextBox.Text>
+                                <Binding
+                                Path="CImaginary"
+                                BindingGroupName="CImaginary"
+                                UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <validations:DoubleValidation Min="-2" Max="2" DisplayName="C Imaginary"/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Label Grid.Row="2" Grid.Column="0" Padding="0,1,0,0" Grid.ColumnSpan="3" Foreground="Red"
+                           Content="{Binding BindingGroupName=CImaginary, Path=(Validation.Errors)[0].ErrorContent, ElementName=CImaginary, FallbackValue=''}"/>
+                    </Grid>
+                    <!---CImaginary-->
 
+                    <!---Color Scheme-->
                     <TextBlock VerticalAlignment="Center" Grid.Row="4" Grid.Column="0">Color Scheme:</TextBlock>
-                    <ComboBox MaxHeight="25" Grid.Row="4" Grid.Column="2">
-                        <ComboBoxItem IsSelected="True">Palette</ComboBoxItem>
-                        <ComboBoxItem>Smooth Coloring</ComboBoxItem>
-                        <ComboBoxItem>Histogram Coloring</ComboBoxItem>
+                    <ComboBox ItemsSource="{Binding Path=ColorSchemes}"
+                              DisplayMemberPath="Value"
+                              SelectedValuePath="Key"
+                              SelectedValue="{Binding Path=SelectedColorScheme}"
+                              MaxHeight="25" Grid.Row="4" Grid.Column="2">
                     </ComboBox>
+                    <!---Color Scheme-->
 
-                    <TextBlock VerticalAlignment="Center" Grid.Row="5" Grid.Column="0">Palette  Colors</TextBlock>
-                    <xctk:IntegerUpDown  MaxHeight="25" Grid.Row="5" Grid.Column="2" Value="3" Minimum="2" Maximum="6"></xctk:IntegerUpDown>
+                    <!---Color Count-->
+                    <Grid Style="{StaticResource PaletteSchemeColors}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" x:Name="ColorCount">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*" MinWidth="20"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.BindingGroup>
+                            <BindingGroup Name="ColorCount">
+                            </BindingGroup>
+                        </Grid.BindingGroup>
+                        <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">Color Count
+                        </TextBlock>
+                        <xctk:IntegerUpDown Height="25"  Grid.Row="1" Grid.Column="2" Minimum="2" Maximum="{Binding MaxColors}" HorizontalContentAlignment="Right">
+                            <xctk:IntegerUpDown.Text>
+                                <Binding
+                                Path="ColorCount"
+                                BindingGroupName="ColorCount"
+                                UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <validations:IntegerValidation Min="2" Max="50" DisplayName="Color Count"/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </xctk:IntegerUpDown.Text>
+                        </xctk:IntegerUpDown>
+                        <Label Grid.Row="2" Grid.Column="0" Padding="0,1,0,0" Grid.ColumnSpan="3" Foreground="Red"
+                           Content="{Binding BindingGroupName=ColorCount, Path=(Validation.Errors)[0].ErrorContent, ElementName=ColorCount, FallbackValue=''}"/>
+                    </Grid>
+                    <!---Color Count-->
 
-                    <TextBlock VerticalAlignment="Center" Grid.Row="6" Grid.Column="0">Color #1</TextBlock>
-                    <xctk:ColorPicker MaxHeight="25" Grid.Row="6" Grid.Column="2" SelectedColor="Red"></xctk:ColorPicker>
+                    <!---Colors for palette-->
+                    <ItemsControl 
+                                  Style="{StaticResource PaletteSchemeColors}"
+                                  Grid.Row="6"
+                                  Grid.RowSpan="3"
+                                  Grid.Column="0"
+                                  Grid.ColumnSpan="3"
+                                  ItemsSource="{Binding Palette}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid></UniformGrid>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <xctk:ColorPicker MaxHeight="40" MaxWidth="40" SelectedColor="{Binding Path=Value}"></xctk:ColorPicker>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <!---Colors for palette-->
 
-                    <TextBlock VerticalAlignment="Center" Grid.Row="7" Grid.Column="0">Color #2</TextBlock>
-                    <xctk:ColorPicker MaxHeight="25" Grid.Row="7" Grid.Column="2" SelectedColor="Cyan"></xctk:ColorPicker>
-
-                    <TextBlock VerticalAlignment="Center" Grid.Row="8" Grid.Column="0">Color #3</TextBlock>
-                    <xctk:ColorPicker MaxHeight="25" Grid.Row="8" Grid.Column="2" SelectedColor="Purple"></xctk:ColorPicker>
-
-                    <Button MaxHeight="25" Grid.Row="9" Grid.Column="2" >Draw</Button>
+                    <Button MaxHeight="25" Grid.Row="9" Grid.Column="2" Command ="{Binding DrawAndCreate}">Draw</Button>
                 </Grid>
             </GroupBox>
         </Grid>

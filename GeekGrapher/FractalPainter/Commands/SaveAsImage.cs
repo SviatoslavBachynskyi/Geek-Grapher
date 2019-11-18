@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Forms;
+using System.IO;
+using System.Drawing;
+using System.Windows.Media.Imaging;
 
 namespace GeekGrapher.FractalPainter.Commands
 {
@@ -26,7 +29,64 @@ namespace GeekGrapher.FractalPainter.Commands
 
         public void Execute(object parameter)
         {
-            MessageBox.Show("Save");
+
+            
+            var bitmapSource = _windowViewModel.Window.Image.Source as BitmapSource;
+
+            if (bitmapSource != null)
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+                saveFileDialog.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif|Png Image|*.png";
+                saveFileDialog.Title = "Save an Image File";
+
+                BitmapEncoder encoder = null;
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    if (saveFileDialog.FileName != "")
+                    {
+                        switch (saveFileDialog.FilterIndex)
+                        {
+                            case 1:
+                                encoder = new JpegBitmapEncoder();
+                                break;
+
+                            case 2:
+                                encoder = new BmpBitmapEncoder();
+                                break;
+
+                            case 3:
+                                encoder = new GifBitmapEncoder();
+                                break;
+
+                            case 4:
+                                encoder = new PngBitmapEncoder();
+                                break;
+                        }
+
+                    
+                        Stream fileStream = (FileStream)saveFileDialog.OpenFile();
+                        byte[] imageByteArray = null;
+
+                        encoder.Frames.Add(BitmapFrame.Create(bitmapSource));
+
+                        using (var stream = new MemoryStream())
+                        {
+                            encoder.Save(stream);
+                            imageByteArray = stream.ToArray();
+                        }
+
+                        fileStream.Write(imageByteArray, 0, imageByteArray.Length);
+                        fileStream.Close();
+                    }
+                }   
+            }
+            else
+            {
+                MessageBox.Show("Nothing to save!");
+                return;
+            }
         }
     }
 }

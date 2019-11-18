@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GeekGrapher.AffineTransformations"
-        xmlns:general="clr-namespace:GeekGrapher.General"
+        xmlns:general="clr-namespace:GeekGrapher.General.Controls"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="AffineTransformations"
@@ -99,7 +99,7 @@
                                         <ColumnDefinition Width="2*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "X:"/>
-                                    <TextBox MaxHeight="25" Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center" TextChanged="TextBox_TextChanged">-4.0</TextBox>
+                                    <TextBox MaxHeight="25" Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center">-4.0</TextBox>
                                     <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "Y:"/>
                                     <TextBox MaxHeight="25" Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center">2.0</TextBox>
                                 </Grid>

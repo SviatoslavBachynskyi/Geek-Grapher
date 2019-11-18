@@ -9,6 +9,9 @@
         Title="Geek Grapher" Height="450" Width="850"
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen">
+    <Window.InputBindings>
+        <KeyBinding Key="F1" Command="{Binding OpenHelp}"></KeyBinding>
+    </Window.InputBindings>
 
     <DockPanel Background="#32ABBC">
         <Menu DockPanel.Dock="Top">
@@ -31,7 +34,7 @@
             <MenuItem Header="_Start Page" InputGestureText="Ctrl+F5"/>
             -->
             <MenuItem Header="_Settings" Command="{Binding OpenSettings}"/>
-            <MenuItem Header="_Help" Command="{Binding OpenHelp}"/>
+            <MenuItem Header="_Help" Command="{Binding OpenHelp}" InputGestureText="F1"/>
         </Menu>
         <Grid DockPanel.Dock="Bottom">
             <Grid.RowDefinitions>

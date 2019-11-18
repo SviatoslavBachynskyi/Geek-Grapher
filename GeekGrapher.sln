@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeekGrapher", "GeekGrapher\GeekGrapher.csproj", "{27D1CA6A-EC23-4D43-B1B9-80510FACBAE9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FractalCore", "FractalCore\FractalCore.csproj", "{51FE4B3E-D75C-43D6-9CA4-22853E64D913}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{1ED1B17D-97CB-45B9-8548-48F66BC5C9DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{27D1CA6A-EC23-4D43-B1B9-80510FACBAE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27D1CA6A-EC23-4D43-B1B9-80510FACBAE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27D1CA6A-EC23-4D43-B1B9-80510FACBAE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51FE4B3E-D75C-43D6-9CA4-22853E64D913}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51FE4B3E-D75C-43D6-9CA4-22853E64D913}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51FE4B3E-D75C-43D6-9CA4-22853E64D913}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51FE4B3E-D75C-43D6-9CA4-22853E64D913}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ED1B17D-97CB-45B9-8548-48F66BC5C9DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ED1B17D-97CB-45B9-8548-48F66BC5C9DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ED1B17D-97CB-45B9-8548-48F66BC5C9DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ED1B17D-97CB-45B9-8548-48F66BC5C9DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

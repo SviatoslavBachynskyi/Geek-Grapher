@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using GeekGrapher.General.Commands;
 using GeekGrapher.StartWindow.Commands;
 
 namespace GeekGrapher.StartWindow
@@ -18,28 +19,26 @@ namespace GeekGrapher.StartWindow
         }
 
         private ICommand _openHelp;
-
         public ICommand OpenHelp
         {
             get
             {
                 if (_openHelp == null)
                 {
-                    _openHelp = new OpenHelp(this);
+                    _openHelp = new OpenHelp();
                 }
                 return _openHelp;
             }
         }
 
         private ICommand _openSettings;
-
         public ICommand OpenSettings
         {
             get
             {
                 if (_openSettings == null)
                 {
-                    _openSettings = new OpenSettings(this);
+                    _openSettings = new OpenSettings();
                 }
                 return _openSettings;
             }
