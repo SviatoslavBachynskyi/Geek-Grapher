@@ -7,25 +7,38 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace GeekGrapher.FractalCore
 {
+    [DataContract]
     public enum FractalFunction
     {
+        [EnumMember]
         Shz,
+        [EnumMember]
         Chz,
+        [EnumMember]
         SinzCosz
     }
+    [DataContract]
     public enum ColorScheme
     {
+        [EnumMember]
         BlackAndWhite,
+        [EnumMember]
         HSVBased,
+        [EnumMember]
         HistogramHSV,
+        [EnumMember]
         PaletteBased
     }
+    [DataContract]
     public enum IterationPrinciple
     {
+        [EnumMember]
         Julia,
+        [EnumMember]
         Mandelbrot
     }
     public static class DrawerFactory

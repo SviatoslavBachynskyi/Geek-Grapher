@@ -90,11 +90,15 @@
     <Compile Include="AboutUS\Binding.cs" />
     <Compile Include="AboutUS\Converters\ImageConverter.cs" />
     <Compile Include="AboutUS\AboutUsMapper.cs" />
+    <Compile Include="FractalPainter\Binding.cs" />
     <Compile Include="FractalPainter\ColorWrapper.cs" />
     <Compile Include="FractalPainter\Commands\ChangableCommand.cs" />
     <Compile Include="FractalPainter\Commands\Draw.cs" />
+    <Compile Include="FractalPainter\Commands\OpenXml.cs" />
     <Compile Include="FractalPainter\Commands\Redo.cs" />
+    <Compile Include="FractalPainter\Commands\SaveAsXml.cs" />
     <Compile Include="FractalPainter\Commands\Undo.cs" />
+    <Compile Include="FractalPainter\FractalMapper.cs" />
     <Compile Include="FractalPainter\Frame.cs" />
     <Compile Include="FractalPainter\Validations\DoubleValidation.cs" />
     <Compile Include="FractalPainter\ColorsToBytesConverter.cs" />

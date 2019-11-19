@@ -96,7 +96,7 @@ namespace GeekGrapher.FractalPainter
         {
             get
             {
-                if (Window.ColorCount.BindingGroup.HasValidationError)
+                if (Window?.ColorCount?.BindingGroup?.HasValidationError ?? false)
                     return null;
                 return _palette.Take(Convert.ToInt32(ColorCount)).ToArray();
             }
@@ -149,6 +149,32 @@ namespace GeekGrapher.FractalPainter
                     _saveAsImage = new SaveAsImage(this);
                 }
                 return _saveAsImage;
+            }
+        }
+
+        private ChangableCommand _saveAsXml;
+        public ChangableCommand SaveAsXml
+        {
+            get
+            {
+                if (_saveAsXml == null)
+                {
+                    _saveAsXml = new SaveAsXml(this);
+                }
+                return _saveAsXml;
+            }
+        }
+
+        private ChangableCommand _openXml;
+        public ChangableCommand OpenXml
+        {
+            get
+            {
+                if (_openXml == null)
+                {
+                    _openXml = new OpenXml(this);
+                }
+                return _openXml;
             }
         }
 

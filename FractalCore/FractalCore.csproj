@@ -35,6 +35,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,6 +51,7 @@
     <Compile Include="ColorCalculators\PaletteCalculator.cs" />
     <Compile Include="Drawer.cs" />
     <Compile Include="DrawerFactory.cs" />
+    <Compile Include="FractalModel.cs" />
     <Compile Include="IterationCalculators\IterationCalculator.cs" />
     <Compile Include="IterationCalculators\JuliaCalculator.cs" />
     <Compile Include="IterationCalculators\MandelbrotCalculator.cs" />
