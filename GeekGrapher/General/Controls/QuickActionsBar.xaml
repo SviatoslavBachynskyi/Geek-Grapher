@@ -25,20 +25,42 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Grid.RowSpan="2" Command="{Binding UndoCommand}">
+            <Button Grid.Column="0" Grid.RowSpan="2" Command="{Binding UndoCommand}" x:Name="Undo">
                 <Viewbox>
                     <TextBlock Padding="5,5,5,5"
                         FontFamily="{StaticResource FontAwesomeFreeSolid}"
-                               Text="{StaticResource FontAwesomeUndo}" Foreground="#cf2a27"
-                     ></TextBlock>
+                               Text="{StaticResource FontAwesomeUndo}"
+                     >
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="#cf2a27"></Setter>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=IsEnabled, ElementName=Undo}" Value="False">
+                                        <Setter Property="Foreground" Value="Gray"></Setter>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                 </Viewbox>
             </Button>
-            <Button Grid.Column="1" Grid.RowSpan="2" Command="{Binding RedoCommand}">
+            <Button Grid.Column="1" Grid.RowSpan="2" Command="{Binding RedoCommand}" x:Name="Redo">
                 <Viewbox>
                     <TextBlock Padding="5,5,5,5"
                         FontFamily="{StaticResource FontAwesomeFreeSolid}"
-                               Text="{StaticResource FontAwesomeRedo}" Foreground="#009e0f"
-                     ></TextBlock>
+                               Text="{StaticResource FontAwesomeRedo}"
+                     >
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="#009e0f"></Setter>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=IsEnabled, ElementName=Redo}" Value="False">
+                                        <Setter Property="Foreground" Value="Gray"></Setter>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                 </Viewbox>
             </Button>
             <Button Grid.Column="2" Grid.RowSpan="2" Command="{Binding SaveCommand}" x:Name="Save">

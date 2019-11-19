@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace GeekGrapher.FractalPainter.Commands
 {
-    internal class Undo : ICommand
+    internal class Undo : ChangableCommand
     {
         private readonly FractalPainterViewModel WindowViewModel;
 
@@ -16,14 +16,12 @@ namespace GeekGrapher.FractalPainter.Commands
             WindowViewModel = _windowViewModel;
         }
 
-        public event EventHandler CanExecuteChanged;
-
-        public bool CanExecute(object parameter)
+        public override bool CanExecute(object parameter)
         {
-            return true;
+            return WindowViewModel.FrameIndex > 1;
         }
 
-        public void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             if(WindowViewModel.FrameIndex > 1)
             {
