@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 
 namespace GeekGrapher.FractalPainter.Commands
 {
-    internal class Draw : ICommand
+    internal class Draw : ChangableCommand
     {
         private readonly FractalPainterViewModel WindowViewModel;
 
@@ -21,14 +21,12 @@ namespace GeekGrapher.FractalPainter.Commands
             WindowViewModel = _windowViewModel;
         }
 
-        public event EventHandler CanExecuteChanged;
-
-        public bool CanExecute(object parameter)
+        public override bool CanExecute(object parameter)
         {
-            return true;
+            return WindowViewModel.IsValid();
         }
 
-        public void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             try
             {

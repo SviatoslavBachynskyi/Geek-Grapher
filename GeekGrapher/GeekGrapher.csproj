@@ -91,6 +91,7 @@
     <Compile Include="AboutUS\Converters\ImageConverter.cs" />
     <Compile Include="AboutUS\AboutUsMapper.cs" />
     <Compile Include="FractalPainter\ColorWrapper.cs" />
+    <Compile Include="FractalPainter\Commands\ChangableCommand.cs" />
     <Compile Include="FractalPainter\Commands\Draw.cs" />
     <Compile Include="FractalPainter\Commands\Redo.cs" />
     <Compile Include="FractalPainter\Commands\Undo.cs" />

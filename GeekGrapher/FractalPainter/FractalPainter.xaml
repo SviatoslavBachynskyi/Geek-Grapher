@@ -297,7 +297,8 @@
                     </ItemsControl>
                     <!---Colors for palette-->
 
-                    <Button MaxHeight="25" Grid.Row="9" Grid.Column="2" Command ="{Binding DrawAndCreate}">Draw</Button>
+                    <Button MaxHeight="25" Grid.Row="9" Grid.Column="2" Command ="{Binding DrawAndCreate}"
+                            >Draw</Button>
                 </Grid>
             </GroupBox>
         </Grid>
