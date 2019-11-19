@@ -152,8 +152,8 @@ namespace GeekGrapher.FractalPainter
             }
         }
 
-        private ChangableCommand _saveAsXml;
-        public ChangableCommand SaveAsXml
+        private ICommand _saveAsXml;
+        public ICommand SaveAsXml
         {
             get
             {
@@ -165,8 +165,8 @@ namespace GeekGrapher.FractalPainter
             }
         }
 
-        private ChangableCommand _openXml;
-        public ChangableCommand OpenXml
+        private ICommand _openXml;
+        public ICommand OpenXml
         {
             get
             {
@@ -243,8 +243,8 @@ namespace GeekGrapher.FractalPainter
             }
         }
 
-        private ChangableCommand _drawAndCreate;
-        public ChangableCommand DrawAndCreate
+        private ICommand _drawAndCreate;
+        public ICommand DrawAndCreate
         {
             get
             {

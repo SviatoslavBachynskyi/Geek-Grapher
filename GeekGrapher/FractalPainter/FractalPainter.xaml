@@ -25,6 +25,7 @@
         <KeyBinding Key="Q" Modifiers="Ctrl" Command="{Binding Close}"></KeyBinding>
         <KeyBinding Key="F1" Command="{Binding OpenHelp}"></KeyBinding>
         <KeyBinding Key="F5" Modifiers="Ctrl"></KeyBinding>
+        <KeyBinding Key="O" Modifiers="Ctrl" Command="{Binding OpenXml}"></KeyBinding>
     </Window.InputBindings>
     <DockPanel>
         <Menu DockPanel.Dock="Top">

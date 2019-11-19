@@ -36,7 +36,21 @@ namespace GeekGrapher.FractalPainter.Commands
                     using (var reader = new FileStream(openFileDialog.FileName, FileMode.Open))
                     {
                         var serializer = new DataContractSerializer(typeof(FractalModel));
-                        var model = (FractalModel) serializer.ReadObject(reader);
+                        FractalModel model;
+                        try
+                        {
+                            model = (FractalModel)serializer.ReadObject(reader);
+                        }
+                        catch(SerializationException ex)
+                        {
+                            MessageBox.Show("Unable to read specified file try another one!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                        catch(IOException ex)
+                        {
+                            MessageBox.Show("Unable to read specified file try another one!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
                         var viewModel = mapper.Map<FractalModel, FractalPainterViewModel>(model); ;
                         viewModel.Window = _windowViewModel.Window;
                         _windowViewModel.Window.ViewModel = viewModel;
