@@ -92,7 +92,7 @@
     <Compile Include="AboutUS\AboutUsMapper.cs" />
     <Compile Include="FractalPainter\Binding.cs" />
     <Compile Include="FractalPainter\ColorWrapper.cs" />
-    <Compile Include="FractalPainter\Commands\ChangableCommand.cs" />
+    <Compile Include="General\ChangableCommand.cs" />
     <Compile Include="FractalPainter\Commands\Draw.cs" />
     <Compile Include="FractalPainter\Commands\OpenXml.cs" />
     <Compile Include="FractalPainter\Commands\Redo.cs" />
@@ -116,13 +116,12 @@
     <Compile Include="FractalPainter\Validations\IntegerValidation.cs" />
     <Compile Include="General\BaseViewModel.cs" />
     <Compile Include="General\Commands\OpenAboutUS.cs" />
-    <Compile Include="General\Controls\ImageZoomer.xaml.cs">
-      <DependentUpon>ImageZoomer.xaml</DependentUpon>
-    </Compile>
     <Compile Include="AffineTransformations\AffineTransformations.xaml.cs">
       <DependentUpon>AffineTransformations.xaml</DependentUpon>
     </Compile>
     <Compile Include="General\StringExt.cs" />
+    <Compile Include="ImageConverter\Commands\OpenImage.cs" />
+    <Compile Include="ImageConverter\ImageConverterViewModel.cs" />
     <Compile Include="StartWindow\Commands\OpenAffineTransformations.cs" />
     <Compile Include="StartWindow\Commands\OpenFractalPainter.cs" />
     <Compile Include="General\Commands\OpenHelp.cs" />
@@ -154,10 +153,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ImageConverter\ImageConverter.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="General\Controls\ImageZoomer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -258,5 +253,6 @@
   <ItemGroup>
     <Resource Include="Assets\AboutUs\Authors.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

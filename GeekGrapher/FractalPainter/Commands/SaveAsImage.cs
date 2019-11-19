@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Drawing;
 using System.Windows.Media.Imaging;
+using GeekGrapher.General;
 
 namespace GeekGrapher.FractalPainter.Commands
 {

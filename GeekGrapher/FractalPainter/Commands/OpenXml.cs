@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GeekGrapher.FractalCore;
+using GeekGrapher.General;
 using Ninject;
 using System;
 using System.Collections.Generic;

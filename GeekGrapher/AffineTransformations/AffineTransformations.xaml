@@ -43,7 +43,7 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="5*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <general:ImageZoomer Grid.Row="1" Grid.Column="1"></general:ImageZoomer>
+            <Image Grid.Row="1" Grid.Column="1"></Image>
             <GroupBox Header="Parellelogram Properties" Grid.Column="0" Grid.Row="0">
                 <Grid>
                     <Grid.RowDefinitions>
