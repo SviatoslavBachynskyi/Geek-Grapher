@@ -25,6 +25,7 @@
         <KeyBinding Key="Q" Modifiers="Ctrl" Command="{Binding Close}"></KeyBinding>
         <KeyBinding Key="F1" Command="{Binding OpenHelp}"></KeyBinding>
         <KeyBinding Key="F5" Modifiers="Ctrl"></KeyBinding>
+        <KeyBinding Key="O" Modifiers="Ctrl" Command="{Binding OpenXml}"></KeyBinding>
     </Window.InputBindings>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
@@ -32,12 +33,13 @@
                 <!--
                 <MenuItem Header="_New" InputGestureText="Ctrl+N"/>
                 <Separator />
-                <MenuItem Header="_Open" InputGestureText="Ctrl+O"/>
                 <MenuItem Header="_Open Recent ->"/>
                 <Separator />
                 <MenuItem Header="_Save" InputGestureText="Ctrl+S"/>
                     -->
+                <MenuItem Header="_Open XML" InputGestureText="Ctrl+O" Command="{Binding OpenXml}"/>
                 <MenuItem Header="_Save as Image" Command="{Binding SaveAsImage}" InputGestureText="Ctrl+S"/>
+                <MenuItem Header="_Save as XML" Command="{Binding SaveAsXml}"/>
                 <Separator />
                 <MenuItem Header="_Close" InputGestureText="Ctrl+Q" Command="{Binding Close}"/>
                 <Separator />
@@ -297,7 +299,8 @@
                     </ItemsControl>
                     <!---Colors for palette-->
 
-                    <Button MaxHeight="25" Grid.Row="9" Grid.Column="2" Command ="{Binding DrawAndCreate}">Draw</Button>
+                    <Button MaxHeight="25" Grid.Row="9" Grid.Column="2" Command ="{Binding DrawAndCreate}"
+                            >Draw</Button>
                 </Grid>
             </GroupBox>
         </Grid>

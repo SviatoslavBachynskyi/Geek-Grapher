@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ninject;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -18,6 +19,14 @@ namespace GeekGrapher.FractalPainter
     public partial class FractalPainter : Window
     {
         private FractalPainterViewModel _viewModel;
+
+        public static StandardKernel Kernel;
+
+        static FractalPainter()
+        {
+            Kernel = new StandardKernel();
+            Kernel.Load(new Binding());
+        }
         internal FractalPainterViewModel ViewModel
         {
             get => _viewModel;

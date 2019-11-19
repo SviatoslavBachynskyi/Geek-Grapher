@@ -18,6 +18,8 @@ namespace GeekGrapher.StartWindow
             Window = mainWindow;
         }
 
+        #region Commands
+
         private ICommand _openHelp;
         public ICommand OpenHelp
         {
@@ -41,6 +43,19 @@ namespace GeekGrapher.StartWindow
                     _openSettings = new OpenSettings();
                 }
                 return _openSettings;
+            }
+        }
+
+        private ICommand _openAboutUS;
+        public ICommand OpenAboutUS
+        {
+            get
+            {
+                if (_openAboutUS == null)
+                {
+                    _openAboutUS = new OpenAboutUS();
+                }
+                return _openAboutUS;
             }
         }
 
@@ -85,6 +100,7 @@ namespace GeekGrapher.StartWindow
                 return _openImageConverter;
             }
         }
+        #endregion
 
     }
 }

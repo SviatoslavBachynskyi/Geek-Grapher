@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 
 namespace GeekGrapher.FractalPainter.Commands
 {
-    internal class SaveAsImage : ICommand
+    internal class SaveAsImage : ChangableCommand
     {
         private readonly FractalPainterViewModel _windowViewModel;
 
@@ -20,73 +20,62 @@ namespace GeekGrapher.FractalPainter.Commands
             _windowViewModel = windowViewModel;
         }
 
-        public event EventHandler CanExecuteChanged;
-
-        public bool CanExecute(object parameter)
+        public override bool CanExecute(object parameter)
         {
-            return true;
+            return _windowViewModel?.Window?.Image?.Source != null; 
         }
 
-        public void Execute(object parameter)
+        public override void Execute(object parameter)
         {
 
-            
             var bitmapSource = _windowViewModel.Window.Image.Source as BitmapSource;
 
-            if (bitmapSource != null)
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            saveFileDialog.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif|Png Image|*.png";
+            saveFileDialog.Title = "Save an Image File";
+
+            BitmapEncoder encoder = null;
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
-
-                saveFileDialog.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif|Png Image|*.png";
-                saveFileDialog.Title = "Save an Image File";
-
-                BitmapEncoder encoder = null;
-
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                if (saveFileDialog.FileName != "")
                 {
-                    if (saveFileDialog.FileName != "")
+                    switch (saveFileDialog.FilterIndex)
                     {
-                        switch (saveFileDialog.FilterIndex)
-                        {
-                            case 1:
-                                encoder = new JpegBitmapEncoder();
-                                break;
+                        case 1:
+                            encoder = new JpegBitmapEncoder();
+                            break;
 
-                            case 2:
-                                encoder = new BmpBitmapEncoder();
-                                break;
+                        case 2:
+                            encoder = new BmpBitmapEncoder();
+                            break;
 
-                            case 3:
-                                encoder = new GifBitmapEncoder();
-                                break;
+                        case 3:
+                            encoder = new GifBitmapEncoder();
+                            break;
 
-                            case 4:
-                                encoder = new PngBitmapEncoder();
-                                break;
-                        }
-
-                    
-                        Stream fileStream = (FileStream)saveFileDialog.OpenFile();
-                        byte[] imageByteArray = null;
-
-                        encoder.Frames.Add(BitmapFrame.Create(bitmapSource));
-
-                        using (var stream = new MemoryStream())
-                        {
-                            encoder.Save(stream);
-                            imageByteArray = stream.ToArray();
-                        }
-
-                        fileStream.Write(imageByteArray, 0, imageByteArray.Length);
-                        fileStream.Close();
+                        case 4:
+                            encoder = new PngBitmapEncoder();
+                            break;
                     }
-                }   
-            }
-            else
-            {
-                MessageBox.Show("Nothing to save!");
-                return;
+
+
+                    Stream fileStream = (FileStream)saveFileDialog.OpenFile();
+                    byte[] imageByteArray = null;
+
+                    encoder.Frames.Add(BitmapFrame.Create(bitmapSource));
+
+                    using (var stream = new MemoryStream())
+                    {
+                        encoder.Save(stream);
+                        imageByteArray = stream.ToArray();
+                    }
+
+                    fileStream.Write(imageByteArray, 0, imageByteArray.Length);
+                    fileStream.Close();
+                }
             }
         }
-    }
+}
 }

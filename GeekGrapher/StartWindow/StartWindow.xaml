@@ -32,6 +32,7 @@
             </MenuItem>
             <!--
             <MenuItem Header="_Start Page" InputGestureText="Ctrl+F5"/>
+            <MenuItem Header="_About Us" Command="{Binding OpenAboutUS}"/>
             -->
             <MenuItem Header="_Settings" Command="{Binding OpenSettings}"/>
             <MenuItem Header="_Help" Command="{Binding OpenHelp}" InputGestureText="F1"/>

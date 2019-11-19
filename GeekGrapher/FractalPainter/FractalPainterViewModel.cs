@@ -19,28 +19,63 @@ namespace GeekGrapher.FractalPainter
     {
         public FractalPainter Window { get; set; }
 
-        public string CReal { get; set; } = "0";
+        private string _CReal = "0";
+        public string CReal
+        {
+            get => _CReal; set
+            {
+                _CReal = value;
+                OnPropertyChanged(nameof(CReal));
+            }
+        }
+        private string _CImaginary = "0";
+        public string CImaginary
+        {
+            get => _CImaginary; set
+            {
+                _CImaginary = value;
+                OnPropertyChanged(nameof(CImaginary));
+            }
+        }
 
-        public string CImaginary { get; set; } = "0";
-
-        public string MaxIterations { get; set; } = "50";
+        private string _maxIterations = "50";
+        public string MaxIterations
+        {
+            get => _maxIterations; set
+            {
+                _maxIterations = value;
+                OnPropertyChanged(nameof(MaxIterations));
+            }
+        }
 
         public Dictionary<FractalFunction, string> FractalFunctions { get => FractalFunctionDefinitions.FractalFunctions; }
 
-        public FractalFunction SelectedFractalFunction { get; set; } = FractalFunction.Shz;
+        public FractalFunction _selectedFractalFunction = FractalFunction.Shz;
+        public FractalFunction SelectedFractalFunction
+        {
+            get
+            {
+                return _selectedFractalFunction;
+            }
+            set
+            {
+                _selectedFractalFunction = value;
+                OnPropertyChanged(nameof(SelectedFractalFunction));
+            }
+        }
 
         public Dictionary<ColorScheme, string> ColorSchemes { get => ColosSchemeDefinitions.ColorSchemes; }
 
-        public ColorScheme _colorScheme = ColorScheme.HSVBased;
+        public ColorScheme _selectedColorScheme = ColorScheme.HSVBased;
         public ColorScheme SelectedColorScheme
         {
             get
             {
-                return _colorScheme;
+                return _selectedColorScheme;
             }
             set
             {
-                _colorScheme = value;
+                _selectedColorScheme = value;
                 OnPropertyChanged(nameof(SelectedColorScheme));
             }
         }
@@ -61,7 +96,7 @@ namespace GeekGrapher.FractalPainter
         {
             get
             {
-                if (Window.ColorCount.BindingGroup.HasValidationError)
+                if (Window?.ColorCount?.BindingGroup?.HasValidationError ?? false)
                     return null;
                 return _palette.Take(Convert.ToInt32(ColorCount)).ToArray();
             }
@@ -69,7 +104,7 @@ namespace GeekGrapher.FractalPainter
 
         public ColorWrapper[] _palette;
 
-        public int MaxColors { get => 50; }
+        public static int MaxColors { get => 50; }
 
         public FractalPainterViewModel()
         {
@@ -94,6 +129,14 @@ namespace GeekGrapher.FractalPainter
         {
             Window = fractalPainter;
         }
+        public bool IsValid()
+        {
+            return !Window.CReal.BindingGroup.HasValidationError 
+                && !Window.CImaginary.BindingGroup.HasValidationError
+                && !Window.MaxIterations.BindingGroup.HasValidationError
+                && !Window.ColorCount.BindingGroup.HasValidationError;
+        }
+
         #region Commands
 
         private ICommand _saveAsImage;
@@ -106,6 +149,32 @@ namespace GeekGrapher.FractalPainter
                     _saveAsImage = new SaveAsImage(this);
                 }
                 return _saveAsImage;
+            }
+        }
+
+        private ICommand _saveAsXml;
+        public ICommand SaveAsXml
+        {
+            get
+            {
+                if (_saveAsXml == null)
+                {
+                    _saveAsXml = new SaveAsXml(this);
+                }
+                return _saveAsXml;
+            }
+        }
+
+        private ICommand _openXml;
+        public ICommand OpenXml
+        {
+            get
+            {
+                if (_openXml == null)
+                {
+                    _openXml = new OpenXml(this);
+                }
+                return _openXml;
             }
         }
 
@@ -135,8 +204,8 @@ namespace GeekGrapher.FractalPainter
             }
         }
 
-        private ICommand _draw;
-        public ICommand Draw
+        private ChangableCommand _draw;
+        public ChangableCommand Draw
         {
             get
             {
