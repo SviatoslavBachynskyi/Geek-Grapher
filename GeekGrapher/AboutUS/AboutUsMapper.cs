@@ -8,12 +8,10 @@ using GeekGrapher.AboutUsCore;
 
 namespace GeekGrapher.AboutUS
 {
-    class Mapping
-    { 
-        public static IMapper Create()
-        {
-            return new Mapper(
-                new MapperConfiguration(
+    class AboutUsMapper : Mapper
+    {
+        public AboutUsMapper():
+            base(new MapperConfiguration(
                         (cfg) =>
                         {
                             cfg.CreateMap<Author, AuthorViewModel>();
@@ -21,9 +19,9 @@ namespace GeekGrapher.AboutUS
 
                             cfg.CreateMap<AboutUsModel, AboutUsViewModel>();
                             cfg.CreateMap<AboutUsViewModel, AboutUsModel>();
-                        }
-                    )
-                );
+                        }))
+        {
+
         }
     }
 }

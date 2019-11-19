@@ -1,4 +1,6 @@
-﻿using GeekGrapher.AboutUsCore;
+﻿using AutoMapper;
+using GeekGrapher.AboutUsCore;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,11 +25,17 @@ namespace GeekGrapher.AboutUS
     /// </summary>
     public partial class AboutUS : Window
     {
+        static StandardKernel Kernel { get; set; }
+        static AboutUS()
+        {
+            Kernel = new StandardKernel();
+            Kernel.Load(new Binding());
+        }
         public AboutUS()
         {
             InitializeComponent();
 
-            var mapper = Mapping.Create();
+            var mapper = Kernel.Get<IMapper>(); 
 
             using (var reader = new FileStream((string)FindResource("Authors"), FileMode.Open))
             {

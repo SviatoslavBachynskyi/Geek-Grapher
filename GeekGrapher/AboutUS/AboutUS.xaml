@@ -12,7 +12,7 @@
         <converters:ImageConverter x:Key="ImagePathConverter"></converters:ImageConverter>
     </Window.Resources>
     <Grid>
-        <DataGrid ItemsSource="{Binding Authors}" CanUserAddRows="False">
+        <DataGrid ItemsSource="{Binding Authors}" CanUserAddRows="False" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
