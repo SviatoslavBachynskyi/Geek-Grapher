@@ -32,9 +32,10 @@ namespace GeekGrapher.ImageConverter
             ViewModel = new ImageConverterViewModel();
         }
 
-        private void Image_MouseEnter(object sender, MouseEventArgs e)
+        private void Image_MouseMove(object sender, MouseEventArgs e)
         {
            var position =  e.GetPosition((IInputElement)sender);
+            ViewModel.MousePosition = position;
         }
     }
 }

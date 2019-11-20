@@ -1,35 +1,33 @@
-﻿using System;
+﻿using GeekGrapher.General;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using System.Windows.Forms;
-using System.IO;
-using System.Drawing;
 using System.Windows.Media.Imaging;
-using GeekGrapher.General;
 
-namespace GeekGrapher.FractalPainter.Commands
+namespace GeekGrapher.ImageConverter.Commands
 {
     internal class SaveAsImage : ChangableCommand
     {
-        private readonly FractalPainterViewModel _windowViewModel;
+        private readonly ImageConverterViewModel _windowViewModel;
 
-        public SaveAsImage(FractalPainterViewModel windowViewModel)
+        public SaveAsImage(ImageConverterViewModel windowViewModel)
         {
             _windowViewModel = windowViewModel;
         }
 
         public override bool CanExecute(object parameter)
         {
-            return _windowViewModel?.Window?.Image?.Source != null;
+            return _windowViewModel?.ConvertedImage != null;
         }
 
         public override void Execute(object parameter)
         {
 
-            var bitmapSource = _windowViewModel.Window.Image.Source as BitmapSource;
+            var bitmapSource = _windowViewModel.ConvertedImage as BitmapSource;
 
             SaveFileDialog saveFileDialog = new SaveFileDialog();
 

@@ -31,7 +31,13 @@
             <MenuItem Header="_Help"/>
         </Menu>
         <Canvas DockPanel.Dock="Right">
-            <general:QuickActionsBar Width="180" Height="45" Canvas.Top="0" Canvas.Right="5"/>
+            <general:QuickActionsBar Canvas.Right="5" Canvas.Top="0" Width="180" Height="45" 
+                                     UndoCommand="{Binding DataContext.EmptyCommand,
+                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ImageConverter}}"
+                                     RedoCommand="{Binding DataContext.EmptyCommand,
+                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ImageConverter}}"
+                                     SaveCommand="{Binding DataContext.SaveAsImage,
+                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ImageConverter}}"/>
         </Canvas>
         <Grid DockPanel.Dock="Bottom">
             <Grid.RowDefinitions>
@@ -50,21 +56,21 @@
             <Viewbox Grid.Row="1" Grid.Column="1">
                 <TextBlock>Converted Image (CMYK)</TextBlock>
             </Viewbox>
-            <Image Grid.Row="2" Grid.Column="0" MouseEnter="Image_MouseEnter" Source="{Binding OriginalImage}"></Image>
-            <Image Grid.Row="2" Grid.Column="1" MouseEnter="Image_MouseEnter"></Image>
+            <Image Grid.Row="2" Grid.Column="0" MouseMove="Image_MouseMove" Stretch="None" Source="{Binding OriginalImage}"></Image>
+            <Image Grid.Row="2" Grid.Column="1" MouseMove="Image_MouseMove" Stretch="None" Source="{Binding ConvertedImage}"></Image>
             <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
                 <Viewbox>
-                    <TextBlock>HSV(30,100,45)</TextBlock>
+                    <TextBlock Text="{Binding HSLText}"></TextBlock>
                 </Viewbox>
             </StackPanel>
             <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
                 <Viewbox>
-                <TextBlock>HSV(30,100,45)</TextBlock>
+                    <TextBlock Text="{Binding CMYKText}"></TextBlock>
                 </Viewbox>
             </StackPanel>
             <DockPanel Grid.Column="0" Grid.ColumnSpan="2" Width="500" VerticalAlignment="Center">
                 <Label DockPanel.Dock="Left" Margin="0,0,10,0" FontSize="16">Yellow Saturation:</Label>
-                <TextBox Text="{Binding Saturation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="Auto" VerticalAlignment="Center"></TextBox>
+                <TextBox Width="30" Margin="10,0,10,0" Text="{Binding Saturation}" IsReadOnly="True" Height="Auto" VerticalAlignment="Center"></TextBox>
                 <Slider DockPanel.Dock="Right"  VerticalAlignment="Center" Minimum="0.1" Maximum="10"  Value="{Binding Saturation, Mode=TwoWay}" IsSnapToTickEnabled="True" TickFrequency="0.1" TickPlacement="BottomRight"/>
             </DockPanel>
         </Grid>

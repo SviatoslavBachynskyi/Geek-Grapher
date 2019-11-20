@@ -88,6 +88,7 @@
     <Compile Include="AboutUS\AboutUsViewModel.cs" />
     <Compile Include="AboutUS\AuthorViewModel.cs" />
     <Compile Include="AboutUS\Binding.cs" />
+    <Compile Include="AboutUS\ColorSchemeConverter.cs" />
     <Compile Include="AboutUS\Converters\ImageConverter.cs" />
     <Compile Include="AboutUS\AboutUsMapper.cs" />
     <Compile Include="FractalPainter\Binding.cs" />
@@ -101,7 +102,7 @@
     <Compile Include="FractalPainter\FractalMapper.cs" />
     <Compile Include="FractalPainter\Frame.cs" />
     <Compile Include="FractalPainter\Validations\DoubleValidation.cs" />
-    <Compile Include="FractalPainter\ColorsToBytesConverter.cs" />
+    <Compile Include="General\ColorsToBytesConverter.cs" />
     <Compile Include="FractalPainter\Commands\DrawAndCreate.cs" />
     <Compile Include="BindingErrorListener.cs" />
     <Compile Include="FractalPainter\EnumDefinitions\ColosSchemeDefinitions.cs" />
@@ -120,7 +121,9 @@
       <DependentUpon>AffineTransformations.xaml</DependentUpon>
     </Compile>
     <Compile Include="General\StringExt.cs" />
+    <Compile Include="ImageConverter\Commands\EmptyCommand.cs" />
     <Compile Include="ImageConverter\Commands\OpenImage.cs" />
+    <Compile Include="ImageConverter\Commands\SaveAsImage.cs" />
     <Compile Include="ImageConverter\ImageConverterViewModel.cs" />
     <Compile Include="StartWindow\Commands\OpenAffineTransformations.cs" />
     <Compile Include="StartWindow\Commands\OpenFractalPainter.cs" />
@@ -242,6 +245,10 @@
     <ProjectReference Include="..\FractalCore\FractalCore.csproj">
       <Project>{51fe4b3e-d75c-43d6-9ca4-22853e64d913}</Project>
       <Name>FractalCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImageConverterCore\ImageConverterCore.csproj">
+      <Project>{7c69bf2d-d860-41a1-b2b8-16e32297b685}</Project>
+      <Name>ImageConverterCore</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
