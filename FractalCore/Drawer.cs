@@ -41,13 +41,14 @@ namespace GeekGrapher.FractalCore
 
         internal double[,] Iterations { get; set; }
 
-        public Color[,] Draw()
+        public Color[,] Draw(bool zoomed)
         {
             var result = new Color[Height, Width];
 
             Iterations = new double[Height, Width];
 
-            IterationCalculator.PreCalculate(this);
+            if (!zoomed)
+                IterationCalculator.PreCalculate(this);
 
             Parallel.For(0, Height,
                 (y) =>
@@ -60,14 +61,15 @@ namespace GeekGrapher.FractalCore
                            YStart + (YFinish - YStart) * y / Height, out z);
 
                         if (Smooth)
-                            Iterations[y, x] = IterationSmoother.MakeSmooth(this, iter,z);
+                            Iterations[y, x] = IterationSmoother.MakeSmooth(this, iter, z);
                         else
                             Iterations[y, x] = iter;
                     }
                 }
                 );
 
-            ColorCalculator.PreCalculate(this);
+            if (!zoomed)
+                ColorCalculator.PreCalculate(this);
 
             Parallel.For(0, Height,
                 (y) =>

@@ -49,6 +49,7 @@
     <Compile Include="ColorCalculators\HSVCalculator.cs" />
     <Compile Include="ColorCalculators\ColorCalculator.cs" />
     <Compile Include="ColorCalculators\PaletteCalculator.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Drawer.cs" />
     <Compile Include="DrawerFactory.cs" />
     <Compile Include="FractalModel.cs" />

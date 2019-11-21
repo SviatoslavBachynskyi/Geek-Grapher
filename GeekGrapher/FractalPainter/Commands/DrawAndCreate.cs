@@ -29,7 +29,7 @@ namespace GeekGrapher.FractalPainter.Commands
 
         public override void Execute(object parameter)
         {
-
+            
             var drawer =
         DrawerFactory.CreateDrawer(
             WindowViewModel.SelectedFractalFunction,
@@ -43,7 +43,7 @@ namespace GeekGrapher.FractalPainter.Commands
             var maxIterations = Int32.Parse(WindowViewModel.MaxIterations);
 
             drawer.C = new Complex(cReal, CImaginary);
-            drawer.Smooth = true;
+            drawer.Smooth = WindowViewModel.MakeSmooth;
             drawer.MaxIterations = maxIterations;
 
             WindowViewModel.Frames = new List<Frame>();
