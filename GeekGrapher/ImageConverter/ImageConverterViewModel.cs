@@ -46,7 +46,7 @@ namespace GeekGrapher.ImageConverter
                 int x = (int) MousePosition.X;
                 int y = (int)MousePosition.Y;
                 var color = HSLColors[y, x];
-                return $"HSV({color.Hue.ToString("F0")}, {color.Saturation.ToString("F2")}, {color.Lightness.ToString("F2")})";
+                return $"HSL({color.Hue.ToString("F0")}, {color.Saturation.ToString("F2")}, {color.Lightness.ToString("F2")})";
             } }
 
         public string CMYKText

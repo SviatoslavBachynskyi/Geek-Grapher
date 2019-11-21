@@ -88,7 +88,6 @@
     <Compile Include="AboutUS\AboutUsViewModel.cs" />
     <Compile Include="AboutUS\AuthorViewModel.cs" />
     <Compile Include="AboutUS\Binding.cs" />
-    <Compile Include="AboutUS\ColorSchemeConverter.cs" />
     <Compile Include="AboutUS\Converters\ImageConverter.cs" />
     <Compile Include="AboutUS\AboutUsMapper.cs" />
     <Compile Include="FractalPainter\Binding.cs" />
