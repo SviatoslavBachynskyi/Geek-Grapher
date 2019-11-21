@@ -12,9 +12,9 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
-                <MenuItem Header="_New" InputGestureText="Ctrl+N"/>
+                <!--
                 <Separator />
-                <MenuItem Header="_Open" InputGestureText="Ctrl+O"/>
+                <MenuItem Header="_New" InputGestureText="Ctrl+N"/>
                 <MenuItem Header="_Open Recent ->"/>
                 <Separator />
                 <MenuItem Header="_Save" InputGestureText="Ctrl+S"/>
@@ -23,36 +23,55 @@
                 <MenuItem Header="_Close" InputGestureText="Ctrl+Q"/>
                 <Separator />
                 <MenuItem Header="_Exit" />
+                -->
+                <MenuItem Header="_Open" InputGestureText="Ctrl+O" Command="{Binding OpenImage}"/>
             </MenuItem>
             <MenuItem Header="_Start Page" InputGestureText="Ctrl+F5"/>
             <MenuItem Header="_Settings"/>
             <MenuItem Header="_Help"/>
         </Menu>
         <Canvas DockPanel.Dock="Right">
-            <general:QuickActionsBar Width="180" Height="45" Canvas.Top="0" Canvas.Right="5"/>
+            <general:QuickActionsBar Canvas.Right="5" Canvas.Top="0" Width="180" Height="45" 
+                                     UndoCommand="{Binding DataContext.EmptyCommand,
+                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ImageConverter}}"
+                                     RedoCommand="{Binding DataContext.EmptyCommand,
+                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ImageConverter}}"
+                                     SaveCommand="{Binding DataContext.SaveAsImage,
+                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ImageConverter}}"/>
         </Canvas>
         <Grid DockPanel.Dock="Bottom">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="55"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Viewbox Grid.Row="1" Grid.Column="0">
-                <TextBlock>Original Image</TextBlock>
+                <TextBlock>Original Image (HSL)</TextBlock>
             </Viewbox>
             <Viewbox Grid.Row="1" Grid.Column="1">
-                <TextBlock>Converted Image</TextBlock>
+                <TextBlock>Converted Image (CMYK)</TextBlock>
             </Viewbox>
-            <general:ImageZoomer Grid.Row="2" Grid.Column="0" Loaded="ImageZoomer_Loaded"></general:ImageZoomer>
-            <general:ImageZoomer Grid.Row="2" Grid.Column="1"></general:ImageZoomer>
-            <DockPanel Grid.Column="0" Grid.ColumnSpan="2" Width="300" VerticalAlignment="Center">
-                <Label DockPanel.Dock="Left" Margin="0,0,10,0" FontSize="16">Yellow Saturation: </Label>
-                <TextBox Text="100" Height="Auto" VerticalAlignment="Center"></TextBox>
-                <Slider DockPanel.Dock="Right"  VerticalAlignment="Center" Maximum="255" Value="100" TickPlacement="BottomRight"/>
+            <Image Grid.Row="2" Grid.Column="0" MouseMove="Image_MouseMove" Stretch="None" Source="{Binding OriginalImage}"></Image>
+            <Image Grid.Row="2" Grid.Column="1" MouseMove="Image_MouseMove" Stretch="None" Source="{Binding ConvertedImage}"></Image>
+            <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+                <Viewbox>
+                    <TextBlock Text="{Binding HSLText}"></TextBlock>
+                </Viewbox>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+                <Viewbox>
+                    <TextBlock Text="{Binding CMYKText}"></TextBlock>
+                </Viewbox>
+            </StackPanel>
+            <DockPanel Grid.Column="0" Grid.ColumnSpan="2" Width="500" VerticalAlignment="Center">
+                <Label DockPanel.Dock="Left" Margin="0,0,10,0" FontSize="16">Yellow Saturation:</Label>
+                <TextBox Width="30" Margin="10,0,10,0" Text="{Binding Saturation}" IsReadOnly="True" Height="Auto" VerticalAlignment="Center"></TextBox>
+                <Slider DockPanel.Dock="Right"  VerticalAlignment="Center" Minimum="0.1" Maximum="10"  Value="{Binding Saturation, Mode=TwoWay}" IsSnapToTickEnabled="True" TickFrequency="0.1" TickPlacement="BottomRight"/>
             </DockPanel>
         </Grid>
     </DockPanel>

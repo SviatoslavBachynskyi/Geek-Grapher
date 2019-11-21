@@ -19,14 +19,23 @@ namespace GeekGrapher.ImageConverter
     /// </summary>
     public partial class ImageConverter : Window
     {
+        private ImageConverterViewModel _viewModel;
+        public ImageConverterViewModel ViewModel { get => _viewModel; set
+            {
+                _viewModel = value;
+                DataContext = value;
+            }
+        }
         public ImageConverter()
         {
             InitializeComponent();
+            ViewModel = new ImageConverterViewModel();
         }
 
-        private void ImageZoomer_Loaded(object sender, RoutedEventArgs e)
+        private void Image_MouseMove(object sender, MouseEventArgs e)
         {
-
+           var position =  e.GetPosition((IInputElement)sender);
+            ViewModel.MousePosition = position;
         }
     }
 }
