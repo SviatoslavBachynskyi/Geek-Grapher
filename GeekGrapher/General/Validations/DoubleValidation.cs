@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace GeekGrapher.FractalPainter.Validations
+namespace GeekGrapher.General.Validations
 {
     class DoubleValidation : ValidationRule
     {
