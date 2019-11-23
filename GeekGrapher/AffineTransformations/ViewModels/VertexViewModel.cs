@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace GeekGrapher.AffineTransformations.ViewModels
 {
@@ -21,5 +22,9 @@ namespace GeekGrapher.AffineTransformations.ViewModels
                 _y = value;
                 OnPropertyChanged(nameof(Y));
             } }
+        public Point ToPoint()
+        {
+            return new Point(Convert.ToDouble(X), Convert.ToDouble(Y));
+        }
     }
 }

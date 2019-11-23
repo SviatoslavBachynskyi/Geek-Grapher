@@ -34,7 +34,7 @@ namespace GeekGrapher.AffineTransformations
         {
             InitializeComponent();
 
-            ViewModel = new ParallelogramViewModel();
+            ViewModel = new ParallelogramViewModel(this);
         }
     }
 }
