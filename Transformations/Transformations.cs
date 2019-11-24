@@ -36,12 +36,13 @@ namespace Transformations
             parallelogram.D = (parallelogram.D.ToVector().Transform(transformations)).ToPoint();
             return parallelogram;
         }
-        public static Parallelogram Rotate(this Parallelogram parallelogram, double angle, Point center)
+        public static Parallelogram Rotate(this Parallelogram parallelogram, double angle, double k, Point center)
         {
             var transformations = new List<double[,]>()
             {
                 BaseTransformations.Move(-center.X, -center.Y),
                 BaseTransformations.Rotate(angle),
+                BaseTransformations.Scale(k,k),
                 BaseTransformations.Move(center.X, center.Y),
             };
 

@@ -30,5 +30,14 @@ namespace Transformations
              { 0, 0,1}
             };
         }
+        public static double[,] Scale(double kx, double ky)
+        {
+            return new double[,]
+            {
+             { kx, 0,0 },
+             { 0, ky,0 },
+             { 0, 0,1}
+            };
+        }
     }
 }

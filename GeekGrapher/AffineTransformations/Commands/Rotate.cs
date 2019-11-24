@@ -23,6 +23,7 @@ namespace GeekGrapher.AffineTransformations.Commands
             var plot = new Plot(ViewModel.Window.Canvas, new Point(10, 10), new Point(-10, -10));
             plot.Draw();
             plot.Draw(ViewModel.ToParallelogram());
+            var ratio = Convert.ToDouble(ViewModel.Rotation.Ratio);
             var angle = Convert.ToDouble(ViewModel.Rotation.Angle);
             if (ViewModel.Rotation.Direction == Direction.Right)
                 angle *= -1;
@@ -46,7 +47,7 @@ namespace GeekGrapher.AffineTransformations.Commands
                     throw new NotImplementedException();
             }
 
-            var newParallelogram = ViewModel.ToParallelogram().Rotate(angle, center);
+            var newParallelogram = ViewModel.ToParallelogram().Rotate(angle, ratio, center);
             newParallelogram.Fill = Colors.AliceBlue;
             plot.Draw(newParallelogram);
         }
