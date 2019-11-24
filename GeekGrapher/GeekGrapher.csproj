@@ -90,6 +90,8 @@
     <Compile Include="AboutUS\Binding.cs" />
     <Compile Include="AboutUS\Converters\ImageConverter.cs" />
     <Compile Include="AboutUS\AboutUsMapper.cs" />
+    <Compile Include="AffineTransformations\Commands\Draw.cs" />
+    <Compile Include="AffineTransformations\Commands\Rotate.cs" />
     <Compile Include="AffineTransformations\Plot.cs" />
     <Compile Include="AffineTransformations\ViewModels\ParallelogramViewModel.cs" />
     <Compile Include="AffineTransformations\ViewModels\RotationViewModel.cs" />
@@ -246,6 +248,10 @@
     <ProjectReference Include="..\ImageConverterCore\ImageConverterCore.csproj">
       <Project>{7c69bf2d-d860-41a1-b2b8-16e32297b685}</Project>
       <Name>ImageConverterCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Transformations\Transformations.csproj">
+      <Project>{A7BF0223-7789-4847-A678-0A9BF371E4B5}</Project>
+      <Name>Transformations</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

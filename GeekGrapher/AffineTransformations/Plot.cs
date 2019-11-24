@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using Transformations;
 
 namespace GeekGrapher.AffineTransformations
 {
@@ -103,17 +104,17 @@ namespace GeekGrapher.AffineTransformations
             return point;
         }
 
-        public void Draw(ParallelogramViewModel parallelogram)
+        public void Draw(Parallelogram parallelogram)
         {
             var parallelogramShape = new Polygon()
             {
-                Stroke = new SolidColorBrush(parallelogram.Style.LineColor),
-                Fill = new SolidColorBrush(parallelogram.Style.FillColor),
+                Stroke = new SolidColorBrush(parallelogram.Stroke),
+                Fill = new SolidColorBrush(parallelogram.Fill),
                 Points = new PointCollection() {
-                    CalculateCoordinates(parallelogram.A.ToPoint()),
-                    CalculateCoordinates(parallelogram.B.ToPoint()),
-                    CalculateCoordinates(parallelogram.C.ToPoint()),
-                    CalculateCoordinates(parallelogram.D.ToPoint()),
+                    CalculateCoordinates(parallelogram.A),
+                    CalculateCoordinates(parallelogram.B),
+                    CalculateCoordinates(parallelogram.C),
+                    CalculateCoordinates(parallelogram.D),
                 }
             };
             Canvas.Children.Add(parallelogramShape);
@@ -121,7 +122,7 @@ namespace GeekGrapher.AffineTransformations
     }
 }
 
-public static class Extensions{
+internal static class PlotExtensions{
     public static UIElementCollection Add(this UIElementCollection collection, IEnumerable<UIElement> elements)
     {
         foreach(var element in elements)

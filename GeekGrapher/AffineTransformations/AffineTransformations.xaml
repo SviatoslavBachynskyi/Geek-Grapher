@@ -76,6 +76,7 @@
                                 <RowDefinition Height="*"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" Padding="0,1,0,0" Foreground="Red"
                            Content="{Binding Path=Error}"/>
@@ -275,6 +276,7 @@
                            Content="{Binding DError}"/>
                                 </Grid>
                             </GroupBox>
+                            <Button Grid.Row="5" Command="{Binding Draw}" Height="25" Width="50" HorizontalAlignment="Right">Draw</Button>
                         </Grid>
                     </GroupBox>
                     <GroupBox DataContext="{Binding Path=Style}" Header="Colors" Grid.Row="1">
@@ -389,7 +391,7 @@
                            Content="{Binding BindingGroupName=Ratio, Path=(Validation.Errors)[0].ErrorContent, ElementName=Ratio, FallbackValue=''}"/>
                             </Grid>
                             <!--Ratio-->
-                            <Button MaxHeight="25" Grid.Row="8" Grid.Column="2">Rotate</Button>
+                            <Button MaxHeight="25" Grid.Row="8" Grid.Column="2" Command="{Binding Rotate}">Rotate</Button>
                         </Grid>
                     </GroupBox>
                 </Grid>

@@ -1,9 +1,11 @@
-﻿using GeekGrapher.General;
+﻿using GeekGrapher.AffineTransformations.Commands;
+using GeekGrapher.General;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace GeekGrapher.AffineTransformations.ViewModels
 {
@@ -23,6 +25,11 @@ namespace GeekGrapher.AffineTransformations.ViewModels
 
     public class RotationViewModel : BaseViewModel
     {
+        ParallelogramViewModel Parallelogram { get; set; }
+        public RotationViewModel(ParallelogramViewModel parallelogram)
+        {
+            Parallelogram = parallelogram;
+        }
         private RotationVertex _rotationVertex;
         public RotationVertex RotationVertex
         {
@@ -68,5 +75,7 @@ namespace GeekGrapher.AffineTransformations.ViewModels
                 OnPropertyChanged(nameof(Ratio));
             }
         }
+
+        public ICommand Rotate { get => new Rotate(Parallelogram); }
     }
 }

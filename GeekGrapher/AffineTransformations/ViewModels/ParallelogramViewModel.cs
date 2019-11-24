@@ -1,4 +1,5 @@
-﻿using GeekGrapher.General;
+﻿using GeekGrapher.AffineTransformations.Commands;
+using GeekGrapher.General;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
+using Transformations;
 
 namespace GeekGrapher.AffineTransformations.ViewModels
 {
@@ -35,7 +38,7 @@ namespace GeekGrapher.AffineTransformations.ViewModels
             };
             D = new VertexViewModel();
 
-            Rotation = new RotationViewModel()
+            Rotation = new RotationViewModel(this)
             {
                 Ratio = "1",
                 Angle = "45"
@@ -150,12 +153,6 @@ namespace GeekGrapher.AffineTransformations.ViewModels
                 {
                     OnPropertyChanged(nameof(A));
                     CalculateVertexes();
-                    if (AreVertexesValid())
-                    {
-                        var plot = new Plot(Window.Canvas, new Point(10, 10), new Point(-10, -10));
-                        plot.Draw();
-                        plot.Draw(this);
-                    }
                 }
             }
         }
@@ -234,6 +231,22 @@ namespace GeekGrapher.AffineTransformations.ViewModels
                 }
             }
         }
+
+
+        public Parallelogram ToParallelogram()
+        {
+            return new Parallelogram()
+            {
+                A = A.ToPoint(),
+                B = B.ToPoint(),
+                C = C.ToPoint(),
+                D = D.ToPoint(),
+                Fill = Style.FillColor,
+                Stroke = Style.LineColor
+            };
+        }
+
+        public ICommand Draw { get => new Draw(this); }
 
         public RotationViewModel Rotation { get; set; }
         public StyleViewModel Style { get; set; }
