@@ -13,6 +13,7 @@ namespace GeekGrapher.AffineTransformations.ViewModels
     public class ParallelogramViewModel : BaseViewModel
     {
         public AffineTransformations Window { get; set; }
+
         public ParallelogramViewModel(AffineTransformations window)
         {
             this.Window = window;
@@ -149,6 +150,12 @@ namespace GeekGrapher.AffineTransformations.ViewModels
                 {
                     OnPropertyChanged(nameof(A));
                     CalculateVertexes();
+                    if (AreVertexesValid())
+                    {
+                        var plot = new Plot(Window.Canvas, new Point(10, 10), new Point(-10, -10));
+                        plot.Draw();
+                        plot.Draw(this);
+                    }
                 }
             }
         }

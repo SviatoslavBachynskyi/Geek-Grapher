@@ -90,6 +90,7 @@
     <Compile Include="AboutUS\Binding.cs" />
     <Compile Include="AboutUS\Converters\ImageConverter.cs" />
     <Compile Include="AboutUS\AboutUsMapper.cs" />
+    <Compile Include="AffineTransformations\Plot.cs" />
     <Compile Include="AffineTransformations\ViewModels\ParallelogramViewModel.cs" />
     <Compile Include="AffineTransformations\ViewModels\RotationViewModel.cs" />
     <Compile Include="AffineTransformations\ViewModels\StyleViewModel.cs" />
