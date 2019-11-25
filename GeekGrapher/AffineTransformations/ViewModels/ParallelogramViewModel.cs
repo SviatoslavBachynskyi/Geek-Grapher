@@ -51,6 +51,12 @@ namespace GeekGrapher.AffineTransformations.ViewModels
             };
             CalculateVertexes();
         }
+        public bool IsFormValid()
+        {
+            return AreVertexesValid()
+                && !Window.Ratio.BindingGroup.HasValidationError
+                && !Window.Angle.BindingGroup.HasValidationError;
+        }
         public bool AreVertexesValid()
         {
             //TODO Add all groups

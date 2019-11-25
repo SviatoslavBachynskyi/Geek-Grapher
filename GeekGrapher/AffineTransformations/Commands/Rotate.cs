@@ -18,6 +18,20 @@ namespace GeekGrapher.AffineTransformations.Commands
         {
             this.ViewModel = viewModel;
         }
+        private bool IsInRange(Point point, double downLimit, double upLimit)
+        {
+            if (point.X < downLimit) return false;
+            if (point.X > upLimit) return false;
+            if (point.Y < downLimit) return false;
+            if (point.Y > upLimit) return false;
+            return true;
+        }
+
+        public override bool CanExecute(object parameter)
+        {
+            return ViewModel.IsFormValid();
+        }
+
         public override void Execute(object parameter)
         {
             var plot = new Plot(ViewModel.Window.Canvas, new Point(11, 11), new Point(-11, -11));
@@ -48,8 +62,19 @@ namespace GeekGrapher.AffineTransformations.Commands
             }
 
             var newParallelogram = ViewModel.ToParallelogram().Rotate(angle, ratio, center);
+            if (
+                !IsInRange(newParallelogram.A, -10, 10)
+                || !IsInRange(newParallelogram.B, -10, 10)
+                || !IsInRange(newParallelogram.C, -10, 10)
+                || !IsInRange(newParallelogram.D, -10, 10)
+                )
+            {
+                ViewModel.Window.Canvas.Children.Clear();
+                MessageBox.Show("Parallelogram is out of limit, try setting lower ratio","Warning",MessageBoxButton.OK,MessageBoxImage.Warning);
+                return;
+            }
             newParallelogram.Fill = Colors.AliceBlue;
-            plot.Draw(newParallelogram,"'");
+            plot.Draw(newParallelogram, "'");
         }
     }
 }
