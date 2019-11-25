@@ -50,9 +50,11 @@
             <MenuItem Header="_Settings"/>
             <MenuItem Header="_Help"/>
         </Menu>
+        <!--
         <Canvas DockPanel.Dock="Right">
             <general:QuickActionsBar Width="180" Height="45" Canvas.Top="0" Canvas.Right="5"/>
         </Canvas>
+        -->
         <Grid DockPanel.Dock="Bottom">
             <Grid.RowDefinitions>
             </Grid.RowDefinitions>
