@@ -24,9 +24,9 @@ namespace GeekGrapher.AffineTransformations.Commands
 
         public override void Execute(object parameter)
         {
-            var plot = new Plot(ViewModel.Window.Canvas, new Point(10, 10), new Point(-10, -10));
+            var plot = new Plot(ViewModel.Window.Canvas, new Point(11, 11), new Point(-11, -11));
             plot.Draw();
-            plot.Draw(ViewModel.ToParallelogram());
+            plot.Draw(ViewModel.ToParallelogram(),"",true);
         }
     }
 }
