@@ -219,12 +219,16 @@ namespace GeekGrapher.AffineTransformations
             return textBlock;
         }
 
-        public TextBlock CalculateText(string text, Point fst, Point snd, Point real)
+        public TextBlock CalculateText(string text, bool rotate, Point fst, Point snd, Point real)
         {
-            return DrawText(text + $"({fst.X.ToString("F2")}, {fst.Y.ToString("F2")})", real, fst.Y > snd.Y);
+            if (rotate)
+            {
+                return DrawText(text + $"({fst.X.ToString("F2")}, {fst.Y.ToString("F2")})", real, fst.Y > snd.Y);
+            }
+            return DrawText(text, real, fst.Y > snd.Y);
         }
 
-        public void Draw(Parallelogram parallelogram, string add = "", bool displayLabels = false)
+        public void Draw(Parallelogram parallelogram, string add = "", bool rotate = false)
         {
             Point a = CalculateCoordinates(parallelogram.A),
                 b = CalculateCoordinates(parallelogram.B),
@@ -242,13 +246,10 @@ namespace GeekGrapher.AffineTransformations
                 }
             };
             CanvasObj.Children.Add(parallelogramShape);
-            if (displayLabels)
-            {
-                CanvasObj.Children.Add(CalculateText("A" + add, parallelogram.A, parallelogram.C, a));
-                CanvasObj.Children.Add(CalculateText("B" + add, parallelogram.B, parallelogram.D, b));
-                CanvasObj.Children.Add(CalculateText("C" + add, parallelogram.C, parallelogram.A, c));
-                CanvasObj.Children.Add(CalculateText("D" + add, parallelogram.D, parallelogram.B, d));
-            }
+            CanvasObj.Children.Add(CalculateText("A" + add, rotate, parallelogram.A, parallelogram.C, a));
+            CanvasObj.Children.Add(CalculateText("B" + add, rotate, parallelogram.B, parallelogram.D, b));
+            CanvasObj.Children.Add(CalculateText("C" + add, rotate, parallelogram.C, parallelogram.A, c));
+            CanvasObj.Children.Add(CalculateText("D" + add, rotate, parallelogram.D, parallelogram.B, d));
         }
     }
 }
