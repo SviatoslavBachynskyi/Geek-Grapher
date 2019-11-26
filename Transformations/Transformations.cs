@@ -10,14 +10,6 @@ namespace Transformations
 {
     public static class Transformations
     {
-        private static double[] Transform(this double[] vector, List<double[,]> transformations)
-        {
-            foreach(var transformation in transformations)
-            {
-                vector = MatrixMultiply.Multiply(vector, transformation);
-            }
-            return vector;
-        }
         private static double[] ToVector(this Point point)
         {
             return new double[3] {
@@ -28,15 +20,25 @@ namespace Transformations
         {
             return new Point(vector[0], vector[1]);
         }
-        private static Parallelogram Transform(this Parallelogram parallelogram, List<double[,]> transformations)
+        public static Parallelogram Transform(this Parallelogram parallelogram, double[,] transformation)
         {
-            parallelogram.A = (parallelogram.A.ToVector().Transform(transformations)).ToPoint();
-            parallelogram.B = (parallelogram.B.ToVector().Transform(transformations)).ToPoint();
-            parallelogram.C = (parallelogram.C.ToVector().Transform(transformations)).ToPoint();
-            parallelogram.D = (parallelogram.D.ToVector().Transform(transformations)).ToPoint();
+            parallelogram.A = (parallelogram.A.ToVector().Transform(transformation)).ToPoint();
+            parallelogram.B = (parallelogram.B.ToVector().Transform(transformation)).ToPoint();
+            parallelogram.C = (parallelogram.C.ToVector().Transform(transformation)).ToPoint();
+            parallelogram.D = (parallelogram.D.ToVector().Transform(transformation)).ToPoint();
             return parallelogram;
         }
-        public static Parallelogram Rotate(this Parallelogram parallelogram, double angle, double k, Point center)
+
+        public static double[] Transform(this double[] vector, double[,] transformation)
+        {
+            return MatrixMultiply.Multiply(vector, transformation);
+        }
+
+        private static double[,] Multiply(this List<double[,]> transformations)
+        {
+            return transformations.Aggregate((a, b) => a = MatrixMultiply.Multiply(a, b));
+        }
+        public static double[,] RotateTransformation(double angle, double k, Point center)
         {
             var transformations = new List<double[,]>()
             {
@@ -46,8 +48,7 @@ namespace Transformations
                 BaseTransformations.Move(center.X, center.Y),
             };
 
-            parallelogram.Transform(transformations);
-            return parallelogram;
+            return transformations.Multiply();
         }
     }
 }

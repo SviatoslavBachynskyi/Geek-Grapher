@@ -71,10 +71,10 @@ namespace GeekGrapher.AffineTransformations.Commands
                         {
                             var oldParallelogram = ViewModel.ToParallelogram();
                             oldParallelogram.Fill = Colors.AliceBlue;
-                            plot.Draw(oldParallelogram, "'", false,true);
+                            plot.Draw(oldParallelogram, "", false, true);
                         }
-
-                        var newParallelogram = ViewModel.ToParallelogram().Rotate(angle * (i) / Frames, 1 + (ratio - 1) * (i) / Frames, center);
+                        var transformationMatrix = Transformations.Transformations.RotateTransformation(angle * (i) / Frames, 1 + (ratio - 1) * (i) / Frames, center);
+                        var newParallelogram = ViewModel.ToParallelogram().Transform(transformationMatrix);
                         if (
                             !IsInRange(newParallelogram.A, -10, 10)
                             || !IsInRange(newParallelogram.B, -10, 10)

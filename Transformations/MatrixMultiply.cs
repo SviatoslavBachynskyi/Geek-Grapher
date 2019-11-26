@@ -22,5 +22,24 @@ namespace Transformations
             }
             return result;
         }
+        public static double[,] Multiply(double[,] a, double[,] b)
+        {
+            if (a.GetLength(1) != b.GetLength(0)) throw new ArgumentException("Matrix cannot be multiplied");
+            var result = new double[a.GetLength(0), b.GetLength(1)];
+            for (int i = 0; i < a.GetLength(0); i++)
+            {
+                for (int j = 0; j < b.GetLength(1); j++)
+                {
+
+                var elem = 0.0;
+                for (int k = 0; k < b.GetLength(0); k++)
+                {
+                    elem += a[i,k] * b[k, j];
+                }
+                result[i,j] = elem;
+                }
+            }
+            return result;
+        }
     }
 }
