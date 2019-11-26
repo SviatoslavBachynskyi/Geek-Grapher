@@ -25,8 +25,8 @@ namespace Transformations
             return new double[,]
             {
 
-             { Math.Cos(radian), Math.Sin(radian),0 },
-             { Math.Sin(-radian), Math.Cos(radian),0 },
+             { Math.Cos(radian), -Math.Sin(radian),0 },
+             { Math.Sin(radian), Math.Cos(radian),0 },
              { 0, 0,1}
             };
         }

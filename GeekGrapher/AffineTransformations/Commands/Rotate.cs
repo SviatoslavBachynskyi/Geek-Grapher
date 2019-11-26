@@ -39,7 +39,7 @@ namespace GeekGrapher.AffineTransformations.Commands
             plot.Draw(ViewModel.ToParallelogram());
             var ratio = Convert.ToDouble(ViewModel.Rotation.Ratio);
             var angle = Convert.ToDouble(ViewModel.Rotation.Angle);
-            if (ViewModel.Rotation.Direction == Direction.Right)
+            if (ViewModel.Rotation.Direction == Direction.Left)
                 angle *= -1;
             Point center;
 
