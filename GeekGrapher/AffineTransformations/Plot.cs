@@ -94,28 +94,37 @@ namespace GeekGrapher.AffineTransformations
 
         private void DrawXAxe()
         {
-            CanvasObj.Children.Add(DrawXArrow());
-            CanvasObj.Children.Add(DrawXLabel());
+
+            CanvasObj.Dispatcher.Invoke(
+                () =>
+                {
+                    CanvasObj.Children.Add(DrawXArrow());
+                    CanvasObj.Children.Add(DrawXLabel());
+                });
             for (double x = DownLimit.X + 1; x < UpLimit.X; x++)
             {
                 if (x == 0) continue;
-                var textBlock = new TextBlock();
-                textBlock.Text = x.ToString("F0");
-                textBlock.FontSize = 14;
-                textBlock.Foreground = Brushes.Black;
-                var xPos = Center.X + x * xPixels;
-                Canvas.SetLeft(textBlock, xPos - 10);
-                Canvas.SetTop(textBlock, Center.Y);
-                var line = new Line()
-                {
-                    X1 = xPos,
-                    X2 = xPos,
-                    Y1 = Top,
-                    Y2 = Bottom,
-                    Stroke = Brushes.Gray
-                };
-                CanvasObj.Children.Add(textBlock);
-                CanvasObj.Children.Add(line);
+                CanvasObj.Dispatcher.Invoke(
+                    () =>
+                    {
+                        TextBlock textBlock = new TextBlock();
+                        textBlock.Text = x.ToString("F0");
+                        textBlock.FontSize = 14;
+                        textBlock.Foreground = Brushes.Black;
+                        var xPos = Center.X + x * xPixels;
+                        Canvas.SetLeft(textBlock, xPos - 10);
+                        Canvas.SetTop(textBlock, Center.Y);
+                        var line = new Line()
+                        {
+                            X1 = xPos,
+                            X2 = xPos,
+                            Y1 = Top,
+                            Y2 = Bottom,
+                            Stroke = Brushes.Gray
+                        };
+                        CanvasObj.Children.Add(textBlock);
+                        CanvasObj.Children.Add(line);
+                    });
             }
         }
         public List<UIElement> DrawXLabel()
@@ -136,28 +145,38 @@ namespace GeekGrapher.AffineTransformations
 
         private void DrawYAxe()
         {
-            CanvasObj.Children.Add(DrawYArrow());
-            CanvasObj.Children.Add(DrawYLabel());
+            CanvasObj.Dispatcher.Invoke(
+                () =>
+                {
+                    CanvasObj.Children.Add(DrawYArrow());
+                    CanvasObj.Children.Add(DrawYLabel());
+                }
+            );
             for (double y = DownLimit.Y + 1; y < UpLimit.Y; y++)
             {
                 if (y == 0) continue;
-                var textBlock = new TextBlock();
-                textBlock.Text = y.ToString("F0");
-                textBlock.FontSize = 14;
-                textBlock.Foreground = Brushes.Black;
-                Canvas.SetLeft(textBlock, Center.X + 5);
-                var yPos = Center.Y + y * yPixels;
-                Canvas.SetTop(textBlock, yPos - 10);
-                var line = new Line()
-                {
-                    X1 = Left,
-                    X2 = Right,
-                    Y1 = yPos,
-                    Y2 = yPos,
-                    Stroke = Brushes.Gray
-                };
-                CanvasObj.Children.Add(textBlock);
-                CanvasObj.Children.Add(line);
+                CanvasObj.Dispatcher.Invoke(
+                    () =>
+                    {
+                        var textBlock = new TextBlock();
+                        textBlock.Text = y.ToString("F0");
+                        textBlock.FontSize = 14;
+                        textBlock.Foreground = Brushes.Black;
+                        Canvas.SetLeft(textBlock, Center.X + 5);
+                        var yPos = Center.Y + y * yPixels;
+                        Canvas.SetTop(textBlock, yPos - 10);
+                        var line = new Line()
+                        {
+                            X1 = Left,
+                            X2 = Right,
+                            Y1 = yPos,
+                            Y2 = yPos,
+                            Stroke = Brushes.Gray
+                        };
+                        CanvasObj.Children.Add(textBlock);
+                        CanvasObj.Children.Add(line);
+                    }
+                );
             }
         }
         public List<UIElement> DrawYLabel()
@@ -177,7 +196,9 @@ namespace GeekGrapher.AffineTransformations
         }
         public void Draw()
         {
-            CanvasObj.Children.Clear();
+            CanvasObj.Dispatcher.Invoke(
+                () => { CanvasObj.Children.Clear(); }
+            );
             DrawXAxe();
             DrawYAxe();
         }
@@ -219,37 +240,54 @@ namespace GeekGrapher.AffineTransformations
             return textBlock;
         }
 
-        public TextBlock CalculateText(string text, bool rotate, Point fst, Point snd, Point real)
+        public TextBlock CalculateText(string text, bool showPoints, Point fst, Point snd, Point real)
         {
-            if (rotate)
+            if (showPoints)
             {
                 return DrawText(text + $"({fst.X.ToString("F2")}, {fst.Y.ToString("F2")})", real, fst.Y > snd.Y);
             }
             return DrawText(text, real, fst.Y > snd.Y);
         }
 
-        public void Draw(Parallelogram parallelogram, string add = "", bool rotate = false)
+        private List<UIElement> PreviousShapes = null;
+
+        public void Draw(Parallelogram parallelogram, string add = "", bool showPoints = false,bool clearPrevious = false)
         {
             Point a = CalculateCoordinates(parallelogram.A),
                 b = CalculateCoordinates(parallelogram.B),
                 c = CalculateCoordinates(parallelogram.C),
                 d = CalculateCoordinates(parallelogram.D);
-            var parallelogramShape = new Polygon()
-            {
-                Stroke = new SolidColorBrush(parallelogram.Stroke),
-                Fill = new SolidColorBrush(parallelogram.Fill),
-                Points = new PointCollection() {
+            CanvasObj.Dispatcher.Invoke(
+                () =>
+                {
+                    var parallelogramShape = new Polygon()
+                    {
+                        Stroke = new SolidColorBrush(parallelogram.Stroke),
+                        Fill = new SolidColorBrush(parallelogram.Fill),
+                        Points = new PointCollection() {
                     a,
                     b,
                     c,
                     d,
                 }
-            };
-            CanvasObj.Children.Add(parallelogramShape);
-            CanvasObj.Children.Add(CalculateText("A" + add, rotate, parallelogram.A, parallelogram.C, a));
-            CanvasObj.Children.Add(CalculateText("B" + add, rotate, parallelogram.B, parallelogram.D, b));
-            CanvasObj.Children.Add(CalculateText("C" + add, rotate, parallelogram.C, parallelogram.A, c));
-            CanvasObj.Children.Add(CalculateText("D" + add, rotate, parallelogram.D, parallelogram.B, d));
+                    };
+                    if (PreviousShapes != null && clearPrevious)
+                    {
+                        foreach (var shape in PreviousShapes)
+                        {
+                            CanvasObj.Children.Remove(shape);
+                        }
+                    }
+                    PreviousShapes = new List<UIElement>();
+                    PreviousShapes.Add(parallelogramShape);
+                    PreviousShapes.Add(CalculateText("A" + add, showPoints, parallelogram.A, parallelogram.C, a));
+                    PreviousShapes.Add(CalculateText("B" + add, showPoints, parallelogram.B, parallelogram.D, b));
+                    PreviousShapes.Add(CalculateText("C" + add, showPoints, parallelogram.C, parallelogram.A, c));
+                    PreviousShapes.Add(CalculateText("D" + add, showPoints, parallelogram.D, parallelogram.B, d));
+                    CanvasObj.Children.Add(PreviousShapes);
+                }
+            );
+
         }
     }
 }
