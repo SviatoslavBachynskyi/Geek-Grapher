@@ -12,10 +12,9 @@ namespace GeekGrapher.FractalCore.ColorCalculators
     {
         protected Drawer Drawer;
 
-        internal void PreCalculate(Drawer drawer)
+        internal virtual void PreCalculate(Drawer drawer)
         {
             this.Drawer = drawer;
-
         }
 
         internal abstract Color Calculate(double iteration);

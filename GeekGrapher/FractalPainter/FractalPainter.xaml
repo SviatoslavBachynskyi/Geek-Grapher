@@ -105,8 +105,7 @@
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -242,8 +241,10 @@
                     </ComboBox>
                     <!---Color Scheme-->
 
+                    <CheckBox HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="5" Grid.Column="0"  Grid.ColumnSpan="3" IsChecked="{Binding Path=MakeSmooth}" VerticalAlignment="Center"> Make Smooth</CheckBox>
+                    
                     <!---Color Count-->
-                    <Grid Style="{StaticResource PaletteSchemeColors}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" x:Name="ColorCount">
+                    <Grid Style="{StaticResource PaletteSchemeColors}" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" x:Name="ColorCount">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="Auto"></RowDefinition>
@@ -281,8 +282,7 @@
                     <!---Colors for palette-->
                     <ItemsControl 
                                   Style="{StaticResource PaletteSchemeColors}"
-                                  Grid.Row="6"
-                                  Grid.RowSpan="3"
+                                  Grid.Row="7"
                                   Grid.Column="0"
                                   Grid.ColumnSpan="3"
                                   ItemsSource="{Binding Palette}">
@@ -299,7 +299,7 @@
                     </ItemsControl>
                     <!---Colors for palette-->
 
-                    <Button MaxHeight="25" Grid.Row="9" Grid.Column="2" Command ="{Binding DrawAndCreate}"
+                    <Button MaxHeight="25" Grid.Row="8" Grid.Column="2" Command ="{Binding DrawAndCreate}"
                             >Draw</Button>
                 </Grid>
             </GroupBox>

@@ -15,7 +15,7 @@ namespace GeekGrapher.FractalCore.ColorCalculators
             if (iteration == Drawer.MaxIterations) return Color.FromRgb(0,0,0);
 
             return ColorModelConverter.ColorFromHSV(
-                255.0 * iteration / Drawer.MaxIterations, 1.0, 1.0);
+                Constants.MaxHue * iteration / Drawer.MaxIterations, 1.0, 1.0);
         }
     }
 }

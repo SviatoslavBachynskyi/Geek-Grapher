@@ -31,6 +31,10 @@ namespace GeekGrapher.FractalPainter.Commands
         {
             try
             {
+                bool zoomed;
+                if (parameter is null)
+                    zoomed = false;
+                else zoomed = (bool)parameter;
                 Mouse.OverrideCursor = Cursors.Wait;
 
                 var drawer = WindowViewModel.Drawer;
@@ -50,7 +54,7 @@ namespace GeekGrapher.FractalPainter.Commands
 
                 var int32Rect = new Int32Rect(0, 0, width, height);
 
-                var pixels = ColorsToBytesConverter.Convert(drawer.Draw());
+                var pixels = ColorsToBytesConverter.Convert(drawer.Draw(zoomed));
 
                 bitmap.WritePixels(int32Rect, pixels, 3 * width, 0);
 

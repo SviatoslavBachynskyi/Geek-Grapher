@@ -92,6 +92,15 @@ namespace GeekGrapher.FractalPainter
             }
         }
 
+        private bool _makeSmooth = true;
+        public bool MakeSmooth { get => _makeSmooth; 
+            set
+            {
+                _makeSmooth = value;
+                OnPropertyChanged(nameof(MakeSmooth));
+            }
+        }
+
         public ColorWrapper[] Palette
         {
             get

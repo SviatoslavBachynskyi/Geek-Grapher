@@ -103,7 +103,7 @@ namespace GeekGrapher.FractalPainter
                 ViewModel.Drawer.XFinish = newXFinish;
                 ViewModel.Drawer.YStart = newYStart;
                 ViewModel.Drawer.YFinish = newYFinish;
-                ViewModel.Draw.Execute(null);
+                ViewModel.Draw.Execute(true);
             }
             catch (OverflowException)
             {
