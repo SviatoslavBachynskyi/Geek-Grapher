@@ -1,10 +1,13 @@
 ﻿<Window x:Class="GeekGrapher.AffineTransformations.AffineTransformations"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GeekGrapher.AffineTransformations"
+        xmlns:vm="clr-namespace:GeekGrapher.AffineTransformations.ViewModels"
         xmlns:general="clr-namespace:GeekGrapher.General.Controls"
+        xmlns:validations="clr-namespace:GeekGrapher.General.Validations"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="AffineTransformations"
@@ -13,9 +16,22 @@
         <Style x:Key="VertexStyle" TargetType="GroupBox">
             <Setter Property="Margin" Value="0,2,0,3"/>
         </Style>
+        <ObjectDataProvider x:Key="RotationVertexes"
+   MethodName="GetValues" ObjectType="{x:Type system:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="vm:RotationVertex"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider x:Key="Directions"
+   MethodName="GetValues" ObjectType="{x:Type system:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="vm:Direction"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
     </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
+            <!--
             <MenuItem Header="_File">
                 <MenuItem Header="_New" InputGestureText="Ctrl+N"/>
                 <Separator />
@@ -29,38 +45,51 @@
                 <Separator />
                 <MenuItem Header="_Exit" />
             </MenuItem>
+            -->
             <MenuItem Header="_Start Page" InputGestureText="Ctrl+F5"/>
             <MenuItem Header="_Settings"/>
             <MenuItem Header="_Help"/>
         </Menu>
+        <!--
         <Canvas DockPanel.Dock="Right">
             <general:QuickActionsBar Width="180" Height="45" Canvas.Top="0" Canvas.Right="5"/>
         </Canvas>
+        -->
         <Grid DockPanel.Dock="Bottom">
             <Grid.RowDefinitions>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="1.2*" MinWidth="240"></ColumnDefinition>
                 <ColumnDefinition Width="5*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Image Grid.Row="1" Grid.Column="1"></Image>
+            <Canvas x:Name="Canvas" Grid.Row="1" Grid.Column="1"></Canvas>
             <GroupBox Header="Parellelogram Properties" Grid.Column="0" Grid.Row="0">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="4*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <GroupBox Header="Coordinates" Grid.Row="0">
-                        <Grid>
+                    <GroupBox Header="Vertexes" Grid.Row="0">
+                        <Grid x:Name="Vertexes">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <GroupBox Grid.Row="0" Header="Vertex A" Style="{StaticResource VertexStyle}">
-                                <Grid>
+                            <Label Grid.Row="0" Padding="0,1,0,0" Foreground="Red"
+                           Content="{Binding Path=Error}"/>
+                            <GroupBox Grid.Row="1" Header="Vertex A" DataContext="{Binding Path=A}" Style="{StaticResource VertexStyle}">
+                                <Grid x:Name="A">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                    </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="10"></ColumnDefinition>
                                         <ColumnDefinition Width="2*"></ColumnDefinition>
@@ -68,14 +97,48 @@
                                         <ColumnDefinition Width="10"></ColumnDefinition>
                                         <ColumnDefinition Width="2*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "X:"/>
-                                    <TextBox MaxHeight="25" Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center">-4.0</TextBox>
-                                    <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "Y:"/>
-                                    <TextBox MaxHeight="25" Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center">2.0</TextBox>
+                                    <Grid.BindingGroup>
+                                        <BindingGroup Name="A">
+                                        </BindingGroup>
+                                    </Grid.BindingGroup>
+                                    <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "X:"/>
+                                    <TextBox Grid.Row="1" MaxHeight="25" Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center">
+                                        <TextBox.Text>
+                                            <Binding
+                                                Path="X"
+                                                BindingGroupName="A"
+                                                UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <validations:DoubleValidation Min="-10" Max="10" DisplayName="X"/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                    <TextBlock Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "Y:"/>
+                                    <TextBox Grid.Row="1" MaxHeight="25" Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center">
+                                        <TextBox.Text>
+                                            <Binding
+                                                Path="Y"
+                                                BindingGroupName="A"
+                                                UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <validations:DoubleValidation Min="-10" Max="10" DisplayName="Y"/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                    <Label Grid.Row="2" Grid.Column="0" Padding="0,1,0,0" Grid.ColumnSpan="5" Foreground="Red"
+                           Content="{Binding BindingGroupName=A, Path=(Validation.Errors)[0].ErrorContent, ElementName=A, FallbackValue=''}"/>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Grid.Row="1" Header="Vertex B" Style="{StaticResource VertexStyle}">
-                                <Grid>
+                            <GroupBox Grid.Row="2" Header="Vertex B" DataContext="{Binding Path=B}" Style="{StaticResource VertexStyle}">
+                                <Grid x:Name="B">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                    </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="10"></ColumnDefinition>
                                         <ColumnDefinition Width="2*"></ColumnDefinition>
@@ -83,14 +146,48 @@
                                         <ColumnDefinition Width="10"></ColumnDefinition>
                                         <ColumnDefinition Width="2*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "X:"/>
-                                    <TextBox MaxHeight="25" Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center">-4.0</TextBox>
-                                    <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "Y:"/>
-                                    <TextBox MaxHeight="25" Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center">2.0</TextBox>
+                                    <Grid.BindingGroup>
+                                        <BindingGroup Name="B">
+                                        </BindingGroup>
+                                    </Grid.BindingGroup>
+                                    <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "X:"/>
+                                    <TextBox Grid.Row="1" MaxHeight="25" Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center">
+                                        <TextBox.Text>
+                                            <Binding
+                                                Path="X"
+                                                BindingGroupName="B"
+                                                UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <validations:DoubleValidation Min="-10" Max="10" DisplayName="X"/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                    <TextBlock Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "Y:"/>
+                                    <TextBox Grid.Row="1" MaxHeight="25" Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center">
+                                        <TextBox.Text>
+                                            <Binding
+                                                Path="Y"
+                                                BindingGroupName="B"
+                                                UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <validations:DoubleValidation Min="-10" Max="10" DisplayName="Y"/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                    <Label Grid.Row="2" Grid.Column="0" Padding="0,1,0,0" Grid.ColumnSpan="5" Foreground="Red"
+                           Content="{Binding BindingGroupName=B, Path=(Validation.Errors)[0].ErrorContent, ElementName=B, FallbackValue=''}"/>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Grid.Row="2" Header="Vertex C" Style="{StaticResource VertexStyle}">
-                                <Grid>
+                            <GroupBox Grid.Row="3" Header="Vertex C" DataContext="{Binding Path=C}" Style="{StaticResource VertexStyle}">
+                                <Grid x:Name="C">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                    </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="10"></ColumnDefinition>
                                         <ColumnDefinition Width="2*"></ColumnDefinition>
@@ -98,14 +195,48 @@
                                         <ColumnDefinition Width="10"></ColumnDefinition>
                                         <ColumnDefinition Width="2*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "X:"/>
-                                    <TextBox MaxHeight="25" Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center">-4.0</TextBox>
-                                    <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "Y:"/>
-                                    <TextBox MaxHeight="25" Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center">2.0</TextBox>
+                                    <Grid.BindingGroup>
+                                        <BindingGroup Name="C">
+                                        </BindingGroup>
+                                    </Grid.BindingGroup>
+                                    <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "X:"/>
+                                    <TextBox Grid.Row="1" MaxHeight="25" Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center">
+                                        <TextBox.Text>
+                                            <Binding
+                                                Path="X"
+                                                BindingGroupName="C"
+                                                UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <validations:DoubleValidation Min="-10" Max="10" DisplayName="X"/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                    <TextBlock Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "Y:"/>
+                                    <TextBox Grid.Row="1" MaxHeight="25" Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center">
+                                        <TextBox.Text>
+                                            <Binding
+                                                Path="Y"
+                                                BindingGroupName="C"
+                                                UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <validations:DoubleValidation Min="-10" Max="10" DisplayName="Y"/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                    <Label Grid.Row="2" Grid.Column="0" Padding="0,1,0,0" Grid.ColumnSpan="5" Foreground="Red"
+                           Content="{Binding BindingGroupName=C, Path=(Validation.Errors)[0].ErrorContent, ElementName=C, FallbackValue=''}"/>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Grid.Row="3" Header="Vertex D" Style="{StaticResource VertexStyle}">
-                                <Grid>
+                            <GroupBox Grid.Row="4" Header="Vertex D" Style="{StaticResource VertexStyle}">
+                                <Grid x:Name="D">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                    </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="10"></ColumnDefinition>
                                         <ColumnDefinition Width="2*"></ColumnDefinition>
@@ -113,15 +244,44 @@
                                         <ColumnDefinition Width="10"></ColumnDefinition>
                                         <ColumnDefinition Width="2*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "X:"/>
-                                    <TextBox MaxHeight="25" Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center">-4.0</TextBox>
-                                    <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "Y:"/>
-                                    <TextBox MaxHeight="25" Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center">2.0</TextBox>
+                                    <Grid.BindingGroup>
+                                        <BindingGroup Name="D">
+                                        </BindingGroup>
+                                    </Grid.BindingGroup>
+                                    <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "X:"/>
+                                    <TextBox Grid.Row="1" MaxHeight="25" Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center" IsReadOnly="True">
+                                        <TextBox.Text>
+                                            <Binding
+                                                Path="D.X"
+                                                BindingGroupName="D"
+                                                UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <validations:DoubleValidation Min="-10" Max="10" DisplayName="X"/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                    <TextBlock Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text= "Y:"/>
+                                    <TextBox Grid.Row="1" MaxHeight="25" Grid.Column="4" VerticalAlignment="Center" TextAlignment="Center" IsReadOnly="True" x:Name="Dy">
+                                        <TextBox.Text>
+                                            <Binding
+                                                Path="D.Y"
+                                                BindingGroupName="D"
+                                                UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <validations:DoubleValidation Min="-10" Max="10" DisplayName="Y"/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                    <Label Grid.Row="2" Grid.Column="0" Padding="0,1,0,0" Grid.ColumnSpan="5" Foreground="Red"
+                           Content="{Binding DError}"/>
                                 </Grid>
                             </GroupBox>
+                            <Button Grid.Row="5" Command="{Binding Draw}" Height="25" Width="50" HorizontalAlignment="Right">Draw</Button>
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Colors" Grid.Row="1">
+                    <GroupBox DataContext="{Binding Path=Style}" Header="Colors" Grid.Row="1">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"></RowDefinition>
@@ -133,17 +293,17 @@
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                                 <ColumnDefinition Width="40"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Row="0" Grid.Column="0">Line Color</TextBlock>
-                            <TextBlock Grid.Row="2" Grid.Column="0">Fill Color</TextBlock>
-                            <xctk:ColorPicker MaxHeight="25" Grid.Row="0" Grid.Column="2" SelectedColor="Black"></xctk:ColorPicker>
-                            <xctk:ColorPicker MaxHeight="25" Grid.Row="2" Grid.Column="2" SelectedColor="Blue"></xctk:ColorPicker>
+                            <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Text="Line Color"></TextBlock>
+                            <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Text="Fill Color"></TextBlock>
+                            <xctk:ColorPicker MaxHeight="25" Grid.Row="0" Grid.Column="2" SelectedColor="{Binding LineColor}"></xctk:ColorPicker>
+                            <xctk:ColorPicker MaxHeight="25" Grid.Row="2" Grid.Column="2" SelectedColor="{Binding FillColor}"></xctk:ColorPicker>
                         </Grid>
                     </GroupBox>
-            <GroupBox Header="Rotation" Grid.Row="2">
+                    <GroupBox Header="Rotation" DataContext="{Binding Path=Rotation}" Grid.Row="2" Grid.RowSpan="2">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*" MinWidth="20"></ColumnDefinition>
                                 <ColumnDefinition Width="50"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
@@ -157,19 +317,83 @@
                                 <RowDefinition Height="10"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" Grid.Column="0">Vertex:</TextBlock>
-                            <ComboBox MaxHeight="25" Grid.Row="0" Grid.Column="2">
-                                <ComboBoxItem IsSelected="True">A</ComboBoxItem>
+                            <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">Vertex:</TextBlock>
+                            <ComboBox MaxHeight="25" Grid.Row="0" Grid.Column="2" ItemsSource="{Binding Source = {StaticResource RotationVertexes}}" SelectedItem="{Binding RotationVertex}">
                             </ComboBox>
-                            <TextBlock Grid.Row="2" Grid.Column="0">Direction:</TextBlock>
-                            <ComboBox MaxHeight="25" Grid.Row="2" Grid.Column="2">
-                                <ComboBoxItem IsSelected="True">Left</ComboBoxItem>
+                            <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">Direction:</TextBlock>
+                            <ComboBox MaxHeight="25" Grid.Row="2" Grid.Column="2" ItemsSource="{Binding Source = {StaticResource Directions}}" SelectedItem="{Binding Direction}">
                             </ComboBox>
-                            <TextBlock Grid.Row="4" Grid.Column="0">Angle:</TextBlock>
-                            <xctk:IntegerUpDown MaxHeight="25" Grid.Row="4" Grid.Column="2" Value="45" Minimum="0" Maximum="360"></xctk:IntegerUpDown>
-                            <TextBox MaxHeight="25" Grid.Row="6" Grid.Column="2" TextAlignment="Center">1.2</TextBox>
-                            <TextBlock Grid.Row="6" Grid.Column="0">Ratio:</TextBlock>
-                            <Button MaxHeight="25" Grid.Row="8" Grid.Column="2">Rotate</Button>
+                            <!---Angle-->
+                            <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" x:Name="Angle">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="*" MinWidth="20"></ColumnDefinition>
+                                    <ColumnDefinition Width="50"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.BindingGroup>
+                                    <BindingGroup Name="Angle">
+                                    </BindingGroup>
+                                </Grid.BindingGroup>
+                                <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">Angle:
+                                </TextBlock>
+                                <xctk:IntegerUpDown Height="25"  Grid.Row="1" Grid.Column="2" Minimum="0" Maximum="360" HorizontalContentAlignment="Right">
+                                    <xctk:IntegerUpDown.Text>
+                                        <Binding
+                                Path="Angle"
+                                BindingGroupName="Angle"
+                                UpdateSourceTrigger="PropertyChanged">
+                                            <Binding.ValidationRules>
+                                                <validations:IntegerValidation Min="0" Max="360" DisplayName="Angle"/>
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </xctk:IntegerUpDown.Text>
+                                </xctk:IntegerUpDown>
+                                <Label Grid.Row="2" Grid.Column="0" Padding="0,1,0,0" Grid.ColumnSpan="3" Foreground="Red"
+                           Content="{Binding BindingGroupName=Angle, Path=(Validation.Errors)[0].ErrorContent, ElementName=Angle, FallbackValue=''}"/>
+                            </Grid>
+                            <!---Angle-->
+                            <!--Ratio-->
+                            <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" x:Name="Ratio">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="*" MinWidth="20"></ColumnDefinition>
+                                    <ColumnDefinition Width="50"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.BindingGroup>
+                                    <BindingGroup Name="Ratio">
+                                    </BindingGroup>
+                                </Grid.BindingGroup>
+                                <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">Ratio:
+                                </TextBlock>
+                                <TextBox Height="25"  Grid.Row="1" Grid.Column="2" HorizontalContentAlignment="Right">
+                                    <TextBox.Text>
+                                        <Binding
+                                Path="Ratio"
+                                BindingGroupName="Ratio"
+                                UpdateSourceTrigger="PropertyChanged">
+                                            <Binding.ValidationRules>
+                                                <validations:DoubleValidation Min="0.1" Max="10" DisplayName="Ratio"/>
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </TextBox.Text>
+                                </TextBox>
+                                <Label Grid.Row="2" Grid.Column="0" Padding="0,1,0,0" Grid.ColumnSpan="3" Foreground="Red"
+                           Content="{Binding BindingGroupName=Ratio, Path=(Validation.Errors)[0].ErrorContent, ElementName=Ratio, FallbackValue=''}"/>
+                            </Grid>
+                            <!--Ratio-->
+                            <Button MaxHeight="25" Grid.Row="8" Grid.Column="2" Command="{Binding Rotate}">Rotate</Button>
                         </Grid>
                     </GroupBox>
                 </Grid>

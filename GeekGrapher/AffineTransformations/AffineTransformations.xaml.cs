@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GeekGrapher.AffineTransformations.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,22 @@ namespace GeekGrapher.AffineTransformations
     /// </summary>
     public partial class AffineTransformations : Window
     {
+        private ParallelogramViewModel _viewModel;
+        public ParallelogramViewModel ViewModel
+        {
+            get => _viewModel;
+            set
+            {
+                _viewModel = value;
+                DataContext = value;
+            }
+        }
         public AffineTransformations()
         {
             InitializeComponent();
+
+            ViewModel = new ParallelogramViewModel(this);
+           
         }
     }
 }

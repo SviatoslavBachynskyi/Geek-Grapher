@@ -90,6 +90,13 @@
     <Compile Include="AboutUS\Binding.cs" />
     <Compile Include="AboutUS\Converters\ImageConverter.cs" />
     <Compile Include="AboutUS\AboutUsMapper.cs" />
+    <Compile Include="AffineTransformations\Commands\Draw.cs" />
+    <Compile Include="AffineTransformations\Commands\Rotate.cs" />
+    <Compile Include="AffineTransformations\Plot.cs" />
+    <Compile Include="AffineTransformations\ViewModels\ParallelogramViewModel.cs" />
+    <Compile Include="AffineTransformations\ViewModels\RotationViewModel.cs" />
+    <Compile Include="AffineTransformations\ViewModels\StyleViewModel.cs" />
+    <Compile Include="AffineTransformations\ViewModels\VertexViewModel.cs" />
     <Compile Include="FractalPainter\Binding.cs" />
     <Compile Include="FractalPainter\ColorWrapper.cs" />
     <Compile Include="General\ChangableCommand.cs" />
@@ -100,7 +107,7 @@
     <Compile Include="FractalPainter\Commands\Undo.cs" />
     <Compile Include="FractalPainter\FractalMapper.cs" />
     <Compile Include="FractalPainter\Frame.cs" />
-    <Compile Include="FractalPainter\Validations\DoubleValidation.cs" />
+    <Compile Include="General\Validations\DoubleValidation.cs" />
     <Compile Include="General\ColorsToBytesConverter.cs" />
     <Compile Include="FractalPainter\Commands\DrawAndCreate.cs" />
     <Compile Include="BindingErrorListener.cs" />
@@ -113,7 +120,7 @@
     <Compile Include="FractalPainter\Commands\Exit.cs" />
     <Compile Include="FractalPainter\FractalPainterViewModel.cs" />
     <Compile Include="FractalPainter\Commands\SaveAsImage.cs" />
-    <Compile Include="FractalPainter\Validations\IntegerValidation.cs" />
+    <Compile Include="General\Validations\IntegerValidation.cs" />
     <Compile Include="General\BaseViewModel.cs" />
     <Compile Include="General\Commands\OpenAboutUS.cs" />
     <Compile Include="AffineTransformations\AffineTransformations.xaml.cs">
@@ -132,9 +139,6 @@
     <Compile Include="StartWindow\StartWindowViewModel.cs" />
     <Compile Include="General\Controls\QuickActionsBar.xaml.cs">
       <DependentUpon>QuickActionsBar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AffineTransformations\Vertex.xaml.cs">
-      <DependentUpon>Vertex.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
@@ -186,10 +190,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserManual\UserManual.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="AffineTransformations\Vertex.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -248,6 +248,10 @@
     <ProjectReference Include="..\ImageConverterCore\ImageConverterCore.csproj">
       <Project>{7c69bf2d-d860-41a1-b2b8-16e32297b685}</Project>
       <Name>ImageConverterCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Transformations\Transformations.csproj">
+      <Project>{A7BF0223-7789-4847-A678-0A9BF371E4B5}</Project>
+      <Name>Transformations</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
