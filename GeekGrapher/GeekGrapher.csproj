@@ -107,6 +107,7 @@
     <Compile Include="FractalPainter\Commands\Undo.cs" />
     <Compile Include="FractalPainter\FractalMapper.cs" />
     <Compile Include="FractalPainter\Frame.cs" />
+    <Compile Include="General\Commands\OpenStartPage.cs" />
     <Compile Include="General\Validations\DoubleValidation.cs" />
     <Compile Include="General\ColorsToBytesConverter.cs" />
     <Compile Include="FractalPainter\Commands\DrawAndCreate.cs" />
@@ -122,7 +123,6 @@
     <Compile Include="FractalPainter\Commands\SaveAsImage.cs" />
     <Compile Include="General\Validations\IntegerValidation.cs" />
     <Compile Include="General\BaseViewModel.cs" />
-    <Compile Include="General\Commands\OpenAboutUS.cs" />
     <Compile Include="AffineTransformations\AffineTransformations.xaml.cs">
       <DependentUpon>AffineTransformations.xaml</DependentUpon>
     </Compile>

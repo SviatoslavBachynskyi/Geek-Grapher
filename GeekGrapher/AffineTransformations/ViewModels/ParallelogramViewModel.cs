@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using GeekGrapher.General.Commands;
 using Transformations;
 
 namespace GeekGrapher.AffineTransformations.ViewModels
@@ -253,6 +254,11 @@ namespace GeekGrapher.AffineTransformations.ViewModels
         }
 
         public ICommand Draw { get => new Draw(this); }
+
+        public ICommand OpenHelp {  get => new OpenHelp();}
+        public ICommand OpenSettings { get => new OpenSettings();}
+
+        public  ICommand OpenStartPage { get => new OpenStartPage(this.Window);}
 
         public RotationViewModel Rotation { get; set; }
         public StyleViewModel Style { get; set; }

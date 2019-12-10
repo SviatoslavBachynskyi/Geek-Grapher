@@ -12,23 +12,11 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
-                <!--
-                <Separator />
-                <MenuItem Header="_New" InputGestureText="Ctrl+N"/>
-                <MenuItem Header="_Open Recent ->"/>
-                <Separator />
-                <MenuItem Header="_Save" InputGestureText="Ctrl+S"/>
-                <MenuItem Header="_Save as" />
-                <Separator />
-                <MenuItem Header="_Close" InputGestureText="Ctrl+Q"/>
-                <Separator />
-                <MenuItem Header="_Exit" />
-                -->
                 <MenuItem Header="_Open" InputGestureText="Ctrl+O" Command="{Binding OpenImage}"/>
             </MenuItem>
-            <MenuItem Header="_Start Page" InputGestureText="Ctrl+F5"/>
-            <MenuItem Header="_Settings"/>
-            <MenuItem Header="_Help"/>
+            <MenuItem Header="_Start Page" InputGestureText="Ctrl+F5" Command="{Binding OpenStartPage}"/>
+            <MenuItem Header="_Settings" Command="{Binding OpenSettings}"/>
+            <MenuItem Header="_Help" Command="{Binding OpenHelp}"/>
         </Menu>
         <Canvas DockPanel.Dock="Right">
             <general:QuickActionsBar Canvas.Right="5" Canvas.Top="0" Width="180" Height="45" 
