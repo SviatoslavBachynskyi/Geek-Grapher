@@ -38,7 +38,7 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <xctk:RichTextBox x:Name="Rtb" VerticalScrollBarVisibility = "Visible" Grid.Column="1" Text="{Binding Text}">
+        <xctk:RichTextBox x:Name="Rtb" VerticalScrollBarVisibility = "Visible" Grid.Column="1" Text="{Binding Text}" IsReadOnly="True">
             <xctk:RichTextBox.TextFormatter>
                 <xctk:RtfFormatter></xctk:RtfFormatter>
             </xctk:RichTextBox.TextFormatter>
