@@ -10,11 +10,18 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using GeekGrapher.General.Commands;
 
 namespace GeekGrapher.ImageConverter
 {
     public class ImageConverterViewModel : BaseViewModel
     {
+        public ImageConverter Window { get; set; }
+
+        public ImageConverterViewModel(ImageConverter window)
+        {
+            Window = window;
+        }
         private double _saturation = 1.0;
         public double Saturation
         {
@@ -224,6 +231,11 @@ namespace GeekGrapher.ImageConverter
                 return _saveAsImage;
             }
         }
+
+        public ICommand OpenHelp { get => new OpenHelp(); }
+        public ICommand OpenSettings { get => new OpenSettings(); }
+
+        public ICommand OpenStartPage { get => new OpenStartPage(this.Window); }
         #endregion
     }
 }

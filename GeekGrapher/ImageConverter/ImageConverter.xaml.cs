@@ -29,7 +29,7 @@ namespace GeekGrapher.ImageConverter
         public ImageConverter()
         {
             InitializeComponent();
-            ViewModel = new ImageConverterViewModel();
+            ViewModel = new ImageConverterViewModel(this);
         }
 
         private void Image_MouseMove(object sender, MouseEventArgs e)

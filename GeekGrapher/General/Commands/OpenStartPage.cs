@@ -3,13 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace GeekGrapher.General.Commands
 {
-    internal class OpenAboutUS : ICommand
+    class OpenStartPage : ICommand
     {
         public event EventHandler CanExecuteChanged;
+
+        private Window _window;
+
+        public OpenStartPage(Window window)
+        {
+            _window = window;
+        }
 
         public bool CanExecute(object parameter)
         {
@@ -18,7 +26,8 @@ namespace GeekGrapher.General.Commands
 
         public void Execute(object parameter)
         {
-            new AboutUS.AboutUS().Show();
+            new StartWindow.StartWindow().Show();
+            _window.Close();
         }
     }
 }

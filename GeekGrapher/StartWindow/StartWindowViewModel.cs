@@ -46,19 +46,6 @@ namespace GeekGrapher.StartWindow
             }
         }
 
-        private ICommand _openAboutUS;
-        public ICommand OpenAboutUS
-        {
-            get
-            {
-                if (_openAboutUS == null)
-                {
-                    _openAboutUS = new OpenAboutUS();
-                }
-                return _openAboutUS;
-            }
-        }
-
         private ICommand _openAffineTransformations;
 
         public ICommand OpenAffineTransformations

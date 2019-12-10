@@ -30,13 +30,6 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
-                <!--
-                <MenuItem Header="_New" InputGestureText="Ctrl+N"/>
-                <Separator />
-                <MenuItem Header="_Open Recent ->"/>
-                <Separator />
-                <MenuItem Header="_Save" InputGestureText="Ctrl+S"/>
-                    -->
                 <MenuItem Header="_Open XML" InputGestureText="Ctrl+O" Command="{Binding OpenXml}"/>
                 <MenuItem Header="_Save as Image" Command="{Binding SaveAsImage}" InputGestureText="Ctrl+S"/>
                 <MenuItem Header="_Save as XML" Command="{Binding SaveAsXml}"/>
@@ -45,7 +38,7 @@
                 <Separator />
                 <MenuItem Header="_Exit" Command="{Binding Exit}"/>
             </MenuItem>
-            <MenuItem Header="_Start Page" InputGestureText="Ctrl+F5"/>
+            <MenuItem Header="_Start Page" InputGestureText="Ctrl+F5" Command="{Binding OpenStartPage}"/>
             <MenuItem Header="_Settings" Command="{Binding OpenSettings}"/>
             <MenuItem Header="_Help" Command="{Binding OpenHelp}" InputGestureText="F1"/>
         </Menu>

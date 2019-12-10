@@ -93,7 +93,9 @@ namespace GeekGrapher.FractalPainter
         }
 
         private bool _makeSmooth = true;
-        public bool MakeSmooth { get => _makeSmooth; 
+        public bool MakeSmooth
+        {
+            get => _makeSmooth;
             set
             {
                 _makeSmooth = value;
@@ -140,11 +142,12 @@ namespace GeekGrapher.FractalPainter
         }
         public bool IsValid()
         {
-            return !Window.CReal.BindingGroup.HasValidationError 
+            return !Window.CReal.BindingGroup.HasValidationError
                 && !Window.CImaginary.BindingGroup.HasValidationError
                 && !Window.MaxIterations.BindingGroup.HasValidationError
                 && !Window.ColorCount.BindingGroup.HasValidationError;
         }
+
 
         #region Commands
 
@@ -290,6 +293,20 @@ namespace GeekGrapher.FractalPainter
                 return _openSettings;
             }
         }
+
+        private ICommand _openStartPage;
+
+        public ICommand OpenStartPage
+        {
+            get
+            {
+                if (_openStartPage == null)
+                    _openStartPage = new OpenStartPage(this.Window);
+
+                return _openStartPage;
+            }
+        }
+
         #endregion
     }
 }
