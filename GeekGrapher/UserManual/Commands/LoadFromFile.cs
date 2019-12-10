@@ -27,8 +27,9 @@ namespace GeekGrapher.UserManual.Commands
             }
             catch (IOException)
             {
-                MessageBox.Show("Помилка",
+                MessageBox.Show(
                     "Не вдалося прочитати файл з інструкцією, переконайтеся, що програма містить всі файли",
+                    "Помилка",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
                 text = _manualViewModel.Text;
