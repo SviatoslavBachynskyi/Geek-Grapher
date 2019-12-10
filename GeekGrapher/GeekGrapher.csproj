@@ -143,9 +143,12 @@
     <Compile Include="Settings\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserManual\Commands\LoadFromFile.cs" />
+    <Compile Include="UserManual\ViewModels\TopicViewModel.cs" />
     <Compile Include="UserManual\UserManual.xaml.cs">
       <DependentUpon>UserManual.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserManual\ViewModels\ManualViewModel.cs" />
     <Page Include="AboutUS\AboutUS.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
