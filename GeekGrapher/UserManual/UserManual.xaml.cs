@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +20,14 @@ namespace GeekGrapher.UserManual
     /// </summary>
     public partial class UserManual : Window
     {
+
         public UserManual()
         {
             InitializeComponent();
+
+            string text = File.ReadAllText("../../Assets/Manual/test.rtf");
+
+            Rtb.Text = text;
         }
     }
 }

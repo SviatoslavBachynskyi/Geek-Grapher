@@ -215,6 +215,7 @@
     <Resource Include="Assets\Fonts\FontAwesome5\Font Awesome 5 Brands-Regular-400.otf" />
     <Resource Include="Assets\Fonts\FontAwesome5\Font Awesome 5 Free-Regular-400.otf" />
     <Resource Include="Assets\Fonts\FontAwesome5\Font Awesome 5 Free-Solid-900.otf" />
+    <None Include="Assets\Manual\test.rtf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

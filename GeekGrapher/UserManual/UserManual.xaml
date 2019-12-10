@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GeekGrapher.StartWindow"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="UserManual"
         WindowState ="Maximized">
@@ -37,50 +38,11 @@
             <Button Grid.Row="4">Paralelograms</Button>
             <Button Grid.Row="5">Affine transformations</Button>
         </Grid>
-        <RichTextBox VerticalScrollBarVisibility = "Visible" Grid.Column="1" Background="#EFEFEF">
-            <FlowDocument>
-                <Paragraph FontSize="40" TextAlignment="Center" FontStyle="Normal" >Lorem ipsum</Paragraph>
-                
-                <Paragraph FontSize="16" TextAlignment="Justify" FontStyle="Italic">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae purus faucibus ornare suspendisse sed nisi. Id consectetur purus ut faucibus pulvinar elementum integer enim neque. Integer feugiat scelerisque varius morbi. Sed euismod nisi porta lorem mollis aliquam ut porttitor. Quis risus sed vulputate odio ut enim blandit volutpat. Senectus et netus et malesuada fames ac turpis. Dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida. Imperdiet proin fermentum leo vel. Convallis posuere morbi leo urna. Velit euismod in pellentesque massa placerat duis. Enim sit amet venenatis urna cursus eget nunc. Quis blandit turpis cursus in hac habitasse. Orci eu lobortis elementum nibh tellus molestie nunc non. Est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat. Dui sapien eget mi proin.
-                    Nec nam aliquam sem et tortor. Nunc sed blandit libero volutpat sed cras ornare arcu.
-                </Paragraph>
-
-                <Paragraph FontSize="16" TextAlignment="Justify" FontStyle="Italic">Consequat id porta nibh venenatis cras. Sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum. Tristique et egestas quis ipsum. Amet nisl purus in mollis nunc sed id. Ornare lectus sit amet est placerat in. At imperdiet dui accumsan sit amet nulla facilisi morbi tempus. Morbi enim nunc faucibus a pellentesque sit. Volutpat odio facilisis mauris sit. Volutpat sed cras ornare arcu dui vivamus arcu felis. Donec adipiscing tristique risus nec feugiat.
-                    Enim sed faucibus turpis in eu mi.
-                </Paragraph>
-
-                <Paragraph FontSize="16" TextAlignment="Justify" FontStyle="Italic">Gravida in fermentum et sollicitudin ac orci phasellus egestas. Sed odio morbi quis commodo odio. Sed euismod nisi porta lorem mollis aliquam. Sollicitudin ac orci phasellus egestas tellus rutrum tellus. Eu consequat ac felis donec. Tellus in hac habitasse platea dictumst vestibulum rhoncus est. Ut sem nulla pharetra diam sit amet nisl suscipit adipiscing. Erat imperdiet sed euismod nisi porta lorem mollis. Amet tellus cras adipiscing enim eu. 
-                    Feugiat pretium nibh ipsum consequat nisl vel pretium lectus quam. A diam sollicitudin tempor id eu nisl nunc mi. Condimentum lacinia quis vel eros donec. Sed cras ornare arcu dui. Senectus et netus et malesuada fames ac turpis egestas integer. Mattis vulputate enim nulla aliquet porttitor lacus luctus accumsan tortor. Molestie a iaculis at erat pellentesque adipiscing commodo elit. Volutpat diam ut venenatis tellus in. Praesent tristique magna sit amet purus gravida quis blandit turpis.
-                    Pellentesque adipiscing commodo elit at imperdiet dui. Potenti nullam ac tortor vitae purus faucibus ornare suspendisse.
-                </Paragraph>
-
-                <Paragraph FontSize="16" TextAlignment="Justify" FontStyle="Italic">Sit amet venenatis urna cursus eget nunc scelerisque. Tortor posuere ac ut consequat semper viverra nam. Luctus accumsan tortor posuere ac ut consequat. Ac placerat vestibulum lectus mauris ultrices eros in. Condimentum vitae sapien pellentesque habitant morbi tristique senectus et. Nulla facilisi morbi tempus iaculis urna id. Diam vulputate ut pharetra sit amet aliquam id. Vulputate odio ut enim blandit volutpat maecenas volutpat blandit. Vitae turpis massa sed elementum. Fames ac turpis egestas integer. Tristique senectus et netus et malesuada fames ac turpis. Mi tempus imperdiet nulla malesuada pellentesque elit eget gravida. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. 
-                    Enim sed faucibus turpis in eu mi.
-                </Paragraph>
-
-                <Paragraph FontSize="16" TextAlignment="Justify" FontStyle="Italic">Neque vitae tempus quam pellentesque nec nam aliquam sem. Quis ipsum suspendisse ultrices gravida dictum. Accumsan tortor posuere ac ut consequat semper viverra. Lobortis elementum nibh tellus molestie nunc non blandit. Egestas erat imperdiet sed euismod nisi. Augue interdum velit euismod in pellentesque massa placerat duis ultricies. Augue neque gravida in fermentum et sollicitudin ac orci. Neque ornare aenean euismod elementum nisi quis. Vitae suscipit tellus mauris a diam maecenas. Auctor eu augue ut lectus arcu. Aliquam vestibulum morbi blandit cursus. 
-                    Pellentesque habitant morbi tristique senectus et netus et.
-                </Paragraph>
-
-                <Paragraph FontSize="16" TextAlignment="Justify" FontStyle="Italic">Neque vitae tempus quam pellentesque nec nam aliquam sem. Quis ipsum suspendisse ultrices gravida dictum. Accumsan tortor posuere ac ut consequat semper viverra. Lobortis elementum nibh tellus molestie nunc non blandit. Egestas erat imperdiet sed euismod nisi. Augue interdum velit euismod in pellentesque massa placerat duis ultricies. Augue neque gravida in fermentum et sollicitudin ac orci. Neque ornare aenean euismod elementum nisi quis. Vitae suscipit tellus mauris a diam maecenas. Auctor eu augue ut lectus arcu. Aliquam vestibulum morbi blandit cursus. 
-                    Pellentesque habitant morbi tristique senectus et netus et.
-                </Paragraph>
-
-                <Paragraph FontSize="16" TextAlignment="Justify" FontStyle="Italic">Consequat id porta nibh venenatis cras. Sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum. Tristique et egestas quis ipsum. Amet nisl purus in mollis nunc sed id. Ornare lectus sit amet est placerat in. At imperdiet dui accumsan sit amet nulla facilisi morbi tempus. Morbi enim nunc faucibus a pellentesque sit. Volutpat odio facilisis mauris sit. Volutpat sed cras ornare arcu dui vivamus arcu felis. Donec adipiscing tristique risus nec feugiat.
-                    Enim sed faucibus turpis in eu mi.
-                </Paragraph>
-
-                <Paragraph FontSize="16" TextAlignment="Justify" FontStyle="Italic">Gravida in fermentum et sollicitudin ac orci phasellus egestas. Sed odio morbi quis commodo odio. Sed euismod nisi porta lorem mollis aliquam. Sollicitudin ac orci phasellus egestas tellus rutrum tellus. Eu consequat ac felis donec. Tellus in hac habitasse platea dictumst vestibulum rhoncus est. Ut sem nulla pharetra diam sit amet nisl suscipit adipiscing. Erat imperdiet sed euismod nisi porta lorem mollis. Amet tellus cras adipiscing enim eu. 
-                    Feugiat pretium nibh ipsum consequat nisl vel pretium lectus quam. A diam sollicitudin tempor id eu nisl nunc mi. Condimentum lacinia quis vel eros donec. Sed cras ornare arcu dui. Senectus et netus et malesuada fames ac turpis egestas integer. Mattis vulputate enim nulla aliquet porttitor lacus luctus accumsan tortor. Molestie a iaculis at erat pellentesque adipiscing commodo elit. Volutpat diam ut venenatis tellus in. Praesent tristique magna sit amet purus gravida quis blandit turpis.
-                    Pellentesque adipiscing commodo elit at imperdiet dui. Potenti nullam ac tortor vitae purus faucibus ornare suspendisse.
-                </Paragraph>
-
-                <Paragraph FontSize="16" TextAlignment="Justify" FontStyle="Italic">Sit amet venenatis urna cursus eget nunc scelerisque. Tortor posuere ac ut consequat semper viverra nam. Luctus accumsan tortor posuere ac ut consequat. Ac placerat vestibulum lectus mauris ultrices eros in. Condimentum vitae sapien pellentesque habitant morbi tristique senectus et. Nulla facilisi morbi tempus iaculis urna id. Diam vulputate ut pharetra sit amet aliquam id. Vulputate odio ut enim blandit volutpat maecenas volutpat blandit. Vitae turpis massa sed elementum. Fames ac turpis egestas integer. Tristique senectus et netus et malesuada fames ac turpis. Mi tempus imperdiet nulla malesuada pellentesque elit eget gravida. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. 
-                    Enim sed faucibus turpis in eu mi.
-                </Paragraph>
-
-            </FlowDocument>
-        </RichTextBox>
+        <xctk:RichTextBox x:Name="Rtb" VerticalScrollBarVisibility = "Visible" Grid.Column="1">
+            <xctk:RichTextBox.TextFormatter>
+                <xctk:RtfFormatter></xctk:RtfFormatter>
+            </xctk:RichTextBox.TextFormatter>
+        </xctk:RichTextBox >
     </Grid>
     
 </Window>
