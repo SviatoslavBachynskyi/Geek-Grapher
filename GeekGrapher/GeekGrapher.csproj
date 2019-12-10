@@ -143,9 +143,12 @@
     <Compile Include="Settings\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserManual\Commands\LoadFromFile.cs" />
+    <Compile Include="UserManual\ViewModels\TopicViewModel.cs" />
     <Compile Include="UserManual\UserManual.xaml.cs">
       <DependentUpon>UserManual.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserManual\ViewModels\ManualViewModel.cs" />
     <Page Include="AboutUS\AboutUS.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -215,6 +218,7 @@
     <Resource Include="Assets\Fonts\FontAwesome5\Font Awesome 5 Brands-Regular-400.otf" />
     <Resource Include="Assets\Fonts\FontAwesome5\Font Awesome 5 Free-Regular-400.otf" />
     <Resource Include="Assets\Fonts\FontAwesome5\Font Awesome 5 Free-Solid-900.otf" />
+    <None Include="Assets\Manual\test.rtf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
