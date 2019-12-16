@@ -27,7 +27,7 @@ namespace GeekGrapher.FractalPainter.Commands
             return WindowViewModel.IsValid();
         }
 
-        public override void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
             try
             {
@@ -54,7 +54,12 @@ namespace GeekGrapher.FractalPainter.Commands
 
                 var int32Rect = new Int32Rect(0, 0, width, height);
 
-                var pixels = ColorsToBytesConverter.Convert(drawer.Draw(zoomed));
+                var progress = new Progress<double>();
+
+                progress.ProgressChanged += (sender, d) => { WindowViewModel.Window.ProgressBar.Value = d; };
+
+
+                var pixels = ColorsToBytesConverter.Convert(await drawer.Draw(progress,zoomed));
 
                 bitmap.WritePixels(int32Rect, pixels, 3 * width, 0);
 

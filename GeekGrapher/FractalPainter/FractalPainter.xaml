@@ -14,9 +14,9 @@
         <Style x:Key="PaletteSchemeColors" TargetType="FrameworkElement">
             <Setter Property="Visibility" Value="Hidden"/>
             <Style.Triggers>
-                <DataTrigger Binding="{Binding SelectedColorScheme}" Value="PaletteBased">  
-            <Setter Property="Visibility"  Value="Visible"/>
-            </DataTrigger>
+                <DataTrigger Binding="{Binding SelectedColorScheme}" Value="PaletteBased">
+                    <Setter Property="Visibility"  Value="Visible"/>
+                </DataTrigger>
             </Style.Triggers>
         </Style>
     </Window.Resources>
@@ -80,21 +80,28 @@
                             Stretch="None"></Image>
                 </DockPanel>
             </Canvas>
-            <Canvas Grid.Column="1" Margin="50">
-                <Grid  Width="{Binding ActualWidth, ElementName=Canvas}"
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Canvas Grid.Row="0" Margin="50,50,50,0">
+                    <Grid  Width="{Binding ActualWidth, ElementName=Canvas}"
             Height="{Binding ActualHeight, ElementName=Canvas}">
-                    <Canvas VerticalAlignment="Center" 
+                        <Canvas VerticalAlignment="Center" 
                             HorizontalAlignment="Center" 
                             Width="{Binding ActualWidth, ElementName=Image}" 
                             Height="{Binding ActualHeight, ElementName=Image}">
-                        <Rectangle Width="{Binding ActualWidth, ElementName=Image}" Height="{Binding ActualHeight, ElementName=Image}"
+                            <Rectangle Width="{Binding ActualWidth, ElementName=Image}" Height="{Binding ActualHeight, ElementName=Image}"
                         x:Name="selectionBox"
                         Visibility="Collapsed"
                         Stroke="Orange"
                         StrokeThickness="3"/>
-                    </Canvas>
-                </Grid>
-            </Canvas>
+                        </Canvas>
+                    </Grid>
+                </Canvas>
+                <ProgressBar x:Name="ProgressBar" Grid.Row="1"></ProgressBar>
+            </Grid>
             <GroupBox Header="Fractal properties" Grid.Column="0">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -241,8 +248,8 @@
                     </ComboBox>
                     <!---Color Scheme-->
 
-                    <CheckBox HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="5" Grid.Column="0"  Grid.ColumnSpan="3" IsChecked="{Binding Path=MakeSmooth}" VerticalAlignment="Center"> Make Smooth</CheckBox>
-                    
+                    <CheckBox HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="5" Grid.Column="0"  Grid.ColumnSpan="3" IsChecked="{Binding Path=MakeSmooth}" VerticalAlignment="Center">Make Smooth</CheckBox>
+
                     <!---Color Count-->
                     <Grid Style="{StaticResource PaletteSchemeColors}" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" x:Name="ColorCount">
                         <Grid.RowDefinitions>

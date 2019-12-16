@@ -41,7 +41,7 @@ namespace GeekGrapher.FractalCore
 
         internal double[,] Iterations { get; set; }
 
-        public Color[,] Draw(bool zoomed)
+        public async Task<Color[,]> Draw(IProgress<double> progress, bool zoomed)
         {
             var result = new Color[Height, Width];
 
@@ -50,36 +50,35 @@ namespace GeekGrapher.FractalCore
             if (!zoomed)
                 IterationCalculator.PreCalculate(this);
 
-            Parallel.For(0, Height,
-                (y) =>
-                {
-                    for (int x = 0; x < Width; x++)
-                    {
-                        Complex z;
-                        var iter = IterationCalculator.Calculate(
-                           XStart + (XFinish - XStart) * x / Width,
-                           YStart + (YFinish - YStart) * y / Height, out z);
-
-                        if (Smooth)
-                            Iterations[y, x] = IterationSmoother.MakeSmooth(this, iter, z);
-                        else
-                            Iterations[y, x] = iter;
-                    }
-                }
-                );
-
+            int calculated = 0;
             if (!zoomed)
                 ColorCalculator.PreCalculate(this);
 
-            Parallel.For(0, Height,
-                (y) =>
-                {
-                    for (int x = 0; x < Width; x++)
-                    {
-                        result[y, x] = ColorCalculator.Calculate(Iterations[y, x]);
-                    }
-                }
+            await Task.Run(() =>
+                   Parallel.For(0, Height,
+                       (y) =>
+                       {
+                           for (int x = 0; x < Width; x++)
+                           {
+                               Complex z;
+                               var iter = IterationCalculator.Calculate(
+                                  XStart + (XFinish - XStart) * x / Width,
+                                  YStart + (YFinish - YStart) * y / Height, out z);
+
+                               if (Smooth)
+                                   Iterations[y, x] = IterationSmoother.MakeSmooth(this, iter, z);
+                               else
+                                   Iterations[y, x] = iter;
+
+                               result[y, x] = ColorCalculator.Calculate(Iterations[y, x]);
+                           }
+
+                           calculated++;
+                           progress.Report(calculated *100.0 / Height);
+                       }
+                       )
                 );
+
 
             return result;
         }
